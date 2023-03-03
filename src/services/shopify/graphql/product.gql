@@ -4,7 +4,6 @@ fragment PaginatedProductList on ProductConnection {
       id
       handle
       title
-      totalInventory
       description(truncateAt: 120)
       priceRange {
         minVariantPrice {
