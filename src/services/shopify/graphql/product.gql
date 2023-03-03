@@ -4,6 +4,7 @@ fragment PaginatedProductList on ProductConnection {
       id
       handle
       title
+      totalInventory
       description(truncateAt: 120)
       priceRange {
         minVariantPrice {
@@ -38,6 +39,7 @@ query getProductSingle($handle: String!) {
   productByHandle(handle: $handle) {
     title
     description
+    totalInventory
     seo {
       title
       description
