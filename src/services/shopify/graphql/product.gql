@@ -38,7 +38,6 @@ query getProductSingle($handle: String!) {
   productByHandle(handle: $handle) {
     title
     description
-    totalInventory
     seo {
       title
       description

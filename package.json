@@ -22,10 +22,9 @@
     "@material-ui/core": "^5.0.0-beta.0",
     "@material-ui/icons": "^5.0.0-beta.0",
     "@material-ui/lab": "^5.0.0-alpha.43",
-    "@material-ui/styles": "^4.11.5",
     "env-kit": "^2.0.4",
     "graphql": "^15.5.1",
-    "graphql-request": "^5.2.0",
+    "graphql-request": "^3.4.0",
     "graphql-tag": "^2.12.5",
     "immer": "^9.0.5",
     "lodash": "^4.17.21",
@@ -41,7 +40,6 @@
     "sharp": "^0.29.0",
     "swiper": "^6.8.4",
     "title": "^3.4.3",
-    "unstated-next": "^1.1.0",
     "use-immer": "^0.6.0"
   },
   "devDependencies": {
