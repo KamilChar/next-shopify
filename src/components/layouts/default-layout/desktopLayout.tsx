@@ -1,8 +1,3 @@
-import React from 'react';
-import NextLink from 'next/link';
-import NProgress from 'nprogress';
-import { ShoppingBasket } from '@material-ui/icons';
-import { useQuery, UseBaseQueryResult } from 'react-query';
 import { AppBar, Toolbar } from '@material-ui/core';
 import { useColorMode } from '@app/utilities/hooks/ColorModeContainer';
 import {
