@@ -19,11 +19,11 @@ const lightTheme = createTheme({
     },
   },
 });
-type ThemeMode = 'light' | 'dark';
+export type ThemeMode = 'light' | 'dark';
 
 const ColorModeContainer = createContainer(() => {
   const [theme, setTheme] = useState<Theme>(darkTheme);
-  const [themeName, setThemeName] = useState<ThemeMode>('dark');
+  const [themeName, setThemeName] = useState<ThemeMode>('light');
 
   useEffect(() => {
     const themeName = localStorage.getItem('themeName');

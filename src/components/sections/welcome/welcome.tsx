@@ -1,31 +1,41 @@
-import React from 'react';
-import NextLink from 'next/link';
-import { Card, CardContent, Button, Typography } from '@material-ui/core';
+import last from 'lodash/last';
+import { InfiniteData, useInfiniteQuery } from 'react-query';
+import { PRODUCT_LIST_QUERY } from '@app/constants/query.constant';
+import { ProductService } from '@app/services/product.service';
+import { useMemo } from 'react';
+import { Card, CardContent, Typography } from '@material-ui/core';
+import { BannerPiecesLeft } from '@app/components/banner/bannerPiecesLeft/bannerPiecesLeft';
 
-export const Welcome: React.FC = () => {
+interface Props {
+  initialData: InfiniteData<ProductService.List>;
+}
+
+export const Welcome = ({ initialData }: Props) => {
+  const productList = useInfiniteQuery(
+    PRODUCT_LIST_QUERY,
+    ({ pageParam }) => ProductService.getList({ after: pageParam }),
+    {
+      initialData,
+      getNextPageParam: (lastPage) => {
+        if (lastPage.pageInfo.hasNextPage) {
+          return last(lastPage.products)?.cursor;
+        }
+      },
+    }
+  );
+
+  const list = useMemo(() => productList.data?.pages.flatMap(({ products }) => products) || [], [productList]);
+
+  if (productList.isLoading || productList.isFetching) {
+    return <div>Loading...</div>;
+  }
   return (
     <Card>
       <CardContent sx={{ textAlign: 'center' }}>
-        <Typography sx={{ marginBottom: '20px', marginTop: '20px' }} gutterBottom variant="h4" component="h1">
-          Next Shopify Storefront
+        <Typography sx={{ marginBottom: '12px', marginTop: '12px' }} gutterBottom variant="h2" component="h1">
+          There are only a few pieces left
         </Typography>
-        <Typography
-          sx={{ marginBottom: '20px', maxWidth: '600px', display: 'inline-block' }}
-          gutterBottom
-          variant="body2"
-          component="p"
-        >
-          A <b>Shopping Cart</b> built with <b>TypeScript</b>, <b>Emotion</b>, <b>Next.js</b>, <b>React.js</b>,{' '}
-          <b>React Query</b>, <b>Shopify Storefront GraphQL API</b>, ... and <b>Material UI</b>.
-        </Typography>
-
-        <div css={{ marginBottom: '20px' }}>
-          <NextLink href="/products" passHref>
-            <Button sx={{ margin: '6px' }} variant="contained" color="primary">
-              Browse Products
-            </Button>
-          </NextLink>
-        </div>
+        <BannerPiecesLeft products={list} pagination={productList} />
       </CardContent>
     </Card>
   );

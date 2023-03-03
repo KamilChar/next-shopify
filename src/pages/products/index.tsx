@@ -13,7 +13,7 @@ interface Props {
   initialData: InfiniteData<ProductService.List>;
 }
 
-const Page = ({ initialData }: Props) => {
+const ProductPage = ({ initialData }: Props) => {
   const productList = useInfiniteQuery(
     PRODUCT_LIST_QUERY,
     ({ pageParam }) => ProductService.getList({ after: pageParam }),
@@ -49,4 +49,4 @@ export const getStaticProps: GetServerSideProps = async () => {
   };
 };
 
-export default Page;
+export default ProductPage;

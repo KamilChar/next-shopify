@@ -14,7 +14,7 @@ export const ProductItem: React.FC<Props> = ({ product }) => {
     <Card sx={{ height: '100%' }}>
       <NextLink href={product.url} passHref>
         <CardActionArea sx={{ display: 'block', height: '100%' }}>
-          <CardMedia height={300} image={product.image.src} alt={product.image.alt} component="img" />
+          <CardMedia height={500} image={product.image.src} alt={product.image.alt} component="img" />
           <CardContent>
             <Typography gutterBottom variant="h6" component="h3">
               {product.title}

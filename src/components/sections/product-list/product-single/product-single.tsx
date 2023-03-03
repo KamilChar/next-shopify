@@ -60,6 +60,9 @@ export const ProductSingle: React.FC<Props> = ({ product }) => {
               <Typography sx={{ marginBottom: '20px' }} gutterBottom variant="h5" component="h1">
                 {product.title}
               </Typography>
+              <Typography sx={{ marginBottom: '20px' }} gutterBottom variant="h6" component="h2">
+                Pieces left: {product.totalInventory}
+              </Typography>
 
               <Typography sx={{ marginBottom: '15px' }} variant="body2" color="text.secondary">
                 {truncate(product.description, { length: 120 })}
