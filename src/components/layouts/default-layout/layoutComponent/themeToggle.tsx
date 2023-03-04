@@ -10,8 +10,7 @@ export const ThemeToggle: React.FC<Props> = ({ themeName, toggleTheme }) => {
   return (
     <FormGroup>
       <FormControlLabel
-        checked={themeName === 'dark'}
-        control={<Switch onClick={toggleTheme} defaultChecked />}
+        control={<Switch onClick={toggleTheme} checked={themeName === 'dark'} />}
         label={themeName === 'dark' ? 'Dark Theme' : 'Light Theme'}
       />
     </FormGroup>
