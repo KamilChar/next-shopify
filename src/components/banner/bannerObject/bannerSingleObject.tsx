@@ -9,7 +9,7 @@ interface Props {
   product: ProductService.ListItem;
 }
 
-export const BannerPiecesLeftObject: React.FC<Props> = ({ product }) => {
+export const BannerSingleObject: React.FC<Props> = ({ product }) => {
   return (
     <Card sx={{ height: '100%' }}>
       <NextLink href={product.url} passHref>

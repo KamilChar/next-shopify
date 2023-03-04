@@ -1,94 +1,49 @@
-import React from 'react';
-import { Grid } from '@material-ui/core';
+import last from 'lodash/last';
+import { InfiniteData, useInfiniteQuery } from 'react-query';
+import { PRODUCT_LIST_QUERY } from '@app/constants/query.constant';
 import { ProductService } from '@app/services/product.service';
-import { useMemo, useState } from 'react';
-import { Pagination } from '@material-ui/lab';
-import { BannerPiecesLeftObject } from '@app/components/banner/bannerObject/bannerPiecesLeftObject';
+import { useMemo } from 'react';
+import { Box, Card, CardContent, Divider, Typography } from '@material-ui/core';
+import { BannerPiecesLeftObject } from '@app/components/banner/bannerPiecesLeft/bannerPiecesLeftObject';
 
 interface Props {
-  products: ProductService.ListItem[];
+  initialData: InfiniteData<ProductService.List>;
 }
 
-export const BannerPiecesLeft: React.FC<Props> = ({ products }) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 4;
-
-  const filteredProduct = useMemo(
-    () =>
-      products
-        .filter((p) => p.totalInventory > 0 && p.totalInventory < 6)
-        .sort((a, b) => a.totalInventory - b.totalInventory),
-    [products]
+export const BannerPiecesLeft = () => {
+  const productList = useInfiniteQuery(
+    PRODUCT_LIST_QUERY,
+    async ({ pageParam }) => await ProductService.getAllProduct({ cursor: pageParam }),
+    {
+      getNextPageParam: (lastPage) => {
+        if (lastPage.pageInfo.hasNextPage) {
+          return last(lastPage.products)?.cursor;
+        }
+      },
+    }
   );
 
-  const pagesCount = Math.ceil(filteredProduct.length / productsPerPage);
+  const list = useMemo(() => productList.data?.pages.flatMap(({ products }) => products) || [], [productList]);
 
-  const handleChangePage = (event: React.ChangeEvent<unknown>, value: number) => {
-    setCurrentPage(value);
-  };
-
-  const displayedProducts = filteredProduct.slice((currentPage - 1) * productsPerPage, currentPage * productsPerPage);
-
+  if (productList.isLoading || productList.isFetching) {
+    return <div>Loading...</div>;
+  }
   return (
     <>
-      <Grid
-        container
-        spacing={3}
-        sx={{ marginBottom: '20px', display: 'flex', justifyContent: 'center', margin: '20px auto 0 auto' }}
-      >
-        {displayedProducts.map((product) => (
-          <Grid item xs={12} sm={6} md={4} lg={3} key={product.id}>
-            <BannerPiecesLeftObject product={product} />
-          </Grid>
-        ))}
-      </Grid>
-      <Pagination
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          margin: '20px auto 0 auto',
-        }}
-        count={pagesCount}
-        page={currentPage}
-        onChange={handleChangePage}
-        color="primary"
-        size="large"
-        siblingCount={1}
-        boundaryCount={1}
-        showFirstButton
-        showLastButton
-      />
+      <Box>
+        <CardContent sx={{ textAlign: 'center' }}>
+          <Typography
+            sx={{ marginBottom: '12px', marginTop: '12px' }}
+            fontSize="32px"
+            gutterBottom
+            variant="h2"
+            component="h1"
+          >
+            There are only a few pieces left
+          </Typography>
+          <BannerPiecesLeftObject products={list} />
+        </CardContent>
+      </Box>
     </>
   );
 };
-
-// import { Grid } from '@material-ui/core';
-// import { ProductService } from '@app/services/product.service';
-// import { ProductItem } from '@app/components/snippets/product-item';
-// import { useMemo } from 'react';
-
-// interface Props {
-//   products: ProductService.ListItem[];
-// }
-
-// export const BannerPiecesLeft: React.FC<Props> = ({ products }) => {
-//   const filteredProduct = useMemo(
-//     () =>
-//       products
-//         .filter((p) => p.totalInventory > 0 && p.totalInventory < 6)
-//         .sort((a, b) => a.totalInventory - b.totalInventory),
-//     [products]
-//   );
-
-//   return (
-//     <>
-//       <Grid container spacing={3} sx={{ marginBottom: '20px' }}>
-//         {filteredProduct.map((product) => (
-//           <Grid item xs={12} sm={6} md={4} lg={3} key={product.id}>
-//             <ProductItem product={product} />
-//           </Grid>
-//         ))}
-//       </Grid>
-//     </>
-//   );
-// };
