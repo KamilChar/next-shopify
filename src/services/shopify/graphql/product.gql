@@ -34,6 +34,15 @@ query getProductList($after: String) {
     ...PaginatedProductList
   }
 }
+query getAllProducts($cursor: String) {
+  products(first: 100, after: $cursor) {
+    ...PaginatedProductList
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+  }
+}
 
 query getProductSingle($handle: String!) {
   productByHandle(handle: $handle) {
