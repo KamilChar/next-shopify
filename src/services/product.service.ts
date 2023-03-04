@@ -13,6 +13,7 @@ export namespace ProductService {
   export interface Single {
     title: string;
     description: string;
+    totalInventory: number;
     seo: {
       title: string;
       description: string;
@@ -35,11 +36,12 @@ export namespace ProductService {
 
   export async function getSingle(handle: string): Promise<Single> {
     const { productByHandle } = await ShopifyService.getProductSingle({ handle });
-    const { title, description, seo, images, variants } = productByHandle!;
+    const { title, description, seo, images, variants, totalInventory } = productByHandle!;
 
     const product: Single = {
       title: formatTitle(title),
       description,
+      totalInventory,
       seo: {
         title: formatTitle(seo.title || title),
         description: seo.description || truncate(description, { length: 256 }),
@@ -73,6 +75,7 @@ export namespace ProductService {
     id: string;
     url: string;
     title: string;
+    totalInventory: number;
     description: string;
     image: {
       src: string;
@@ -95,6 +98,7 @@ export namespace ProductService {
       return {
         id: node.id,
         cursor: cursor,
+        totalInventory: node.totalInventory,
         url: `/products/${node.handle}`,
         title: formatTitle(node.title),
         description: node.description,
