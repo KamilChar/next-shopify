@@ -3,8 +3,9 @@ import { InfiniteData, useInfiniteQuery } from 'react-query';
 import { PRODUCT_LIST_QUERY } from '@app/constants/query.constant';
 import { ProductService } from '@app/services/product.service';
 import { useMemo } from 'react';
-import { Card, CardContent, Typography } from '@material-ui/core';
+import { Box, Card, CardContent, Divider, Typography } from '@material-ui/core';
 import { BannerPiecesLeft } from '@app/components/banner/bannerPiecesLeft/bannerPiecesLeft';
+import { BannerRandomTags } from '@app/components/banner/BannerRandomTags/BannerRandomTags';
 
 interface Props {
   initialData: InfiniteData<ProductService.List>;
@@ -13,7 +14,7 @@ interface Props {
 export const Welcome = ({ initialData }: Props) => {
   const productList = useInfiniteQuery(
     PRODUCT_LIST_QUERY,
-    ({ pageParam }) => ProductService.getList({ after: pageParam }),
+    ({ pageParam }) => ProductService.getAllProduct({ cursor: pageParam }),
     {
       initialData,
       getNextPageParam: (lastPage) => {
@@ -30,13 +31,59 @@ export const Welcome = ({ initialData }: Props) => {
     return <div>Loading...</div>;
   }
   return (
-    <Card>
-      <CardContent sx={{ textAlign: 'center' }}>
-        <Typography sx={{ marginBottom: '12px', marginTop: '12px' }} gutterBottom variant="h2" component="h1">
-          There are only a few pieces left
-        </Typography>
-        <BannerPiecesLeft products={list} pagination={productList} />
-      </CardContent>
-    </Card>
+    <>
+      <Divider
+        orientation="horizontal"
+        sx={{
+          color: 'black',
+        }}
+      />
+      <Box>
+        <CardContent sx={{ textAlign: 'center' }}>
+          <Typography
+            sx={{ marginBottom: '12px', marginTop: '12px' }}
+            fontSize="32px"
+            gutterBottom
+            variant="h2"
+            component="h1"
+          >
+            There are only a few pieces left
+          </Typography>
+          <BannerPiecesLeft products={list} />
+        </CardContent>
+      </Box>
+      <Divider
+        orientation="horizontal"
+        sx={{
+          color: 'black',
+        }}
+      />
+      <Divider
+        orientation="horizontal"
+        sx={{
+          color: 'black',
+        }}
+      />
+      <Box>
+        <CardContent sx={{ textAlign: 'center' }}>
+          <Typography
+            sx={{ marginBottom: '12px', marginTop: '12px' }}
+            fontSize="32px"
+            gutterBottom
+            variant="h2"
+            component="h1"
+          >
+            There are only a few pieces left
+          </Typography>
+          <BannerRandomTags products={list} />
+        </CardContent>
+      </Box>
+      <Divider
+        orientation="horizontal"
+        sx={{
+          color: 'black',
+        }}
+      />
+    </>
   );
 };

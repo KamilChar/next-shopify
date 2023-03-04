@@ -1,3 +1,4 @@
+import { GetAllProductsQueryVariables } from './shopify/generated';
 import formatTitle from 'title';
 import { Merge } from 'type-fest';
 import truncate from 'lodash/truncate';
@@ -118,6 +119,11 @@ export namespace ProductService {
 
   export async function getList(variables?: GetProductListQueryVariables): Promise<List> {
     const { products } = await ShopifyService.getProductList(variables);
+    return getListFromPaginatedProductPage(products);
+  }
+
+  export async function getAllProduct(variables?: GetAllProductsQueryVariables): Promise<List> {
+    const { products } = await ShopifyService.getAllProducts(variables);
     return getListFromPaginatedProductPage(products);
   }
 }

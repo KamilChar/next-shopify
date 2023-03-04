@@ -9,7 +9,7 @@ interface Props {
   products: ProductService.ListItem[];
 }
 
-export const BannerPiecesLeft: React.FC<Props> = ({ products }) => {
+export const BannerRandomTags: React.FC<Props> = ({ products }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 4;
 
@@ -61,34 +61,3 @@ export const BannerPiecesLeft: React.FC<Props> = ({ products }) => {
     </>
   );
 };
-
-// import { Grid } from '@material-ui/core';
-// import { ProductService } from '@app/services/product.service';
-// import { ProductItem } from '@app/components/snippets/product-item';
-// import { useMemo } from 'react';
-
-// interface Props {
-//   products: ProductService.ListItem[];
-// }
-
-// export const BannerPiecesLeft: React.FC<Props> = ({ products }) => {
-//   const filteredProduct = useMemo(
-//     () =>
-//       products
-//         .filter((p) => p.totalInventory > 0 && p.totalInventory < 6)
-//         .sort((a, b) => a.totalInventory - b.totalInventory),
-//     [products]
-//   );
-
-//   return (
-//     <>
-//       <Grid container spacing={3} sx={{ marginBottom: '20px' }}>
-//         {filteredProduct.map((product) => (
-//           <Grid item xs={12} sm={6} md={4} lg={3} key={product.id}>
-//             <ProductItem product={product} />
-//           </Grid>
-//         ))}
-//       </Grid>
-//     </>
-//   );
-// };
