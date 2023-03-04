@@ -1,5 +1,14 @@
 import React, { useMemo, useState } from 'react';
-import { Grid, FormControl, InputLabel, MenuItem, Select, Stack, TextField as _TextField } from '@material-ui/core';
+import {
+  Grid,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Stack,
+  TextField as _TextField,
+  Pagination,
+} from '@material-ui/core';
 import { UseInfiniteQueryResult } from 'react-query';
 import { PageLoader } from '@app/components/snippets/page-loader';
 import { ProductItem } from '@app/components/snippets/product-item';
@@ -23,8 +32,10 @@ const sortTypes = ['Name Asc', 'Name Desc', 'Price Asc', 'Price Desc'] as const;
 type SortType = typeof sortTypes[number];
 
 export const ProductList: React.FC<Props> = ({ products, pagination }) => {
-  const [sortBy, setSortBy] = useState<SortType>('Name Asc');
+  const [sortBy, setSortBy] = useState<SortType>(sortTypes[0]);
   const [search, setSearch] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 12;
   const sortedProducts = useMemo(
     () =>
       products
@@ -45,6 +56,14 @@ export const ProductList: React.FC<Props> = ({ products, pagination }) => {
 
     [sortBy, products, search]
   );
+
+  const pagesCount = Math.ceil(sortedProducts.length / productsPerPage);
+
+  const handleChangePage = (event: React.ChangeEvent<unknown>, value: number) => {
+    setCurrentPage(value);
+  };
+
+  const displayedProducts = sortedProducts.slice((currentPage - 1) * productsPerPage, currentPage * productsPerPage);
 
   return (
     <div>
@@ -74,13 +93,28 @@ export const ProductList: React.FC<Props> = ({ products, pagination }) => {
       </Stack>
 
       <Grid container spacing={3} sx={{ marginBottom: '20px' }}>
-        {sortedProducts.map((product) => (
+        {displayedProducts.map((product) => (
           <Grid item xs={12} sm={6} md={4} lg={3} key={product.id}>
             <ProductItem product={product} />
           </Grid>
         ))}
       </Grid>
-      <PageLoader {...pagination} />
+      <Pagination
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          margin: '20px auto 0 auto',
+        }}
+        count={pagesCount}
+        page={currentPage}
+        onChange={handleChangePage}
+        color="primary"
+        size="large"
+        siblingCount={1}
+        boundaryCount={1}
+        showFirstButton
+        showLastButton
+      />
     </div>
   );
 };

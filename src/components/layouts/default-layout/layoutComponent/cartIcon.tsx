@@ -11,7 +11,7 @@ export const CartIcon = () => {
   return (
     <>
       <NextLink href="/cart" passHref>
-        <IconButton color="inherit">
+        <IconButton sx={{ margin: '12px' }} color="inherit">
           <Badge color="error" badgeContent={itemCount.data}>
             <ShoppingBasket />
           </Badge>

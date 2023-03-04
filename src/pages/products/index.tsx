@@ -16,7 +16,7 @@ interface Props {
 const ProductPage = ({ initialData }: Props) => {
   const productList = useInfiniteQuery(
     PRODUCT_LIST_QUERY,
-    ({ pageParam }) => ProductService.getList({ after: pageParam }),
+    async ({ pageParam }) => await ProductService.getAllProduct({ cursor: pageParam }),
     {
       initialData,
       getNextPageParam: (lastPage) => {

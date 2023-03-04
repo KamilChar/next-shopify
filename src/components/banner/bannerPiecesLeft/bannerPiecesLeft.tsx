@@ -3,7 +3,7 @@ import { InfiniteData, useInfiniteQuery } from 'react-query';
 import { PRODUCT_LIST_QUERY } from '@app/constants/query.constant';
 import { ProductService } from '@app/services/product.service';
 import { useMemo } from 'react';
-import { Box, Card, CardContent, Divider, Typography } from '@material-ui/core';
+import { Box, CardContent, Typography } from '@material-ui/core';
 import { BannerPiecesLeftObject } from '@app/components/banner/bannerPiecesLeft/bannerPiecesLeftObject';
 
 interface Props {

@@ -13,7 +13,7 @@ const DesktopLayout = () => {
   return (
     <>
       <AppBar position="fixed">
-        <Toolbar>
+        <Toolbar sx={{}}>
           <HeaderTitleDesktop />
           <NavComponent />
           <CartIcon />
