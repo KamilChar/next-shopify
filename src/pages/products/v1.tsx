@@ -1,4 +1,3 @@
-import last from 'lodash/last';
 import { NextSeo } from 'next-seo';
 import { InfiniteData, useInfiniteQuery } from 'react-query';
 import { ProductList } from '@app/components/sections/product-list';
@@ -19,11 +18,6 @@ const ProductPage = ({ initialData }: Props) => {
     async ({ pageParam }) => await ProductService.getAllProduct({ cursor: pageParam }),
     {
       initialData,
-      getNextPageParam: (lastPage) => {
-        if (lastPage.pageInfo.hasNextPage) {
-          return last(lastPage.products)?.cursor;
-        }
-      },
     }
   );
 

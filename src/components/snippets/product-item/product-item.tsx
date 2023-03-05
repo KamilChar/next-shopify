@@ -11,7 +11,7 @@ interface Props {
 
 export const ProductItem: React.FC<Props> = ({ product }) => {
   return (
-    <Card sx={{ height: '100%' }}>
+    <Card sx={{ height: '400px' }}>
       <NextLink href={product.url} passHref>
         <CardActionArea sx={{ height: '100%' }}>
           <Box sx={{ height: '50%' }}>

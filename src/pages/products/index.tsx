@@ -26,7 +26,7 @@ const SwitchProductPage = () => {
           </Button>
         </NextLink>
 
-        <NextLink href="/default" passHref>
+        <NextLink href="/products/v2" passHref>
           <Button sx={{ margin: '12px ' }} variant="contained" size="large">
             Product page with arrow pagination
           </Button>

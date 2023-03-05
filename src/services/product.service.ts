@@ -1,4 +1,3 @@
-import { GetAllProductsQueryVariables } from './shopify/generated';
 import formatTitle from 'title';
 import { Merge } from 'type-fest';
 import truncate from 'lodash/truncate';
@@ -6,8 +5,12 @@ import {
   ShopifyService,
   GetProductListQuery,
   GetProductListQueryVariables,
+  GetProductListBeforeQuery,
+  GetAllProductsQueryVariables,
+  GetProductListBeforeQueryVariables,
   CurrencyCode,
   PaginatedProductListFragment,
+  PaginatedProductListBeforeFragment,
 } from './shopify.service';
 
 export namespace ProductService {
@@ -88,9 +91,18 @@ export namespace ProductService {
     };
   }
 
+  export interface AllList {
+    products: ListItem[];
+  }
+
   export interface List {
     products: Merge<ListItem, { cursor: string }>[];
     pageInfo: GetProductListQuery['products']['pageInfo'];
+  }
+
+  export interface ListBefore {
+    products: Merge<ListItem, { cursor: string }>[];
+    pageInfo: GetProductListBeforeQuery['products']['pageInfo'];
   }
 
   export function getListFromPaginatedProductPage(fragment: PaginatedProductListFragment): List {
@@ -117,13 +129,61 @@ export namespace ProductService {
     return { products, pageInfo };
   }
 
+  export function getListBeforeFromPaginatedProductPage(fragment: PaginatedProductListBeforeFragment): ListBefore {
+    const { edges, pageInfo } = fragment;
+
+    const products: ListBefore['products'] = edges.map(({ node, cursor }) => {
+      return {
+        id: node.id,
+        cursor: cursor,
+        totalInventory: node.totalInventory,
+        url: `/products/${node.handle}`,
+        title: formatTitle(node.title),
+        description: node.description,
+        image: {
+          src: node.images.edges[0].node.transformedSrc,
+          alt: node.images.edges[0].node.altText || '',
+        },
+        price: {
+          amount: Number(node.priceRange.minVariantPrice.amount),
+          currencyCode: node.priceRange.minVariantPrice.currencyCode,
+        },
+      };
+    });
+
+    return { products, pageInfo };
+  }
+
   export async function getList(variables?: GetProductListQueryVariables): Promise<List> {
     const { products } = await ShopifyService.getProductList(variables);
     return getListFromPaginatedProductPage(products);
   }
 
-  export async function getAllProduct(variables?: GetAllProductsQueryVariables): Promise<List> {
+  export async function getListBefore(variables?: GetProductListBeforeQueryVariables): Promise<ListBefore> {
+    const { products } = await ShopifyService.getProductListBefore(variables);
+    return getListBeforeFromPaginatedProductPage(products);
+  }
+
+  export async function getAllProduct(variables?: GetAllProductsQueryVariables): Promise<AllList> {
     const { products } = await ShopifyService.getAllProducts(variables);
-    return getListFromPaginatedProductPage(products);
+    const productList: AllList['products'] = products.edges.map(({ node }) => {
+      return {
+        id: node.id,
+        totalInventory: node.totalInventory,
+        url: `/products/${node.handle}`,
+        title: formatTitle(node.title),
+        description: node.description,
+        image: {
+          src: node.images.edges[0].node.transformedSrc,
+          alt: node.images.edges[0].node.altText || '',
+        },
+        price: {
+          amount: Number(node.priceRange.minVariantPrice.amount),
+          currencyCode: node.priceRange.minVariantPrice.currencyCode,
+        },
+      };
+    });
+
+    return { products: productList };
   }
 }

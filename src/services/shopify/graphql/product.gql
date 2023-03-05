@@ -29,17 +29,74 @@ fragment PaginatedProductList on ProductConnection {
   }
 }
 
+fragment PaginatedProductListBefore on ProductConnectionBefore {
+  edges {
+    node {
+      id
+      handle
+      title
+      totalInventory
+      description(truncateAt: 120)
+      priceRange {
+        minVariantPrice {
+          amount
+          currencyCode
+        }
+      }
+      images(first: 1) {
+        edges {
+          node {
+            id
+            altText
+            transformedSrc(maxWidth: 768, maxHeight: 1024, crop: CENTER, preferredContentType: JPG)
+          }
+        }
+      }
+    }
+    cursor
+  }
+  pageInfo {
+    hasPreviousPage
+  }
+}
+
 query getProductList($after: String) {
   products(first: 12, after: $after) {
     ...PaginatedProductList
   }
 }
-query getAllProducts($cursor: String) {
-  products(first: 100, after: $cursor) {
-    ...PaginatedProductList
-    pageInfo {
-      hasNextPage
-      endCursor
+
+query getProductListBefore($before: String) {
+  products(first: 12, before: $before) {
+    ...PaginatedProductListBefore
+  }
+}
+
+query getAllProducts {
+  products(first: 100) {
+    edges {
+      node {
+        id
+        handle
+        title
+        totalInventory
+        description(truncateAt: 120)
+        priceRange {
+          minVariantPrice {
+            amount
+            currencyCode
+          }
+        }
+        images(first: 1) {
+          edges {
+            node {
+              id
+              altText
+              transformedSrc(maxWidth: 768, maxHeight: 1024, crop: CENTER, preferredContentType: JPG)
+            }
+          }
+        }
+      }
     }
   }
 }

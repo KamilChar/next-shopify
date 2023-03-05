@@ -5247,7 +5247,7 @@ export type Product = HasMetafields & Node & OnlineStorePublishable & {
   /** The product’s title. */
   title: Scalars['String'];
   /** The total quantity of inventory in stock for this Product. */
-  totalInventory?: Maybe<Scalars['Int']>;
+  totalInventory: Scalars['Int'];
   /**
    * The date and time when the product was last modified.
    * A product's `updatedAt` value can change for different reasons. For example, if an order
@@ -6618,28 +6618,35 @@ export type RemoveCartItemMutationVariables = Exact<{
 
 export type RemoveCartItemMutation = { __typename?: 'Mutation', checkoutLineItemsRemove?: Maybe<{ __typename?: 'CheckoutLineItemsRemovePayload', checkout?: Maybe<{ __typename?: 'Checkout', id: string }> }> };
 
-export type PaginatedProductListFragment = { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', cursor: string, node: { __typename?: 'Product', id: string, handle: string, title: string, totalInventory?: Maybe<number>, description: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: Maybe<string>, altText?: Maybe<string>, transformedSrc: string } }> } } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean } };
+export type PaginatedProductListFragment = { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', cursor: string, node: { __typename?: 'Product', id: string, handle: string, title: string, totalInventory: number, description: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: Maybe<string>, altText?: Maybe<string>, transformedSrc: string } }> } } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean } };
+
+export type PaginatedProductListBeforeFragment = { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', cursor: string, node: { __typename?: 'Product', id: string, handle: string, title: string, totalInventory: number, description: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: Maybe<string>, altText?: Maybe<string>, transformedSrc: string } }> } } }>, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean } };
 
 export type GetProductListQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>;
 }>;
 
 
-export type GetProductListQuery = { __typename?: 'QueryRoot', products: { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', cursor: string, node: { __typename?: 'Product', id: string, handle: string, title: string, totalInventory?: Maybe<number>, description: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: Maybe<string>, altText?: Maybe<string>, transformedSrc: string } }> } } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean } } };
+export type GetProductListQuery = { __typename?: 'QueryRoot', products: { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', cursor: string, node: { __typename?: 'Product', id: string, handle: string, title: string, totalInventory: number, description: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: Maybe<string>, altText?: Maybe<string>, transformedSrc: string } }> } } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean } } };
 
-export type GetAllProductsQueryVariables = Exact<{
-  cursor?: Maybe<Scalars['String']>;
+export type GetProductListBeforeQueryVariables = Exact<{
+  before?: Maybe<Scalars['String']>;
 }>;
 
 
-export type GetAllProductsQuery = { __typename?: 'QueryRoot', products: { __typename?: 'ProductConnection', pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, endCursor?: Maybe<string> }, edges: Array<{ __typename?: 'ProductEdge', cursor: string, node: { __typename?: 'Product', id: string, handle: string, title: string, totalInventory?: Maybe<number>, description: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: Maybe<string>, altText?: Maybe<string>, transformedSrc: string } }> } } }> } };
+export type GetProductListBeforeQuery = { __typename?: 'QueryRoot', products: { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', cursor: string, node: { __typename?: 'Product', id: string, handle: string, title: string, totalInventory: number, description: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: Maybe<string>, altText?: Maybe<string>, transformedSrc: string } }> } } }>, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean } } };
+
+export type GetAllProductsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllProductsQuery = { __typename?: 'QueryRoot', products: { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', node: { __typename?: 'Product', id: string, handle: string, title: string, totalInventory: number, description: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: Maybe<string>, altText?: Maybe<string>, transformedSrc: string } }> } } }> } };
 
 export type GetProductSingleQueryVariables = Exact<{
   handle: Scalars['String'];
 }>;
 
 
-export type GetProductSingleQuery = { __typename?: 'QueryRoot', productByHandle?: Maybe<{ __typename?: 'Product', title: string, description: string, totalInventory?: Maybe<number>, seo: { __typename?: 'SEO', title?: Maybe<string>, description?: Maybe<string> }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: Maybe<string>, altText?: Maybe<string>, transformedSrc: string } }> }, variants: { __typename?: 'ProductVariantConnection', edges: Array<{ __typename?: 'ProductVariantEdge', node: { __typename?: 'ProductVariant', id: string, title: string, priceV2: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode }, image?: Maybe<{ __typename?: 'Image', id?: Maybe<string> }> } }> } }> };
+export type GetProductSingleQuery = { __typename?: 'QueryRoot', productByHandle?: Maybe<{ __typename?: 'Product', title: string, description: string, totalInventory: number, seo: { __typename?: 'SEO', title?: Maybe<string>, description?: Maybe<string> }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: Maybe<string>, altText?: Maybe<string>, transformedSrc: string } }> }, variants: { __typename?: 'ProductVariantConnection', edges: Array<{ __typename?: 'ProductVariantEdge', node: { __typename?: 'ProductVariant', id: string, title: string, priceV2: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode }, image?: Maybe<{ __typename?: 'Image', id?: Maybe<string> }> } }> } }> };
 
 export type GetCollectionListQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>;
@@ -6654,7 +6661,7 @@ export type GetCollectionSingleQueryVariables = Exact<{
 }>;
 
 
-export type GetCollectionSingleQuery = { __typename?: 'QueryRoot', collectionByHandle?: Maybe<{ __typename?: 'Collection', id: string, handle: string, title: string, description: string, products: { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', cursor: string, node: { __typename?: 'Product', id: string, handle: string, title: string, totalInventory?: Maybe<number>, description: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: Maybe<string>, altText?: Maybe<string>, transformedSrc: string } }> } } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean } } }> };
+export type GetCollectionSingleQuery = { __typename?: 'QueryRoot', collectionByHandle?: Maybe<{ __typename?: 'Collection', id: string, handle: string, title: string, description: string, products: { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', cursor: string, node: { __typename?: 'Product', id: string, handle: string, title: string, totalInventory: number, description: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: Maybe<string>, altText?: Maybe<string>, transformedSrc: string } }> } } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean } } }> };
 
 export const PaginatedProductListFragmentDoc = gql`
     fragment PaginatedProductList on ProductConnection {
@@ -6690,6 +6697,43 @@ export const PaginatedProductListFragmentDoc = gql`
   }
   pageInfo {
     hasNextPage
+  }
+}
+    `;
+export const PaginatedProductListBeforeFragmentDoc = gql`
+    fragment PaginatedProductListBefore on ProductConnection {
+  edges {
+    node {
+      id
+      handle
+      title
+      totalInventory
+      description(truncateAt: 120)
+      priceRange {
+        minVariantPrice {
+          amount
+          currencyCode
+        }
+      }
+      images(first: 1) {
+        edges {
+          node {
+            id
+            altText
+            transformedSrc(
+              maxWidth: 768
+              maxHeight: 1024
+              crop: CENTER
+              preferredContentType: JPG
+            )
+          }
+        }
+      }
+    }
+    cursor
+  }
+  pageInfo {
+    hasPreviousPage
   }
 }
     `;
@@ -6803,17 +6847,48 @@ export const GetProductListDocument = gql`
   }
 }
     ${PaginatedProductListFragmentDoc}`;
+export const GetProductListBeforeDocument = gql`
+    query getProductListBefore($before: String) {
+  products(first: 12, before: $before) {
+    ...PaginatedProductListBefore
+  }
+}
+    ${PaginatedProductListBeforeFragmentDoc}`;
 export const GetAllProductsDocument = gql`
-    query getAllProducts($cursor: String) {
-  products(first: 100, after: $cursor) {
-    ...PaginatedProductList
-    pageInfo {
-      hasNextPage
-      endCursor
+    query getAllProducts {
+  products(first: 100) {
+    edges {
+      node {
+        id
+        handle
+        title
+        totalInventory
+        description(truncateAt: 120)
+        priceRange {
+          minVariantPrice {
+            amount
+            currencyCode
+          }
+        }
+        images(first: 1) {
+          edges {
+            node {
+              id
+              altText
+              transformedSrc(
+                maxWidth: 768
+                maxHeight: 1024
+                crop: CENTER
+                preferredContentType: JPG
+              )
+            }
+          }
+        }
+      }
     }
   }
 }
-    ${PaginatedProductListFragmentDoc}`;
+    `;
 export const GetProductSingleDocument = gql`
     query getProductSingle($handle: String!) {
   productByHandle(handle: $handle) {
@@ -6932,6 +7007,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     getProductList(variables?: GetProductListQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetProductListQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetProductListQuery>(GetProductListDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getProductList');
+    },
+    getProductListBefore(variables?: GetProductListBeforeQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetProductListBeforeQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetProductListBeforeQuery>(GetProductListBeforeDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getProductListBefore');
     },
     getAllProducts(variables?: GetAllProductsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetAllProductsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetAllProductsQuery>(GetAllProductsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getAllProducts');

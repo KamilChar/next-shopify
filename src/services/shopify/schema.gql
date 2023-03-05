@@ -6751,7 +6751,7 @@ type Product implements HasMetafields & Node & OnlineStorePublishable {
   title: String!
 
   """The total quantity of inventory in stock for this Product."""
-  totalInventory: Int
+  totalInventory: Int!
 
   """
   The date and time when the product was last modified.

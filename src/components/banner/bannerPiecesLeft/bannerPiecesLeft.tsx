@@ -7,10 +7,7 @@ import { Box, CardContent, Typography } from '@material-ui/core';
 import { BannerPiecesLeftObject } from '@app/components/banner/bannerPiecesLeft/bannerPiecesLeftObject';
 
 export const BannerPiecesLeft = () => {
-  const productList = useInfiniteQuery(
-    PRODUCT_LIST_QUERY,
-    async ({ pageParam }) => await ProductService.getAllProduct({ cursor: pageParam })
-  );
+  const productList = useInfiniteQuery(PRODUCT_LIST_QUERY, async () => await ProductService.getAllProduct());
 
   const list = useMemo(() => productList.data?.pages.flatMap(({ products }) => products) || [], [productList]);
 
