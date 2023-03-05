@@ -10,7 +10,6 @@ import {
   Pagination,
 } from '@material-ui/core';
 import { UseInfiniteQueryResult } from 'react-query';
-import { PageLoader } from '@app/components/snippets/page-loader';
 import { ProductItem } from '@app/components/snippets/product-item';
 import { ProductService } from '@app/services/product.service';
 import { styled } from '@material-ui/system';
@@ -31,7 +30,7 @@ const TextField = styled(_TextField)`
 const sortTypes = ['Name Asc', 'Name Desc', 'Price Asc', 'Price Desc'] as const;
 type SortType = typeof sortTypes[number];
 
-export const ProductList: React.FC<Props> = ({ products, pagination }) => {
+export const ProductList: React.FC<Props> = ({ products }) => {
   const [sortBy, setSortBy] = useState<SortType>(sortTypes[0]);
   const [search, setSearch] = useState('');
   const [currentPage, setCurrentPage] = useState(1);

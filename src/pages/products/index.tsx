@@ -1,52 +1,39 @@
-import last from 'lodash/last';
-import { NextSeo } from 'next-seo';
-import { InfiniteData, useInfiniteQuery } from 'react-query';
-import { ProductList } from '@app/components/sections/product-list';
-import { DefaultLayout } from '@app/components/layouts/default-layout/default-layout';
+import { DefaultLayout } from '@app/components/layouts/default-layout';
+import { Box, Button } from '@material-ui/core';
+import NextLink from 'next/link';
 
-import { PRODUCT_LIST_QUERY } from '@app/constants/query.constant';
-import { ProductService } from '@app/services/product.service';
-import { useMemo } from 'react';
-import { GetServerSideProps } from 'next';
-
-interface Props {
-  initialData: InfiniteData<ProductService.List>;
-}
-
-const ProductPage = ({ initialData }: Props) => {
-  const productList = useInfiniteQuery(
-    PRODUCT_LIST_QUERY,
-    async ({ pageParam }) => await ProductService.getAllProduct({ cursor: pageParam }),
-    {
-      initialData,
-      getNextPageParam: (lastPage) => {
-        if (lastPage.pageInfo.hasNextPage) {
-          return last(lastPage.products)?.cursor;
-        }
-      },
-    }
-  );
-
-  const list = useMemo(() => productList.data?.pages.flatMap(({ products }) => products) || [], [productList]);
-
-  if (productList.isLoading || productList.isFetching) {
-    return <div>Loading...</div>;
-  }
-
+const SwitchProductPage = () => {
   return (
     <DefaultLayout>
-      <NextSeo title="Products" description="All Products from Next Shopify Storefront" />
-      <ProductList products={list} pagination={productList} />
+      <Box
+        sx={{
+          '& button': { p: 2, m: 1, textAlign: 'center' },
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          textAlign: 'center',
+        }}
+      >
+        <NextLink href="/products/default" passHref>
+          <Button color="inherit" sx={{ margin: '12px ' }} variant="outlined" size="small">
+            Default page products
+          </Button>
+        </NextLink>
+        <NextLink href="/products/v1" passHref>
+          <Button color="inherit" sx={{ margin: '12px ' }} variant="outlined" size="medium">
+            Products page with numeric pagination
+          </Button>
+        </NextLink>
+
+        <NextLink href="/default" passHref>
+          <Button sx={{ margin: '12px ' }} variant="contained" size="large">
+            Product page with arrow pagination
+          </Button>
+        </NextLink>
+      </Box>
     </DefaultLayout>
   );
 };
 
-export const getStaticProps: GetServerSideProps = async () => {
-  const firstPage = await ProductService.getList();
-
-  return {
-    props: { initialData: { pages: [firstPage], pageParams: [null] } },
-  };
-};
-
-export default ProductPage;
+export default SwitchProductPage;

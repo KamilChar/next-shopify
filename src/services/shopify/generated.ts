@@ -6824,7 +6824,7 @@ export const GetProductSingleDocument = gql`
       title
       description
     }
-    images(first: 250) {
+    images(first: 1) {
       edges {
         node {
           id

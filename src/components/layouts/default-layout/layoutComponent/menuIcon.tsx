@@ -1,3 +1,4 @@
+import React from 'react';
 import { Button, Fade, Link, Menu, MenuItem } from '@material-ui/core';
 import { MenuOpen } from '@material-ui/icons';
 import { useState, MouseEvent, useEffect, ReactNode } from 'react';
@@ -37,7 +38,7 @@ export const MenuIcon: React.FC<Props> = ({ query, themeName }) => {
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
-        sx={{ color: '#fff' }}
+        color="inherit"
       >
         <MenuOpen />
       </Button>
@@ -52,18 +53,18 @@ export const MenuIcon: React.FC<Props> = ({ query, themeName }) => {
         TransitionComponent={Fade}
         PaperProps={{
           sx: {
-            bgcolor: themeName === 'dark' ? '' : '#5893df',
+            bgcolor: themeName === 'dark' ? '' : '#dfdd58',
           },
         }}
       >
         <MenuItem>
           <NextLink href="/products" passHref>
-            <Link sx={{ textDecoration: 'none', color: '#fff' }}>Products</Link>
+            <Link sx={{ textDecoration: 'none', color: 'inherit' }}>Products</Link>
           </NextLink>
         </MenuItem>
         <MenuItem>
           <NextLink href="/collections" passHref>
-            <Link sx={{ textDecoration: 'none', color: '#fff' }}> Collections</Link>
+            <Link sx={{ textDecoration: 'none', color: 'inherit' }}> Collections</Link>
           </NextLink>
         </MenuItem>
       </Menu>

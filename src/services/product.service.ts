@@ -27,7 +27,7 @@ export namespace ProductService {
     variants: {
       id: string;
       title: string;
-      image?: string;
+      image: string;
       price: {
         amount: number;
         currencyCode: CurrencyCode;

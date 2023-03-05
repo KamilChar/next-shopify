@@ -46,11 +46,11 @@ export const ProductSingle: React.FC<Props> = ({ product }) => {
     <section>
       <Card sx={{ marginBottom: '20px' }}>
         <Grid container>
-          <Grid item xs={12} sm={5}>
+          <Grid sx={{ maxHeight: '100%', maxWidth: '100%' }} item xs={12} sm={5}>
             <SwiperSlider onSwiper={setSwiper}>
               {product.images.map(({ id, src, alt }) => (
                 <SwiperSlide key={id}>
-                  <Image src={src} alt={alt} width="768" height="1024" layout="responsive" />
+                  <Image src={src} alt={alt} width="256" height="256" layout="responsive" />
                 </SwiperSlide>
               ))}
             </SwiperSlider>

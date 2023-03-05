@@ -7,14 +7,14 @@ export const Welcome = () => {
       <Divider
         orientation="horizontal"
         sx={{
-          color: 'black',
+          color: 'inherit',
         }}
       />
       <BannerPiecesLeft />
       <Divider
         orientation="horizontal"
         sx={{
-          color: 'black',
+          color: 'inherit',
         }}
       />
     </>

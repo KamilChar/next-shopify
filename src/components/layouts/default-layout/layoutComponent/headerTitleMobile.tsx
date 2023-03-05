@@ -1,7 +1,12 @@
 import { Link } from '@material-ui/core';
 import NextLink from 'next/link';
+import { ReactNode } from 'react';
 
-export const HeaderTitleMobile = () => {
+interface Props {
+  themeName: ReactNode;
+}
+
+export const HeaderTitleMobile: React.FC<Props> = ({ themeName }) => {
   return (
     <NextLink href="/" passHref>
       <Link
@@ -14,7 +19,7 @@ export const HeaderTitleMobile = () => {
         align="center"
         sx={{
           display: 'block',
-          color: '#fff',
+          color: themeName === 'dark' ? 'white' : 'black',
           textDecoration: 'none',
           cursor: 'pointer',
           fontFamily: 'Montez, cursive',

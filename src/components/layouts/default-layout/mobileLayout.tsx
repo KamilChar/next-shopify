@@ -14,7 +14,7 @@ export const MobileLayout = () => {
       <AppBar position="fixed">
         <Toolbar>
           <MenuIcon themeName={themeName} />
-          <HeaderTitleMobile />
+          <HeaderTitleMobile themeName={themeName} />
           <CartIcon />
           <ThemeToggle themeName={themeName} toggleTheme={toggleTheme} />
         </Toolbar>

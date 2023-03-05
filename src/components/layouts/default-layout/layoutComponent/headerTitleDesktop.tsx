@@ -11,9 +11,9 @@ export const HeaderTitleDesktop = () => {
         noWrap
         component="div"
         fontSize="24px"
+        color="inherit"
         sx={{
           display: 'block',
-          color: '#fff',
           textDecoration: 'none',
           cursor: 'pointer',
           fontFamily: 'Montez, cursive',

@@ -14,7 +14,7 @@ const DesktopLayout = () => {
     <>
       <AppBar position="fixed">
         <Toolbar sx={{}}>
-          <HeaderTitleDesktop />
+          <HeaderTitleDesktop themeName={themeName} />
           <NavComponent />
           <CartIcon />
           <ThemeToggle themeName={themeName} toggleTheme={toggleTheme} />
