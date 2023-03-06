@@ -1,13 +1,13 @@
 import last from 'lodash/last';
 import { InfiniteData, useInfiniteQuery } from 'react-query';
-import { PRODUCT_LIST_QUERY } from '@app/constants/query.constant';
+import { BANNER_LIST_QUERY } from '@app/constants/query.constant';
 import { ProductService } from '@app/services/product.service';
 import { useMemo } from 'react';
 import { Box, CardContent, Typography } from '@material-ui/core';
 import { BannerPiecesLeftObject } from '@app/components/banner/bannerPiecesLeft/bannerPiecesLeftObject';
 
 export const BannerPiecesLeft = () => {
-  const productList = useInfiniteQuery(PRODUCT_LIST_QUERY, async () => await ProductService.getAllProduct());
+  const productList = useInfiniteQuery(BANNER_LIST_QUERY, async () => await ProductService.getAllProduct());
 
   const list = useMemo(() => productList.data?.pages.flatMap(({ products }) => products) || [], [productList]);
 

@@ -1,25 +1,16 @@
 import { NextSeo } from 'next-seo';
-import { InfiniteData, useInfiniteQuery } from 'react-query';
+import { useInfiniteQuery } from 'react-query';
 import { ProductList } from '@app/components/sections/product-list';
 import { DefaultLayout } from '@app/components/layouts/default-layout/default-layout';
 
-import { PRODUCT_LIST_QUERY } from '@app/constants/query.constant';
+import { PRODUCT_LIST_QUERY_V1 } from '@app/constants/query.constant';
 import { ProductService } from '@app/services/product.service';
 import { useMemo } from 'react';
-import { GetServerSideProps } from 'next';
 
-interface Props {
-  initialData: InfiniteData<ProductService.List>;
-}
-
-const ProductPage = ({ initialData }: Props) => {
-  const productList = useInfiniteQuery(
-    PRODUCT_LIST_QUERY,
-    async ({ pageParam }) => await ProductService.getAllProduct({ cursor: pageParam }),
-    {
-      initialData,
-    }
-  );
+const ProductPage = () => {
+  const productList = useInfiniteQuery(PRODUCT_LIST_QUERY_V1, async () => await ProductService.getAllProduct(), {
+    keepPreviousData: true,
+  });
 
   const list = useMemo(() => productList.data?.pages.flatMap(({ products }) => products) || [], [productList]);
 
@@ -33,14 +24,6 @@ const ProductPage = ({ initialData }: Props) => {
       <ProductList products={list} pagination={productList} />
     </DefaultLayout>
   );
-};
-
-export const getStaticProps: GetServerSideProps = async () => {
-  const firstPage = await ProductService.getList();
-
-  return {
-    props: { initialData: { pages: [firstPage], pageParams: [null] } },
-  };
 };
 
 export default ProductPage;

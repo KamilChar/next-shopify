@@ -6618,23 +6618,21 @@ export type RemoveCartItemMutationVariables = Exact<{
 
 export type RemoveCartItemMutation = { __typename?: 'Mutation', checkoutLineItemsRemove?: Maybe<{ __typename?: 'CheckoutLineItemsRemovePayload', checkout?: Maybe<{ __typename?: 'Checkout', id: string }> }> };
 
-export type PaginatedProductListFragment = { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', cursor: string, node: { __typename?: 'Product', id: string, handle: string, title: string, totalInventory: number, description: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: Maybe<string>, altText?: Maybe<string>, transformedSrc: string } }> } } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean } };
-
-export type PaginatedProductListBeforeFragment = { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', cursor: string, node: { __typename?: 'Product', id: string, handle: string, title: string, totalInventory: number, description: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: Maybe<string>, altText?: Maybe<string>, transformedSrc: string } }> } } }>, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean } };
+export type PaginatedProductListFragment = { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', cursor: string, node: { __typename?: 'Product', id: string, handle: string, title: string, totalInventory: number, description: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: Maybe<string>, altText?: Maybe<string>, transformedSrc: string } }> } } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, hasPreviousPage: boolean } };
 
 export type GetProductListQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>;
 }>;
 
 
-export type GetProductListQuery = { __typename?: 'QueryRoot', products: { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', cursor: string, node: { __typename?: 'Product', id: string, handle: string, title: string, totalInventory: number, description: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: Maybe<string>, altText?: Maybe<string>, transformedSrc: string } }> } } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean } } };
+export type GetProductListQuery = { __typename?: 'QueryRoot', products: { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', cursor: string, node: { __typename?: 'Product', id: string, handle: string, title: string, totalInventory: number, description: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: Maybe<string>, altText?: Maybe<string>, transformedSrc: string } }> } } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, hasPreviousPage: boolean } } };
 
 export type GetProductListBeforeQueryVariables = Exact<{
   before?: Maybe<Scalars['String']>;
 }>;
 
 
-export type GetProductListBeforeQuery = { __typename?: 'QueryRoot', products: { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', cursor: string, node: { __typename?: 'Product', id: string, handle: string, title: string, totalInventory: number, description: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: Maybe<string>, altText?: Maybe<string>, transformedSrc: string } }> } } }>, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean } } };
+export type GetProductListBeforeQuery = { __typename?: 'QueryRoot', products: { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', cursor: string, node: { __typename?: 'Product', id: string, handle: string, title: string, totalInventory: number, description: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: Maybe<string>, altText?: Maybe<string>, transformedSrc: string } }> } } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, hasPreviousPage: boolean } } };
 
 export type GetAllProductsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -6661,7 +6659,7 @@ export type GetCollectionSingleQueryVariables = Exact<{
 }>;
 
 
-export type GetCollectionSingleQuery = { __typename?: 'QueryRoot', collectionByHandle?: Maybe<{ __typename?: 'Collection', id: string, handle: string, title: string, description: string, products: { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', cursor: string, node: { __typename?: 'Product', id: string, handle: string, title: string, totalInventory: number, description: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: Maybe<string>, altText?: Maybe<string>, transformedSrc: string } }> } } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean } } }> };
+export type GetCollectionSingleQuery = { __typename?: 'QueryRoot', collectionByHandle?: Maybe<{ __typename?: 'Collection', id: string, handle: string, title: string, description: string, products: { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', cursor: string, node: { __typename?: 'Product', id: string, handle: string, title: string, totalInventory: number, description: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: Maybe<string>, altText?: Maybe<string>, transformedSrc: string } }> } } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, hasPreviousPage: boolean } } }> };
 
 export const PaginatedProductListFragmentDoc = gql`
     fragment PaginatedProductList on ProductConnection {
@@ -6678,7 +6676,7 @@ export const PaginatedProductListFragmentDoc = gql`
           currencyCode
         }
       }
-      images(first: 1) {
+      images(first: 250) {
         edges {
           node {
             id
@@ -6697,42 +6695,6 @@ export const PaginatedProductListFragmentDoc = gql`
   }
   pageInfo {
     hasNextPage
-  }
-}
-    `;
-export const PaginatedProductListBeforeFragmentDoc = gql`
-    fragment PaginatedProductListBefore on ProductConnection {
-  edges {
-    node {
-      id
-      handle
-      title
-      totalInventory
-      description(truncateAt: 120)
-      priceRange {
-        minVariantPrice {
-          amount
-          currencyCode
-        }
-      }
-      images(first: 1) {
-        edges {
-          node {
-            id
-            altText
-            transformedSrc(
-              maxWidth: 768
-              maxHeight: 1024
-              crop: CENTER
-              preferredContentType: JPG
-            )
-          }
-        }
-      }
-    }
-    cursor
-  }
-  pageInfo {
     hasPreviousPage
   }
 }
@@ -6849,11 +6811,11 @@ export const GetProductListDocument = gql`
     ${PaginatedProductListFragmentDoc}`;
 export const GetProductListBeforeDocument = gql`
     query getProductListBefore($before: String) {
-  products(first: 12, before: $before) {
-    ...PaginatedProductListBefore
+  products(last: 12, before: $before) {
+    ...PaginatedProductList
   }
 }
-    ${PaginatedProductListBeforeFragmentDoc}`;
+    ${PaginatedProductListFragmentDoc}`;
 export const GetAllProductsDocument = gql`
     query getAllProducts {
   products(first: 100) {
@@ -6870,7 +6832,7 @@ export const GetAllProductsDocument = gql`
             currencyCode
           }
         }
-        images(first: 1) {
+        images(first: 250) {
           edges {
             node {
               id
@@ -6899,7 +6861,7 @@ export const GetProductSingleDocument = gql`
       title
       description
     }
-    images(first: 1) {
+    images(first: 250) {
       edges {
         node {
           id
@@ -6950,7 +6912,7 @@ export const GetCollectionListDocument = gql`
           )
           altText
         }
-        products(first: 1) {
+        products(first: 250) {
           edges {
             node {
               id
