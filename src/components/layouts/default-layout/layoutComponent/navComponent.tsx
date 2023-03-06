@@ -24,6 +24,16 @@ export const NavComponent = () => {
           color: 'white',
         }}
       />
+      <NextLink href="/about" passHref>
+        <Button color="inherit">About</Button>
+      </NextLink>
+      <Divider
+        orientation="vertical"
+        flexItem
+        sx={{
+          color: 'white',
+        }}
+      />
     </>
   );
 };
