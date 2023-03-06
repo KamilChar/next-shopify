@@ -14,7 +14,7 @@ export namespace ProductService {
   export interface Single {
     title: string;
     description: string;
-    totalInventory: number;
+    totalInventory: number | 0;
     seo: {
       title: string;
       description: string;
@@ -42,7 +42,7 @@ export namespace ProductService {
     const product: Single = {
       title: formatTitle(title),
       description,
-      totalInventory,
+      totalInventory: totalInventory as number,
       seo: {
         title: formatTitle(seo.title || title),
         description: seo.description || truncate(description, { length: 256 }),
@@ -76,7 +76,7 @@ export namespace ProductService {
     id: string;
     url: string;
     title: string;
-    totalInventory: number;
+    totalInventory: number | 0;
     description: string;
     image: {
       src: string;
@@ -103,7 +103,7 @@ export namespace ProductService {
       return {
         id: node.id,
         cursor: cursor,
-        totalInventory: node.totalInventory,
+        totalInventory: node.totalInventory as number,
         url: `/products/${node.handle}`,
         title: formatTitle(node.title),
         description: node.description,
@@ -131,7 +131,7 @@ export namespace ProductService {
     const productList: AllList['products'] = products.edges.map(({ node }) => {
       return {
         id: node.id,
-        totalInventory: node.totalInventory,
+        totalInventory: node.totalInventory as number,
         url: `/products/${node.handle}`,
         title: formatTitle(node.title),
         description: node.description,
