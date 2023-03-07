@@ -6630,7 +6630,12 @@ export type GetProductListQuery = { __typename?: 'QueryRoot', products: { __type
 export type GetAllProductsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllProductsQuery = { __typename?: 'QueryRoot', products: { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', node: { __typename?: 'Product', id: string, handle: string, title: string, totalInventory?: Maybe<number>, description: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: Maybe<string>, altText?: Maybe<string>, transformedSrc: string } }> } } }> } };
+export type GetAllProductsQuery = { __typename?: 'QueryRoot', products: { __typename?: 'ProductConnection', nodes: Array<{ __typename?: 'Product', id: string, handle: string, title: string, totalInventory?: Maybe<number>, tags: Array<string>, productType: string, description: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: Maybe<string>, altText?: Maybe<string>, transformedSrc: string } }> } }> } };
+
+export type GetAllTagsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllTagsQuery = { __typename?: 'QueryRoot', products: { __typename?: 'ProductConnection', nodes: Array<{ __typename?: 'Product', tags: Array<string> }> } };
 
 export type GetProductSingleQueryVariables = Exact<{
   handle: Scalars['String'];
@@ -6804,34 +6809,43 @@ export const GetProductListDocument = gql`
 export const GetAllProductsDocument = gql`
     query getAllProducts {
   products(first: 100) {
-    edges {
-      node {
-        id
-        handle
-        title
-        totalInventory
-        description(truncateAt: 120)
-        priceRange {
-          minVariantPrice {
-            amount
-            currencyCode
-          }
+    nodes {
+      id
+      handle
+      title
+      totalInventory
+      tags
+      productType
+      description(truncateAt: 120)
+      priceRange {
+        minVariantPrice {
+          amount
+          currencyCode
         }
-        images(first: 1) {
-          edges {
-            node {
-              id
-              altText
-              transformedSrc(
-                maxWidth: 768
-                maxHeight: 1024
-                crop: CENTER
-                preferredContentType: JPG
-              )
-            }
+      }
+      images(first: 1) {
+        edges {
+          node {
+            id
+            altText
+            transformedSrc(
+              maxWidth: 768
+              maxHeight: 1024
+              crop: CENTER
+              preferredContentType: JPG
+            )
           }
         }
       }
+    }
+  }
+}
+    `;
+export const GetAllTagsDocument = gql`
+    query getAllTags {
+  products(first: 100) {
+    nodes {
+      tags
     }
   }
 }
@@ -6957,6 +6971,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     getAllProducts(variables?: GetAllProductsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetAllProductsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetAllProductsQuery>(GetAllProductsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getAllProducts');
+    },
+    getAllTags(variables?: GetAllTagsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetAllTagsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetAllTagsQuery>(GetAllTagsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getAllTags');
     },
     getProductSingle(variables: GetProductSingleQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetProductSingleQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetProductSingleQuery>(GetProductSingleDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getProductSingle');

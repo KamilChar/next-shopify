@@ -1,15 +1,15 @@
 import React from 'react';
-import { Grid } from '@material-ui/core';
+import { Grid, Pagination } from '@material-ui/core';
 import { ProductService } from '@app/services/product.service';
 import { useMemo, useState } from 'react';
-import { Pagination } from '@material-ui/lab';
+
 import { BannerSingleObject } from '@app/components/banner/bannerObject/bannerSingleObject';
 
 interface Props {
   products: ProductService.ListItem[];
 }
 
-export const BannerRandomTags: React.FC<Props> = ({ products }) => {
+export const BannerPiecesLeftItems: React.FC<Props> = ({ products }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 4;
 

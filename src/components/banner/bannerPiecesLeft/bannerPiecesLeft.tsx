@@ -4,7 +4,7 @@ import { BANNER_LIST_QUERY } from '@app/constants/query.constant';
 import { ProductService } from '@app/services/product.service';
 import { useMemo } from 'react';
 import { Box, CardContent, Typography } from '@material-ui/core';
-import { BannerPiecesLeftObject } from '@app/components/banner/bannerPiecesLeft/bannerPiecesLeftObject';
+import { BannerPiecesLeftItems } from '@app/components/banner/bannerPiecesLeft/bannerPiecesLeftItems';
 
 export const BannerPiecesLeft = () => {
   const productList = useInfiniteQuery(BANNER_LIST_QUERY, async () => await ProductService.getAllProduct());
@@ -27,7 +27,7 @@ export const BannerPiecesLeft = () => {
           >
             There are only a few pieces left
           </Typography>
-          <BannerPiecesLeftObject products={list} />
+          <BannerPiecesLeftItems products={list} />
         </CardContent>
       </Box>
     </>

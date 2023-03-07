@@ -37,29 +37,37 @@ query getProductList($after: String) {
 
 query getAllProducts {
   products(first: 100) {
-    edges {
-      node {
-        id
-        handle
-        title
-        totalInventory
-        description(truncateAt: 120)
-        priceRange {
-          minVariantPrice {
-            amount
-            currencyCode
-          }
+    nodes {
+      id
+      handle
+      title
+      totalInventory
+      tags
+      productType
+      description(truncateAt: 120)
+      priceRange {
+        minVariantPrice {
+          amount
+          currencyCode
         }
-        images(first: 1) {
-          edges {
-            node {
-              id
-              altText
-              transformedSrc(maxWidth: 768, maxHeight: 1024, crop: CENTER, preferredContentType: JPG)
-            }
+      }
+      images(first: 1) {
+        edges {
+          node {
+            id
+            altText
+            transformedSrc(maxWidth: 768, maxHeight: 1024, crop: CENTER, preferredContentType: JPG)
           }
         }
       }
+    }
+  }
+}
+
+query getAllTags {
+  products(first: 100) {
+    nodes {
+      tags
     }
   }
 }

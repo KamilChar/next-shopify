@@ -1,5 +1,7 @@
-import { BannerPiecesLeft } from '@app/components/banner/bannerPiecesLeft/bannerPiecesLeft';
 import { Divider } from '@material-ui/core';
+
+import { BannerPiecesLeft } from '@app/components/banner/bannerPiecesLeft';
+import { BannerTags } from '@app/components/banner/tags';
 
 export const Welcome = () => {
   return (
@@ -11,6 +13,13 @@ export const Welcome = () => {
         }}
       />
       <BannerPiecesLeft />
+      <Divider
+        orientation="horizontal"
+        sx={{
+          color: 'inherit',
+        }}
+      />
+      <BannerTags />
       <Divider
         orientation="horizontal"
         sx={{
