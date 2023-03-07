@@ -1,9 +1,8 @@
-import last from 'lodash/last';
-import { InfiniteData, useInfiniteQuery } from 'react-query';
+import { useInfiniteQuery } from 'react-query';
 import { BANNER_LIST_QUERY } from '@app/constants/query.constant';
 import { ProductService } from '@app/services/product.service';
 import { useMemo } from 'react';
-import { Box, CardContent, Typography } from '@material-ui/core';
+import { Box, CardContent, CircularProgress, Typography } from '@material-ui/core';
 import { BannerPiecesLeftItems } from '@app/components/banner/bannerPiecesLeft/bannerPiecesLeftItems';
 
 export const BannerPiecesLeft = () => {
@@ -12,7 +11,11 @@ export const BannerPiecesLeft = () => {
   const list = useMemo(() => productList.data?.pages.flatMap(({ products }) => products) || [], [productList]);
 
   if (productList.isLoading || productList.isFetching) {
-    return <div>Loading...</div>;
+    return (
+      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <CircularProgress />
+      </Box>
+    );
   }
   return (
     <>

@@ -4,6 +4,16 @@ import NextLink from 'next/link';
 export const NavComponent = () => {
   return (
     <>
+      <NextLink href="/about" passHref>
+        <Button color="inherit">About</Button>
+      </NextLink>
+      <Divider
+        orientation="vertical"
+        flexItem
+        sx={{
+          color: 'white',
+        }}
+      />
       <NextLink href="/products" passHref>
         <Button color="inherit">Products</Button>
       </NextLink>
@@ -16,16 +26,6 @@ export const NavComponent = () => {
       />
       <NextLink href="/collections" passHref>
         <Button color="inherit">Collections</Button>
-      </NextLink>
-      <Divider
-        orientation="vertical"
-        flexItem
-        sx={{
-          color: 'white',
-        }}
-      />
-      <NextLink href="/about" passHref>
-        <Button color="inherit">About</Button>
       </NextLink>
       <Divider
         orientation="vertical"

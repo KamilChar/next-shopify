@@ -11,7 +11,7 @@ interface Props {
   initialData: InfiniteData<ProductService.List>;
 }
 
-export default function Page({ initialData }: Props) {
+export default function PageDefault({ initialData }: Props) {
   const productList = useInfiniteQuery(
     PRODUCT_LIST_QUERY,
     ({ pageParam }) => ProductService.getList({ after: pageParam }),
@@ -35,7 +35,7 @@ export default function Page({ initialData }: Props) {
     </DefaultLayout>
   );
 }
-Page.getInitialProps = async (): Promise<Props> => {
+PageDefault.getInitialProps = async (): Promise<Props> => {
   const firstPage = await ProductService.getList();
 
   return {

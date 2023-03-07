@@ -1,4 +1,4 @@
-import { AppBar, Toolbar } from '@material-ui/core';
+import { AppBar, Grid, Toolbar } from '@material-ui/core';
 import { useColorMode } from '@app/utilities/hooks/ColorModeContainer';
 import {
   CartIcon,
@@ -13,11 +13,15 @@ const DesktopLayout = () => {
   return (
     <>
       <AppBar position="fixed">
-        <Toolbar sx={{}}>
-          <HeaderTitleDesktop />
-          <NavComponent />
-          <CartIcon />
-          <ThemeToggle themeName={themeName} toggleTheme={toggleTheme} />
+        <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <Grid sx={{ alignItems: 'center' }}>
+            <HeaderTitleDesktop />
+          </Grid>
+          <Grid sx={{ display: 'flex', alignItems: 'center' }}>
+            <NavComponent />
+            <CartIcon />
+            <ThemeToggle themeName={themeName} toggleTheme={toggleTheme} />
+          </Grid>
         </Toolbar>
       </AppBar>
 

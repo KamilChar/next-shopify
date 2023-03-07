@@ -7,6 +7,7 @@ import { COLLECTION_LIST_QUERY } from '@app/constants/query.constant';
 import { CollectionService } from '@app/services/collection.service';
 import { CollectionList } from '@app/components/sections/collection-list';
 import { useMemo } from 'react';
+import { Box, CircularProgress } from '@material-ui/core';
 
 interface Props {
   initialData: InfiniteData<CollectionService.CollectionList>;
@@ -40,7 +41,11 @@ export default function Page({ initialData }: Props) {
   );
 
   if (collectionList.isFetching || collectionList.isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <CircularProgress />
+      </Box>
+    );
   }
 
   return (

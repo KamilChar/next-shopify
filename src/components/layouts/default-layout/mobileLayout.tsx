@@ -5,18 +5,24 @@ import {
   ThemeToggle,
 } from '@app/components/layouts/default-layout/layoutComponent';
 import { useColorMode } from '@app/utilities/hooks/ColorModeContainer';
-import { AppBar, Toolbar } from '@material-ui/core';
+import { AppBar, Grid, Toolbar } from '@material-ui/core';
 
 export const MobileLayout = () => {
   const { toggleTheme, themeName } = useColorMode();
   return (
     <>
       <AppBar position="fixed">
-        <Toolbar>
-          <MenuIcon themeName={themeName} />
-          <HeaderTitleMobile themeName={themeName} />
-          <CartIcon />
-          <ThemeToggle themeName={themeName} toggleTheme={toggleTheme} />
+        <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <Grid>
+            <MenuIcon themeName={themeName} />
+          </Grid>
+          <Grid>
+            <HeaderTitleMobile themeName={themeName} />
+          </Grid>
+          <Grid sx={{ display: 'flex', alignItems: 'center' }}>
+            <CartIcon />
+            <ThemeToggle themeName={themeName} toggleTheme={toggleTheme} />
+          </Grid>
         </Toolbar>
       </AppBar>
       <Toolbar />

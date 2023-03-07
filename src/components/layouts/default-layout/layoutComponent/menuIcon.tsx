@@ -58,6 +58,11 @@ export const MenuIcon: React.FC<Props> = ({ query, themeName }) => {
         }}
       >
         <MenuItem>
+          <NextLink href="/about" passHref>
+            <Link sx={{ textDecoration: 'none', color: 'inherit' }}> About</Link>
+          </NextLink>
+        </MenuItem>
+        <MenuItem sx={{ borderColor: 'inherit' }}>
           <NextLink href="/products" passHref>
             <Link sx={{ textDecoration: 'none', color: 'inherit' }}>Products</Link>
           </NextLink>

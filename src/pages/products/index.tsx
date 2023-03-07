@@ -16,19 +16,19 @@ const SwitchProductPage = () => {
         }}
       >
         <NextLink href="/products/default" passHref>
-          <Button color="inherit" sx={{ margin: '12px ' }} variant="outlined" size="small">
-            Default page products
+          <Button sx={{ margin: '12px ' }} variant="contained" size="large">
+            Default page of products
           </Button>
         </NextLink>
         <NextLink href="/products/v1" passHref>
-          <Button color="inherit" sx={{ margin: '12px ' }} variant="outlined" size="medium">
-            Products page with numeric pagination
+          <Button sx={{ margin: '12px ' }} variant="contained" size="large">
+            Default page of products with sort
           </Button>
         </NextLink>
 
         <NextLink href="/products/v2" passHref>
           <Button sx={{ margin: '12px ' }} variant="contained" size="large">
-            Product page with arrow pagination
+            Product page with pagination
           </Button>
         </NextLink>
       </Box>

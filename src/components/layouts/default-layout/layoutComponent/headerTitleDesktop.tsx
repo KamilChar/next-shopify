@@ -1,4 +1,4 @@
-import { Link } from '@material-ui/core';
+import { Card, Link } from '@material-ui/core';
 import NextLink from 'next/link';
 
 export const HeaderTitleDesktop = () => {
@@ -6,7 +6,6 @@ export const HeaderTitleDesktop = () => {
     <NextLink href="/" passHref>
       <Link
         flex="1"
-        width="fit-content"
         variant="h6"
         noWrap
         component="div"
