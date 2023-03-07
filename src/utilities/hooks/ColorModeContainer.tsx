@@ -4,18 +4,50 @@ import { createContainer } from 'unstated-next';
 import { createTheme, Theme } from '@material-ui/core/styles';
 
 const darkTheme = createTheme({
+  components: {
+    MuiTypography: {
+      styleOverrides: {
+        root: {
+          color: '#ffffff',
+        },
+      },
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          color: '#ffffff',
+        },
+      },
+    },
+  },
   palette: {
     mode: 'dark',
   },
 });
 const lightTheme = createTheme({
+  components: {
+    MuiTypography: {
+      styleOverrides: {
+        root: {
+          color: '#000000',
+        },
+      },
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          color: '#000000',
+        },
+      },
+    },
+  },
   palette: {
     mode: 'light',
     primary: {
       main: '#dfdd58',
     },
     secondary: {
-      main: '#ffffff',
+      main: '#b3b036',
     },
   },
 });

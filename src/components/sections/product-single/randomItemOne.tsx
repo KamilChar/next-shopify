@@ -3,7 +3,6 @@ import { Grid } from '@material-ui/core';
 import { ProductService } from '@app/services/product.service';
 import { useMemo, useState } from 'react';
 import { Pagination } from '@material-ui/lab';
-import { BannerSingleObject } from '@app/components/banner/bannerObject/bannerSingleObject';
 import { ProductItem } from '@app/components/snippets/product-item';
 
 interface Props {
