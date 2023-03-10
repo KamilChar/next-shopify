@@ -7,18 +7,15 @@ import Carousel from 'react-material-ui-carousel';
 import { BannerProductObject } from '@app/components/banner/bannerProductTypes/bannerProductObject';
 
 const StyledDiv = styled('div')({
-  m: 2,
-  p: 1,
   display: 'flex',
   justifyContent: 'center',
   alignContent: 'center',
 });
 
 const StyledCarousel = styled(Carousel)({
+  margin: 15,
   width: '400px',
   height: '100%',
-  margin: 0,
-  padding: 0,
 });
 
 export const BannerProductTypes = () => {
