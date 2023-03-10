@@ -70,7 +70,7 @@ export const MenuIcon: React.FC<Props> = ({ query, themeName }) => {
         </MenuItem>
         <MenuItem>
           <NextLink href="/categories" passHref>
-            <Button color="inherit">Categories</Button>
+            <Link color="inherit">Categories</Link>
           </NextLink>
         </MenuItem>
         <MenuItem>
