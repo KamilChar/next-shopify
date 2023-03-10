@@ -11,11 +11,26 @@ import {
   styled,
 } from '@mui/material';
 import { ProductItem } from '@app/components/snippets/product-item';
-import { ProductService } from '@app/services/product.service';
 import { CollectionService } from '@app/services/collection.service';
+import { CurrencyCode } from '@app/services/shopify.service';
 
 interface Props {
-  products: ProductService.AllListItem[];
+  products: {
+    id: string;
+    url: string;
+    title: string;
+    totalInventory: number;
+    description: string;
+    image: {
+      src: string;
+      alt: string;
+    };
+    price: {
+      amount: number;
+      currencyCode: CurrencyCode;
+    };
+    cursor: string;
+  }[];
 }
 
 const MySelect = styled(Select)`
@@ -29,7 +44,7 @@ const TextField = styled(_TextField)`
 const sortTypes = ['Name Asc', 'Name Desc', 'Price Asc', 'Price Desc'] as const;
 type SortType = (typeof sortTypes)[number];
 
-export const ProductList: React.FC<Props> = ({ products }) => {
+export const ProductListToCollection: React.FC<Props> = ({ products }) => {
   const [sortBy, setSortBy] = useState<SortType>(sortTypes[0]);
   const [search, setSearch] = useState('');
   const [currentPage, setCurrentPage] = useState(1);

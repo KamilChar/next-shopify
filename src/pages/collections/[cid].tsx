@@ -2,7 +2,7 @@ import { NextPageContext } from 'next';
 import { DefaultLayout } from '@app/components/layouts/default-layout/default-layout';
 import { ProductService } from '@app/services/product.service';
 import { CollectionService } from '@app/services/collection.service';
-import { ProductList } from '@app/components/sections/product-list';
+import { ProductListToCollection } from '@app/components/sections/product-list';
 import { InfiniteData, useInfiniteQuery } from 'react-query';
 import { COLLECTION_PRODUCT_LIST_QUERY } from '@app/constants/query.constant';
 import { last } from 'lodash';
@@ -39,10 +39,12 @@ export default function Page({ initialData, handle, collection }: Props) {
     }
   );
 
+  const a = productList.data?.pages.flatMap(({ products }) => products)!;
+
   return (
     <DefaultLayout>
       <NextSeo title={collection.seo.title} description={collection.seo.description} />
-      <ProductList products={productList.data?.pages.flatMap(({ products }) => products)!} pagination={productList} />
+      <ProductListToCollection products={productList.data?.pages.flatMap(({ products }) => products)!} />
     </DefaultLayout>
   );
 }
