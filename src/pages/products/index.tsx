@@ -1,5 +1,5 @@
 import { DefaultLayout } from '@app/components/layouts/default-layout';
-import { Box, Button } from '@material-ui/core';
+import { Box, Button, Tooltip } from '@material-ui/core';
 import NextLink from 'next/link';
 
 const SwitchProductPage = () => {
@@ -16,20 +16,30 @@ const SwitchProductPage = () => {
         }}
       >
         <NextLink href="/products/default" passHref>
-          <Button sx={{ margin: '12px ' }} variant="contained" size="large">
-            Default page of products
-          </Button>
+          <Tooltip title={'Standard version of Page'}>
+            <Button sx={{ margin: '12px ' }} variant="contained" size="large">
+              Default page of products
+            </Button>
+          </Tooltip>
         </NextLink>
         <NextLink href="/products/v1" passHref>
-          <Button sx={{ margin: '12px ' }} variant="contained" size="large">
-            Default page of products with sort
-          </Button>
+          <Tooltip title={'Standard version of Page with some changes'}>
+            <Button sx={{ margin: '12px ' }} variant="contained" size="large">
+              Default page of products with sort
+            </Button>
+          </Tooltip>
         </NextLink>
 
         <NextLink href="/products/v2" passHref>
-          <Button sx={{ margin: '12px ' }} variant="contained" size="large">
-            Product page with pagination
-          </Button>
+          <Tooltip
+            title={
+              'This is the standard version of the page that downloads the entire product list and uses pagination.'
+            }
+          >
+            <Button sx={{ margin: '12px ' }} variant="contained" size="large">
+              Product page with pagination
+            </Button>
+          </Tooltip>
         </NextLink>
       </Box>
     </DefaultLayout>

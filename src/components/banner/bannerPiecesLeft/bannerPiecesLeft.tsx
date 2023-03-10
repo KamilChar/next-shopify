@@ -9,14 +9,14 @@ export const BannerPiecesLeft = () => {
   const productList = useInfiniteQuery(BANNER_LIST_QUERY, async () => await ProductService.getAllProduct());
 
   const list = useMemo(() => productList.data?.pages.flatMap(({ products }) => products) || [], [productList]);
-
-  if (productList.isLoading || productList.isFetching) {
+  if (productList.isLoading) {
     return (
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <CircularProgress />
       </Box>
     );
   }
+
   return (
     <>
       <Box>

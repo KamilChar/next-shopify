@@ -6637,6 +6637,25 @@ export type GetAllTagsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetAllTagsQuery = { __typename?: 'QueryRoot', products: { __typename?: 'ProductConnection', nodes: Array<{ __typename?: 'Product', tags: Array<string> }> } };
 
+export type GetAllProductByTagQueryVariables = Exact<{
+  tag: Scalars['String'];
+}>;
+
+
+export type GetAllProductByTagQuery = { __typename?: 'QueryRoot', products: { __typename?: 'ProductConnection', nodes: Array<{ __typename?: 'Product', id: string, handle: string, title: string, totalInventory?: Maybe<number>, tags: Array<string>, productType: string, description: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: Maybe<string>, altText?: Maybe<string>, transformedSrc: string } }> } }> } };
+
+export type GetAllTypesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllTypesQuery = { __typename?: 'QueryRoot', products: { __typename?: 'ProductConnection', nodes: Array<{ __typename?: 'Product', productType: string }> } };
+
+export type GetAllProductByTypeQueryVariables = Exact<{
+  productType: Scalars['String'];
+}>;
+
+
+export type GetAllProductByTypeQuery = { __typename?: 'QueryRoot', products: { __typename?: 'ProductConnection', nodes: Array<{ __typename?: 'Product', id: string, handle: string, title: string, totalInventory?: Maybe<number>, tags: Array<string>, productType: string, description: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: Maybe<string>, altText?: Maybe<string>, transformedSrc: string } }> } }> } };
+
 export type GetProductSingleQueryVariables = Exact<{
   handle: Scalars['String'];
 }>;
@@ -6850,6 +6869,85 @@ export const GetAllTagsDocument = gql`
   }
 }
     `;
+export const GetAllProductByTagDocument = gql`
+    query getAllProductByTag($tag: String!) {
+  products(first: 100, query: $tag) {
+    nodes {
+      id
+      handle
+      title
+      totalInventory
+      tags
+      productType
+      description(truncateAt: 120)
+      priceRange {
+        minVariantPrice {
+          amount
+          currencyCode
+        }
+      }
+      images(first: 1) {
+        edges {
+          node {
+            id
+            altText
+            transformedSrc(
+              maxWidth: 768
+              maxHeight: 1024
+              crop: CENTER
+              preferredContentType: JPG
+            )
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+export const GetAllTypesDocument = gql`
+    query getAllTypes {
+  products(first: 100) {
+    nodes {
+      productType
+    }
+  }
+}
+    `;
+export const GetAllProductByTypeDocument = gql`
+    query getAllProductByType($productType: String!) {
+  products(first: 100, query: $productType) {
+    nodes {
+      id
+      handle
+      title
+      totalInventory
+      tags
+      productType
+      description(truncateAt: 120)
+      priceRange {
+        minVariantPrice {
+          amount
+          currencyCode
+        }
+      }
+      images(first: 1) {
+        edges {
+          node {
+            id
+            altText
+            transformedSrc(
+              maxWidth: 768
+              maxHeight: 1024
+              crop: CENTER
+              preferredContentType: JPG
+            )
+          }
+        }
+      }
+    }
+  }
+}
+    `;
 export const GetProductSingleDocument = gql`
     query getProductSingle($handle: String!) {
   productByHandle(handle: $handle) {
@@ -6974,6 +7072,15 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     getAllTags(variables?: GetAllTagsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetAllTagsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetAllTagsQuery>(GetAllTagsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getAllTags');
+    },
+    getAllProductByTag(variables: GetAllProductByTagQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetAllProductByTagQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetAllProductByTagQuery>(GetAllProductByTagDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getAllProductByTag');
+    },
+    getAllTypes(variables?: GetAllTypesQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetAllTypesQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetAllTypesQuery>(GetAllTypesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getAllTypes');
+    },
+    getAllProductByType(variables: GetAllProductByTypeQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetAllProductByTypeQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetAllProductByTypeQuery>(GetAllProductByTypeDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getAllProductByType');
     },
     getProductSingle(variables: GetProductSingleQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetProductSingleQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetProductSingleQuery>(GetProductSingleDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getProductSingle');

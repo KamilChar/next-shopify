@@ -72,6 +72,72 @@ query getAllTags {
   }
 }
 
+query getAllProductByTag($tag: String!) {
+  products(first: 100, query: $tag) {
+    nodes {
+      id
+      handle
+      title
+      totalInventory
+      tags
+      productType
+      description(truncateAt: 120)
+      priceRange {
+        minVariantPrice {
+          amount
+          currencyCode
+        }
+      }
+      images(first: 1) {
+        edges {
+          node {
+            id
+            altText
+            transformedSrc(maxWidth: 768, maxHeight: 1024, crop: CENTER, preferredContentType: JPG)
+          }
+        }
+      }
+    }
+  }
+}
+
+query getAllTypes {
+  products(first: 100) {
+    nodes {
+      productType
+    }
+  }
+}
+
+query getAllProductByType($productType: String!) {
+  products(first: 100, query: $productType) {
+    nodes {
+      id
+      handle
+      title
+      totalInventory
+      tags
+      productType
+      description(truncateAt: 120)
+      priceRange {
+        minVariantPrice {
+          amount
+          currencyCode
+        }
+      }
+      images(first: 1) {
+        edges {
+          node {
+            id
+            altText
+            transformedSrc(maxWidth: 768, maxHeight: 1024, crop: CENTER, preferredContentType: JPG)
+          }
+        }
+      }
+    }
+  }
+}
+
 query getProductSingle($handle: String!) {
   productByHandle(handle: $handle) {
     title

@@ -9,14 +9,12 @@ import {
   TextField as _TextField,
   Pagination,
 } from '@material-ui/core';
-import { UseInfiniteQueryResult } from 'react-query';
 import { ProductItem } from '@app/components/snippets/product-item';
 import { ProductService } from '@app/services/product.service';
 import { styled } from '@material-ui/system';
 
 interface Props {
-  products: ProductService.ListItem[];
-  pagination: Pick<UseInfiniteQueryResult, 'fetchNextPage' | 'hasNextPage' | 'isFetchingNextPage' | 'error'>;
+  products: ProductService.AllListItem[];
 }
 
 const MySelect = styled(Select)`
@@ -64,6 +62,7 @@ export const ProductList: React.FC<Props> = ({ products }) => {
 
   const displayedProducts = sortedProducts.slice((currentPage - 1) * productsPerPage, currentPage * productsPerPage);
 
+  const shouldRenderPagination = sortedProducts.length > productsPerPage;
   return (
     <div>
       <Stack direction="row" gap="1rem" marginBottom={2}>
@@ -98,22 +97,24 @@ export const ProductList: React.FC<Props> = ({ products }) => {
           </Grid>
         ))}
       </Grid>
-      <Pagination
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          margin: '20px auto 0 auto',
-        }}
-        count={pagesCount}
-        page={currentPage}
-        onChange={handleChangePage}
-        color="primary"
-        size="large"
-        siblingCount={1}
-        boundaryCount={1}
-        showFirstButton
-        showLastButton
-      />
+      {shouldRenderPagination && (
+        <Pagination
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            margin: '20px auto 0 auto',
+          }}
+          count={pagesCount}
+          page={currentPage}
+          onChange={handleChangePage}
+          color="primary"
+          size="large"
+          siblingCount={1}
+          boundaryCount={1}
+          showFirstButton
+          showLastButton
+        />
+      )}
     </div>
   );
 };

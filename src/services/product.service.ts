@@ -1,3 +1,4 @@
+import { GetAllProductByTagQueryVariables, GetAllProductByTypeQueryVariables } from './shopify/generated';
 import formatTitle from 'title';
 import { Merge } from 'type-fest';
 import truncate from 'lodash/truncate';
@@ -9,8 +10,8 @@ import {
   CurrencyCode,
   PaginatedProductListFragment,
   GetAllTagsQueryVariables,
+  GetAllTypesQueryVariables,
 } from './shopify.service';
-import { tag } from 'type-fest/source/opaque';
 
 export namespace ProductService {
   export interface Single {
@@ -174,15 +175,87 @@ export namespace ProductService {
 
   export type ArrayTags = { tags: string[] };
 
-  export type AllTags = { products: ArrayTags[] };
+  export type AllTags = { tags: ArrayTags[] };
 
   export async function getTags(variables?: GetAllTagsQueryVariables): Promise<AllTags> {
     const { products } = await ShopifyService.getAllTags(variables);
-    const tagsList: AllTags['products'] = products.nodes.map(({ tags }) => {
+    const tagsList: AllTags['tags'] = products.nodes.map(({ tags }) => {
       return {
         tags: tags,
       };
     });
-    return { products: tagsList };
+
+    return { tags: tagsList };
+  }
+
+  export async function getListProductByTag(tag: GetAllProductByTagQueryVariables): Promise<AllList> {
+    const { products } = await ShopifyService.getAllProductByTag(tag);
+    const productList: AllList['products'] = products.nodes.map(
+      ({ id, totalInventory, description, handle, images, priceRange, productType, tags, title }) => {
+        return {
+          id: id,
+          totalInventory: totalInventory as number,
+          url: `/products/${handle}`,
+          title: formatTitle(title),
+          description: description,
+          tags: tags,
+          productType: productType,
+          image: {
+            src: images.edges[0].node.transformedSrc,
+            alt: images.edges[0].node.altText || '',
+          },
+          price: {
+            amount: Number(priceRange.minVariantPrice.amount),
+            currencyCode: priceRange.minVariantPrice.currencyCode,
+          },
+        };
+      }
+    );
+
+    return { products: productList };
+  }
+
+  export type TypeProps = {
+    productType: string;
+  };
+
+  export type AllTypesProps = {
+    productType: TypeProps[];
+  };
+
+  export async function getTypes(variables?: GetAllTypesQueryVariables): Promise<AllTypesProps> {
+    const { products } = await ShopifyService.getAllTypes(variables);
+    const typeList: AllTypesProps['productType'] = products.nodes.map(({ productType }) => {
+      return {
+        productType: productType,
+      };
+    });
+    return { productType: typeList };
+  }
+
+  export async function getListProductByType(productType: GetAllProductByTypeQueryVariables): Promise<AllList> {
+    const { products } = await ShopifyService.getAllProductByType(productType);
+    const productList: AllList['products'] = products.nodes.map(
+      ({ id, totalInventory, description, handle, images, priceRange, productType, tags, title }) => {
+        return {
+          id: id,
+          totalInventory: totalInventory as number,
+          url: `/products/${handle}`,
+          title: formatTitle(title),
+          description: description,
+          tags: tags,
+          productType: productType,
+          image: {
+            src: images.edges[0].node.transformedSrc,
+            alt: images.edges[0].node.altText || '',
+          },
+          price: {
+            amount: Number(priceRange.minVariantPrice.amount),
+            currencyCode: priceRange.minVariantPrice.currencyCode,
+          },
+        };
+      }
+    );
+    return { products: productList };
   }
 }
