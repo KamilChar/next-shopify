@@ -15,7 +15,7 @@ const StyledDiv = styled('div')({
 
 const StyledCarousel = styled(Carousel)({
   margin: 15,
-  width: '400px',
+  width: '800px',
   height: '100%',
 });
 

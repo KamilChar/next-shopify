@@ -34,7 +34,7 @@ export const BannerProductObject: React.FC<Props> = ({ type }) => {
       <NextLink href={`/categories/${type}`} passHref>
         <StyledActionArea>
           <CardMedia
-            sx={{ height: '300px', width: '100%', objectFit: 'fill' }}
+            sx={{ height: '600px', width: '100%', objectFit: 'fill' }}
             image={`/images/${type}.jpg`}
             component="img"
           />
