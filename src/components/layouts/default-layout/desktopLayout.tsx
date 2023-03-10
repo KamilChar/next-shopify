@@ -1,4 +1,4 @@
-import { AppBar, Grid, Toolbar } from '@material-ui/core';
+import { AppBar, Grid, Toolbar } from '@mui/material';
 import { useColorMode } from '@app/utilities/hooks/ColorModeContainer';
 import {
   CartIcon,

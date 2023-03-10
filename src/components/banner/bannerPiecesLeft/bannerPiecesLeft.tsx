@@ -2,7 +2,7 @@ import { useInfiniteQuery } from 'react-query';
 import { BANNER_LIST_QUERY } from '@app/constants/query.constant';
 import { ProductService } from '@app/services/product.service';
 import { useMemo } from 'react';
-import { Box, CardContent, CircularProgress, Typography } from '@material-ui/core';
+import { Box, CardContent, CircularProgress, Typography } from '@mui/material';
 import { BannerPiecesLeftItems } from '@app/components/banner/bannerPiecesLeft/bannerPiecesLeftItems';
 
 export const BannerPiecesLeft = () => {

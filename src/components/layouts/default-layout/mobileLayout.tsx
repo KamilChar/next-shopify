@@ -5,7 +5,7 @@ import {
   ThemeToggle,
 } from '@app/components/layouts/default-layout/layoutComponent';
 import { useColorMode } from '@app/utilities/hooks/ColorModeContainer';
-import { AppBar, Grid, Toolbar } from '@material-ui/core';
+import { AppBar, Grid, Toolbar } from '@mui/material';
 
 export const MobileLayout = () => {
   const { toggleTheme, themeName } = useColorMode();

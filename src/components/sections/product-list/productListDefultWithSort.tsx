@@ -1,10 +1,9 @@
 import React, { useMemo, useState } from 'react';
-import { Grid, FormControl, InputLabel, MenuItem, Select, Stack, TextField as _TextField } from '@material-ui/core';
+import { Grid, FormControl, InputLabel, MenuItem, Select, Stack, TextField as _TextField, styled } from '@mui/material';
 import { UseInfiniteQueryResult } from 'react-query';
 import { PageLoader } from '@app/components/snippets/page-loader';
 import { ProductItem } from '@app/components/snippets/product-item';
 import { ProductService } from '@app/services/product.service';
-import { styled } from '@material-ui/system';
 
 interface Props {
   products: ProductService.ListItem[];
@@ -20,7 +19,7 @@ const TextField = styled(_TextField)`
 `;
 
 const sortTypes = ['Name Asc', 'Name Desc', 'Price Asc', 'Price Desc'] as const;
-type SortType = typeof sortTypes[number];
+type SortType = (typeof sortTypes)[number];
 
 export const ProductListDefaultWithSort: React.FC<Props> = ({ products, pagination }) => {
   const [sortBy, setSortBy] = useState<SortType>('Name Asc');

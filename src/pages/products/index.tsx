@@ -1,5 +1,5 @@
 import { DefaultLayout } from '@app/components/layouts/default-layout';
-import { Box, Button, Tooltip } from '@material-ui/core';
+import { Box, Button, Tooltip } from '@mui/material';
 import NextLink from 'next/link';
 
 const SwitchProductPage = () => {

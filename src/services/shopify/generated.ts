@@ -2,6 +2,7 @@ import { GraphQLClient } from 'graphql-request';
 import * as Dom from 'graphql-request/dist/types.dom';
 import gql from 'graphql-tag';
 export type Maybe<T> = T | null;
+export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
@@ -68,11 +69,6 @@ export type Scalars = {
    */
   UnsignedInt64: any;
 };
-
-
-
-
-
 
 /**
  * A version of the API, as defined by [Shopify API versioning](https://shopify.dev/api/usage/versioning).
@@ -160,30 +156,30 @@ export type Article = HasMetafields & Node & OnlineStorePublishable & {
 
 /** An article in an online store blog. */
 export type ArticleCommentsArgs = {
-  first?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['String']>;
-  reverse?: Maybe<Scalars['Boolean']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  reverse?: InputMaybe<Scalars['Boolean']>;
 };
 
 
 /** An article in an online store blog. */
 export type ArticleContentArgs = {
-  truncateAt?: Maybe<Scalars['Int']>;
+  truncateAt?: InputMaybe<Scalars['Int']>;
 };
 
 
 /** An article in an online store blog. */
 export type ArticleExcerptArgs = {
-  truncateAt?: Maybe<Scalars['Int']>;
+  truncateAt?: InputMaybe<Scalars['Int']>;
 };
 
 
 /** An article in an online store blog. */
 export type ArticleMetafieldArgs = {
-  namespace: Scalars['String'];
   key: Scalars['String'];
+  namespace: Scalars['String'];
 };
 
 
@@ -229,23 +225,23 @@ export type ArticleEdge = {
 
 /** The set of valid sort keys for the Article query. */
 export enum ArticleSortKeys {
-  /** Sort by the `title` value. */
-  Title = 'TITLE',
-  /** Sort by the `blog_title` value. */
-  BlogTitle = 'BLOG_TITLE',
   /** Sort by the `author` value. */
   Author = 'AUTHOR',
-  /** Sort by the `updated_at` value. */
-  UpdatedAt = 'UPDATED_AT',
-  /** Sort by the `published_at` value. */
-  PublishedAt = 'PUBLISHED_AT',
+  /** Sort by the `blog_title` value. */
+  BlogTitle = 'BLOG_TITLE',
   /** Sort by the `id` value. */
   Id = 'ID',
+  /** Sort by the `published_at` value. */
+  PublishedAt = 'PUBLISHED_AT',
   /**
    * Sort by relevance to the search terms when the `query` parameter is specified on the connection.
    * Don't use this sort key when no search query is specified.
    */
-  Relevance = 'RELEVANCE'
+  Relevance = 'RELEVANCE',
+  /** Sort by the `title` value. */
+  Title = 'TITLE',
+  /** Sort by the `updated_at` value. */
+  UpdatedAt = 'UPDATED_AT'
 }
 
 /** Represents a generic custom attribute. */
@@ -327,20 +323,20 @@ export type BlogArticleByHandleArgs = {
 
 /** An online store blog. */
 export type BlogArticlesArgs = {
-  first?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['String']>;
-  reverse?: Maybe<Scalars['Boolean']>;
-  sortKey?: Maybe<ArticleSortKeys>;
-  query?: Maybe<Scalars['String']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  query?: InputMaybe<Scalars['String']>;
+  reverse?: InputMaybe<Scalars['Boolean']>;
+  sortKey?: InputMaybe<ArticleSortKeys>;
 };
 
 
 /** An online store blog. */
 export type BlogMetafieldArgs = {
-  namespace: Scalars['String'];
   key: Scalars['String'];
+  namespace: Scalars['String'];
 };
 
 
@@ -373,15 +369,15 @@ export type BlogEdge = {
 export enum BlogSortKeys {
   /** Sort by the `handle` value. */
   Handle = 'HANDLE',
-  /** Sort by the `title` value. */
-  Title = 'TITLE',
   /** Sort by the `id` value. */
   Id = 'ID',
   /**
    * Sort by relevance to the search terms when the `query` parameter is specified on the connection.
    * Don't use this sort key when no search query is specified.
    */
-  Relevance = 'RELEVANCE'
+  Relevance = 'RELEVANCE',
+  /** Sort by the `title` value. */
+  Title = 'TITLE'
 }
 
 /** The store's branding configuration. */
@@ -421,18 +417,18 @@ export type BrandColors = {
 
 /** Card brand, such as Visa or Mastercard, which can be used for payments. */
 export enum CardBrand {
-  /** Visa. */
-  Visa = 'VISA',
-  /** Mastercard. */
-  Mastercard = 'MASTERCARD',
-  /** Discover. */
-  Discover = 'DISCOVER',
   /** American Express. */
   AmericanExpress = 'AMERICAN_EXPRESS',
   /** Diners Club. */
   DinersClub = 'DINERS_CLUB',
+  /** Discover. */
+  Discover = 'DISCOVER',
   /** JCB. */
-  Jcb = 'JCB'
+  Jcb = 'JCB',
+  /** Mastercard. */
+  Mastercard = 'MASTERCARD',
+  /** Visa. */
+  Visa = 'VISA'
 }
 
 /**
@@ -503,11 +499,11 @@ export type CartAttributeArgs = {
  * during a customer's session.
  */
 export type CartDeliveryGroupsArgs = {
-  first?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['String']>;
-  reverse?: Maybe<Scalars['Boolean']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  reverse?: InputMaybe<Scalars['Boolean']>;
 };
 
 
@@ -518,11 +514,11 @@ export type CartDeliveryGroupsArgs = {
  * during a customer's session.
  */
 export type CartLinesArgs = {
-  first?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['String']>;
-  reverse?: Maybe<Scalars['Boolean']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  reverse?: InputMaybe<Scalars['Boolean']>;
 };
 
 /** Return type for `cartAttributesUpdate` mutation. */
@@ -569,20 +565,20 @@ export type CartBuyerIdentity = {
  * and should match the customer's shipping address.
  */
 export type CartBuyerIdentityInput = {
-  /** The email address of the buyer that is interacting with the cart. */
-  email?: Maybe<Scalars['String']>;
-  /** The phone number of the buyer that is interacting with the cart. */
-  phone?: Maybe<Scalars['String']>;
   /** The country where the buyer is located. */
-  countryCode?: Maybe<CountryCode>;
+  countryCode?: InputMaybe<CountryCode>;
   /** The access token used to identify the customer associated with the cart. */
-  customerAccessToken?: Maybe<Scalars['String']>;
+  customerAccessToken?: InputMaybe<Scalars['String']>;
   /**
    * An ordered set of delivery addresses tied to the buyer that is interacting with the cart.
    * The rank of the preferences is determined by the order of the addresses in the array. Preferences
    * can be used to populate relevant fields in the checkout flow.
    */
-  deliveryAddressPreferences?: Maybe<Array<DeliveryAddressInput>>;
+  deliveryAddressPreferences?: InputMaybe<Array<DeliveryAddressInput>>;
+  /** The email address of the buyer that is interacting with the cart. */
+  email?: InputMaybe<Scalars['String']>;
+  /** The phone number of the buyer that is interacting with the cart. */
+  phone?: InputMaybe<Scalars['String']>;
 };
 
 /** Return type for `cartBuyerIdentityUpdate` mutation. */
@@ -666,11 +662,11 @@ export type CartDeliveryGroup = {
 
 /** Information about the options available for one or more line items to be delivered to a specific address. */
 export type CartDeliveryGroupCartLinesArgs = {
-  first?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['String']>;
-  reverse?: Maybe<Scalars['Boolean']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  reverse?: InputMaybe<Scalars['Boolean']>;
 };
 
 /** An auto-generated type for paginating through multiple CartDeliveryGroups. */
@@ -738,10 +734,10 @@ export type CartDiscountCodesUpdatePayload = {
 export enum CartErrorCode {
   /** The input value is invalid. */
   Invalid = 'INVALID',
-  /** The input value should be less than the maximum value allowed. */
-  LessThan = 'LESS_THAN',
   /** Merchandise line was not found in cart. */
   InvalidMerchandiseLine = 'INVALID_MERCHANDISE_LINE',
+  /** The input value should be less than the maximum value allowed. */
+  LessThan = 'LESS_THAN',
   /** Missing discount code. */
   MissingDiscountCode = 'MISSING_DISCOUNT_CODE',
   /** Missing note. */
@@ -772,19 +768,19 @@ export type CartEstimatedCost = {
 /** Specifies the input fields to create a cart. */
 export type CartInput = {
   /** An array of key-value pairs that contains additional information about the cart. */
-  attributes?: Maybe<Array<AttributeInput>>;
-  /** A list of merchandise lines to add to the cart. */
-  lines?: Maybe<Array<CartLineInput>>;
-  /** The case-insensitive discount codes that the customer added at checkout. */
-  discountCodes?: Maybe<Array<Scalars['String']>>;
-  /** A note that is associated with the cart. For example, the note can be a personalized message to the buyer. */
-  note?: Maybe<Scalars['String']>;
+  attributes?: InputMaybe<Array<AttributeInput>>;
   /**
    * The customer associated with the cart. Used to determine [international pricing]
    * (https://shopify.dev/custom-storefronts/internationalization/international-pricing).
    * Buyer identity should match the customer's shipping address.
    */
-  buyerIdentity?: Maybe<CartBuyerIdentityInput>;
+  buyerIdentity?: InputMaybe<CartBuyerIdentityInput>;
+  /** The case-insensitive discount codes that the customer added at checkout. */
+  discountCodes?: InputMaybe<Array<Scalars['String']>>;
+  /** A list of merchandise lines to add to the cart. */
+  lines?: InputMaybe<Array<CartLineInput>>;
+  /** A note that is associated with the cart. For example, the note can be a personalized message to the buyer. */
+  note?: InputMaybe<Scalars['String']>;
 };
 
 /** Represents information about the merchandise in the cart. */
@@ -868,27 +864,27 @@ export type CartLineEstimatedCost = {
 /** Specifies the input fields to create a merchandise line on a cart. */
 export type CartLineInput = {
   /** An array of key-value pairs that contains additional information about the merchandise line. */
-  attributes?: Maybe<Array<AttributeInput>>;
-  /** The quantity of the merchandise. */
-  quantity?: Maybe<Scalars['Int']>;
+  attributes?: InputMaybe<Array<AttributeInput>>;
   /** The identifier of the merchandise that the buyer intends to purchase. */
   merchandiseId: Scalars['ID'];
+  /** The quantity of the merchandise. */
+  quantity?: InputMaybe<Scalars['Int']>;
   /** The identifier of the selling plan that the merchandise is being purchased with. */
-  sellingPlanId?: Maybe<Scalars['ID']>;
+  sellingPlanId?: InputMaybe<Scalars['ID']>;
 };
 
 /** Specifies the input fields to update a line item on a cart. */
 export type CartLineUpdateInput = {
+  /** An array of key-value pairs that contains additional information about the merchandise line. */
+  attributes?: InputMaybe<Array<AttributeInput>>;
   /** The identifier of the merchandise line. */
   id: Scalars['ID'];
-  /** The quantity of the line item. */
-  quantity?: Maybe<Scalars['Int']>;
   /** The identifier of the merchandise for the line item. */
-  merchandiseId?: Maybe<Scalars['ID']>;
-  /** An array of key-value pairs that contains additional information about the merchandise line. */
-  attributes?: Maybe<Array<AttributeInput>>;
+  merchandiseId?: InputMaybe<Scalars['ID']>;
+  /** The quantity of the line item. */
+  quantity?: InputMaybe<Scalars['Int']>;
   /** The identifier of the selling plan that the merchandise is being purchased with. */
-  sellingPlanId?: Maybe<Scalars['ID']>;
+  sellingPlanId?: InputMaybe<Scalars['ID']>;
 };
 
 /** Return type for `cartLinesAdd` mutation. */
@@ -1050,36 +1046,36 @@ export type Checkout = Node & {
 
 /** A container for all the information required to checkout items and pay. */
 export type CheckoutDiscountApplicationsArgs = {
-  first?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['String']>;
-  reverse?: Maybe<Scalars['Boolean']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  reverse?: InputMaybe<Scalars['Boolean']>;
 };
 
 
 /** A container for all the information required to checkout items and pay. */
 export type CheckoutLineItemsArgs = {
-  first?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['String']>;
-  reverse?: Maybe<Scalars['Boolean']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  reverse?: InputMaybe<Scalars['Boolean']>;
 };
 
 /** Specifies the fields required to update a checkout's attributes. */
 export type CheckoutAttributesUpdateV2Input = {
-  /** The text of an optional note that a shop owner can attach to the checkout. */
-  note?: Maybe<Scalars['String']>;
-  /** A list of extra information that is added to the checkout. */
-  customAttributes?: Maybe<Array<AttributeInput>>;
   /**
    * Allows setting partial addresses on a Checkout, skipping the full validation of attributes.
    * The required attributes are city, province, and country.
    * Full validation of the addresses is still done at completion time. Defaults to `false` with
    * each operation.
    */
-  allowPartialAddresses?: Maybe<Scalars['Boolean']>;
+  allowPartialAddresses?: InputMaybe<Scalars['Boolean']>;
+  /** A list of extra information that is added to the checkout. */
+  customAttributes?: InputMaybe<Array<AttributeInput>>;
+  /** The text of an optional note that a shop owner can attach to the checkout. */
+  note?: InputMaybe<Scalars['String']>;
 };
 
 /** Return type for `checkoutAttributesUpdateV2` mutation. */
@@ -1161,24 +1157,24 @@ export type CheckoutCompleteWithTokenizedPaymentV3Payload = {
 
 /** Specifies the fields required to create a checkout. */
 export type CheckoutCreateInput = {
-  /** The email with which the customer wants to checkout. */
-  email?: Maybe<Scalars['String']>;
-  /** A list of line item objects, each one containing information about an item in the checkout. */
-  lineItems?: Maybe<Array<CheckoutLineItemInput>>;
-  /** The shipping address to where the line items will be shipped. */
-  shippingAddress?: Maybe<MailingAddressInput>;
-  /** The text of an optional note that a shop owner can attach to the checkout. */
-  note?: Maybe<Scalars['String']>;
-  /** A list of extra information that is added to the checkout. */
-  customAttributes?: Maybe<Array<AttributeInput>>;
   /**
    * Allows setting partial addresses on a Checkout, skipping the full validation of attributes.
    * The required attributes are city, province, and country.
    * Full validation of addresses is still done at completion time. Defaults to `null`.
    */
-  allowPartialAddresses?: Maybe<Scalars['Boolean']>;
+  allowPartialAddresses?: InputMaybe<Scalars['Boolean']>;
   /** The identity of the customer associated with the checkout. */
-  buyerIdentity?: Maybe<CheckoutBuyerIdentityInput>;
+  buyerIdentity?: InputMaybe<CheckoutBuyerIdentityInput>;
+  /** A list of extra information that is added to the checkout. */
+  customAttributes?: InputMaybe<Array<AttributeInput>>;
+  /** The email with which the customer wants to checkout. */
+  email?: InputMaybe<Scalars['String']>;
+  /** A list of line item objects, each one containing information about an item in the checkout. */
+  lineItems?: InputMaybe<Array<CheckoutLineItemInput>>;
+  /** The text of an optional note that a shop owner can attach to the checkout. */
+  note?: InputMaybe<Scalars['String']>;
+  /** The shipping address to where the line items will be shipped. */
+  shippingAddress?: InputMaybe<MailingAddressInput>;
 };
 
 /** Return type for `checkoutCreate` mutation. */
@@ -1271,96 +1267,96 @@ export type CheckoutEmailUpdateV2Payload = {
 
 /** Possible error codes that can be returned by `CheckoutUserError`. */
 export enum CheckoutErrorCode {
-  /** The input value is blank. */
-  Blank = 'BLANK',
-  /** The input value is invalid. */
-  Invalid = 'INVALID',
-  /** The input value is too long. */
-  TooLong = 'TOO_LONG',
-  /** The input value needs to be blank. */
-  Present = 'PRESENT',
-  /** The input value should be less than the maximum value allowed. */
-  LessThan = 'LESS_THAN',
-  /** The input value should be greater than or equal to the minimum value allowed. */
-  GreaterThanOrEqualTo = 'GREATER_THAN_OR_EQUAL_TO',
-  /** The input value should be less than or equal to the maximum value allowed. */
-  LessThanOrEqualTo = 'LESS_THAN_OR_EQUAL_TO',
   /** Checkout is already completed. */
   AlreadyCompleted = 'ALREADY_COMPLETED',
-  /** Checkout is locked. */
-  Locked = 'LOCKED',
-  /** Input value is not supported. */
-  NotSupported = 'NOT_SUPPORTED',
   /** Input email contains an invalid domain name. */
   BadDomain = 'BAD_DOMAIN',
+  /** The input value is blank. */
+  Blank = 'BLANK',
+  /** Cart does not meet discount requirements notice. */
+  CartDoesNotMeetDiscountRequirementsNotice = 'CART_DOES_NOT_MEET_DISCOUNT_REQUIREMENTS_NOTICE',
+  /** Customer already used once per customer discount notice. */
+  CustomerAlreadyUsedOncePerCustomerDiscountNotice = 'CUSTOMER_ALREADY_USED_ONCE_PER_CUSTOMER_DISCOUNT_NOTICE',
+  /** Discount already applied. */
+  DiscountAlreadyApplied = 'DISCOUNT_ALREADY_APPLIED',
+  /** Discount code isn't working right now. Please contact us for help. */
+  DiscountCodeApplicationFailed = 'DISCOUNT_CODE_APPLICATION_FAILED',
+  /** Discount disabled. */
+  DiscountDisabled = 'DISCOUNT_DISABLED',
+  /** Discount expired. */
+  DiscountExpired = 'DISCOUNT_EXPIRED',
+  /** Discount limit reached. */
+  DiscountLimitReached = 'DISCOUNT_LIMIT_REACHED',
+  /** Discount not found. */
+  DiscountNotFound = 'DISCOUNT_NOT_FOUND',
+  /** Checkout is already completed. */
+  Empty = 'EMPTY',
+  /** Queue token has expired. */
+  ExpiredQueueToken = 'EXPIRED_QUEUE_TOKEN',
+  /** Gift card has already been applied. */
+  GiftCardAlreadyApplied = 'GIFT_CARD_ALREADY_APPLIED',
+  /** Gift card code is invalid. */
+  GiftCardCodeInvalid = 'GIFT_CARD_CODE_INVALID',
+  /** Gift card currency does not match checkout currency. */
+  GiftCardCurrencyMismatch = 'GIFT_CARD_CURRENCY_MISMATCH',
+  /** Gift card has no funds left. */
+  GiftCardDepleted = 'GIFT_CARD_DEPLETED',
+  /** Gift card is disabled. */
+  GiftCardDisabled = 'GIFT_CARD_DISABLED',
+  /** Gift card is expired. */
+  GiftCardExpired = 'GIFT_CARD_EXPIRED',
+  /** Gift card was not found. */
+  GiftCardNotFound = 'GIFT_CARD_NOT_FOUND',
+  /** Gift card cannot be applied to a checkout that contains a gift card. */
+  GiftCardUnusable = 'GIFT_CARD_UNUSABLE',
+  /** The input value should be greater than or equal to the minimum value allowed. */
+  GreaterThanOrEqualTo = 'GREATER_THAN_OR_EQUAL_TO',
+  /** Higher value discount applied. */
+  HigherValueDiscountApplied = 'HIGHER_VALUE_DISCOUNT_APPLIED',
+  /** The input value is invalid. */
+  Invalid = 'INVALID',
+  /** Cannot specify country and presentment currency code. */
+  InvalidCountryAndCurrency = 'INVALID_COUNTRY_AND_CURRENCY',
   /** Input Zip is invalid for country provided. */
   InvalidForCountry = 'INVALID_FOR_COUNTRY',
   /** Input Zip is invalid for country and province provided. */
   InvalidForCountryAndProvince = 'INVALID_FOR_COUNTRY_AND_PROVINCE',
-  /** Invalid state in country. */
-  InvalidStateInCountry = 'INVALID_STATE_IN_COUNTRY',
   /** Invalid province in country. */
   InvalidProvinceInCountry = 'INVALID_PROVINCE_IN_COUNTRY',
-  /** Invalid region in country. */
-  InvalidRegionInCountry = 'INVALID_REGION_IN_COUNTRY',
-  /** Shipping rate expired. */
-  ShippingRateExpired = 'SHIPPING_RATE_EXPIRED',
-  /** Gift card cannot be applied to a checkout that contains a gift card. */
-  GiftCardUnusable = 'GIFT_CARD_UNUSABLE',
-  /** Gift card is disabled. */
-  GiftCardDisabled = 'GIFT_CARD_DISABLED',
-  /** Gift card code is invalid. */
-  GiftCardCodeInvalid = 'GIFT_CARD_CODE_INVALID',
-  /** Gift card has already been applied. */
-  GiftCardAlreadyApplied = 'GIFT_CARD_ALREADY_APPLIED',
-  /** Gift card currency does not match checkout currency. */
-  GiftCardCurrencyMismatch = 'GIFT_CARD_CURRENCY_MISMATCH',
-  /** Gift card is expired. */
-  GiftCardExpired = 'GIFT_CARD_EXPIRED',
-  /** Gift card has no funds left. */
-  GiftCardDepleted = 'GIFT_CARD_DEPLETED',
-  /** Gift card was not found. */
-  GiftCardNotFound = 'GIFT_CARD_NOT_FOUND',
-  /** Cart does not meet discount requirements notice. */
-  CartDoesNotMeetDiscountRequirementsNotice = 'CART_DOES_NOT_MEET_DISCOUNT_REQUIREMENTS_NOTICE',
-  /** Discount expired. */
-  DiscountExpired = 'DISCOUNT_EXPIRED',
-  /** Discount disabled. */
-  DiscountDisabled = 'DISCOUNT_DISABLED',
-  /** Discount limit reached. */
-  DiscountLimitReached = 'DISCOUNT_LIMIT_REACHED',
-  /** Higher value discount applied. */
-  HigherValueDiscountApplied = 'HIGHER_VALUE_DISCOUNT_APPLIED',
-  /** Maximum number of discount codes limit reached. */
-  MaximumDiscountCodeLimitReached = 'MAXIMUM_DISCOUNT_CODE_LIMIT_REACHED',
-  /** Discount not found. */
-  DiscountNotFound = 'DISCOUNT_NOT_FOUND',
-  /** Customer already used once per customer discount notice. */
-  CustomerAlreadyUsedOncePerCustomerDiscountNotice = 'CUSTOMER_ALREADY_USED_ONCE_PER_CUSTOMER_DISCOUNT_NOTICE',
-  /** Discount code isn't working right now. Please contact us for help. */
-  DiscountCodeApplicationFailed = 'DISCOUNT_CODE_APPLICATION_FAILED',
-  /** Checkout is already completed. */
-  Empty = 'EMPTY',
-  /** Not enough in stock. */
-  NotEnoughInStock = 'NOT_ENOUGH_IN_STOCK',
-  /** Missing payment input. */
-  MissingPaymentInput = 'MISSING_PAYMENT_INPUT',
-  /** The amount of the payment does not match the value to be paid. */
-  TotalPriceMismatch = 'TOTAL_PRICE_MISMATCH',
-  /** Line item was not found in checkout. */
-  LineItemNotFound = 'LINE_ITEM_NOT_FOUND',
-  /** Unable to apply discount. */
-  UnableToApply = 'UNABLE_TO_APPLY',
-  /** Discount already applied. */
-  DiscountAlreadyApplied = 'DISCOUNT_ALREADY_APPLIED',
-  /** Throttled during checkout. */
-  ThrottledDuringCheckout = 'THROTTLED_DURING_CHECKOUT',
-  /** Queue token has expired. */
-  ExpiredQueueToken = 'EXPIRED_QUEUE_TOKEN',
   /** Queue token is invalid. */
   InvalidQueueToken = 'INVALID_QUEUE_TOKEN',
-  /** Cannot specify country and presentment currency code. */
-  InvalidCountryAndCurrency = 'INVALID_COUNTRY_AND_CURRENCY'
+  /** Invalid region in country. */
+  InvalidRegionInCountry = 'INVALID_REGION_IN_COUNTRY',
+  /** Invalid state in country. */
+  InvalidStateInCountry = 'INVALID_STATE_IN_COUNTRY',
+  /** The input value should be less than the maximum value allowed. */
+  LessThan = 'LESS_THAN',
+  /** The input value should be less than or equal to the maximum value allowed. */
+  LessThanOrEqualTo = 'LESS_THAN_OR_EQUAL_TO',
+  /** Line item was not found in checkout. */
+  LineItemNotFound = 'LINE_ITEM_NOT_FOUND',
+  /** Checkout is locked. */
+  Locked = 'LOCKED',
+  /** Maximum number of discount codes limit reached. */
+  MaximumDiscountCodeLimitReached = 'MAXIMUM_DISCOUNT_CODE_LIMIT_REACHED',
+  /** Missing payment input. */
+  MissingPaymentInput = 'MISSING_PAYMENT_INPUT',
+  /** Not enough in stock. */
+  NotEnoughInStock = 'NOT_ENOUGH_IN_STOCK',
+  /** Input value is not supported. */
+  NotSupported = 'NOT_SUPPORTED',
+  /** The input value needs to be blank. */
+  Present = 'PRESENT',
+  /** Shipping rate expired. */
+  ShippingRateExpired = 'SHIPPING_RATE_EXPIRED',
+  /** Throttled during checkout. */
+  ThrottledDuringCheckout = 'THROTTLED_DURING_CHECKOUT',
+  /** The input value is too long. */
+  TooLong = 'TOO_LONG',
+  /** The amount of the payment does not match the value to be paid. */
+  TotalPriceMismatch = 'TOTAL_PRICE_MISMATCH',
+  /** Unable to apply discount. */
+  UnableToApply = 'UNABLE_TO_APPLY'
 }
 
 /** Return type for `checkoutGiftCardRemoveV2` mutation. */
@@ -1433,7 +1429,7 @@ export type CheckoutLineItemEdge = {
 /** Specifies the input fields to create a line item on a checkout. */
 export type CheckoutLineItemInput = {
   /** Extra information in the form of an array of Key-Value pairs about the line item. */
-  customAttributes?: Maybe<Array<AttributeInput>>;
+  customAttributes?: InputMaybe<Array<AttributeInput>>;
   /** The quantity of the line item. */
   quantity: Scalars['Int'];
   /** The identifier of the product variant for the line item. */
@@ -1442,14 +1438,14 @@ export type CheckoutLineItemInput = {
 
 /** Specifies the input fields to update a line item on the checkout. */
 export type CheckoutLineItemUpdateInput = {
-  /** The identifier of the line item. */
-  id?: Maybe<Scalars['ID']>;
-  /** The variant identifier of the line item. */
-  variantId?: Maybe<Scalars['ID']>;
-  /** The quantity of the line item. */
-  quantity?: Maybe<Scalars['Int']>;
   /** Extra information in the form of an array of Key-Value pairs about the line item. */
-  customAttributes?: Maybe<Array<AttributeInput>>;
+  customAttributes?: InputMaybe<Array<AttributeInput>>;
+  /** The identifier of the line item. */
+  id?: InputMaybe<Scalars['ID']>;
+  /** The quantity of the line item. */
+  quantity?: InputMaybe<Scalars['Int']>;
+  /** The variant identifier of the line item. */
+  variantId?: InputMaybe<Scalars['ID']>;
 };
 
 /** Return type for `checkoutLineItemsAdd` mutation. */
@@ -1577,14 +1573,14 @@ export type Collection = HasMetafields & Node & OnlineStorePublishable & {
 
 /** A collection represents a grouping of products that a shop owner can create to organize them or make their shops easier to browse. */
 export type CollectionDescriptionArgs = {
-  truncateAt?: Maybe<Scalars['Int']>;
+  truncateAt?: InputMaybe<Scalars['Int']>;
 };
 
 
 /** A collection represents a grouping of products that a shop owner can create to organize them or make their shops easier to browse. */
 export type CollectionMetafieldArgs = {
-  namespace: Scalars['String'];
   key: Scalars['String'];
+  namespace: Scalars['String'];
 };
 
 
@@ -1596,13 +1592,13 @@ export type CollectionMetafieldsArgs = {
 
 /** A collection represents a grouping of products that a shop owner can create to organize them or make their shops easier to browse. */
 export type CollectionProductsArgs = {
-  first?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['String']>;
-  reverse?: Maybe<Scalars['Boolean']>;
-  sortKey?: Maybe<ProductCollectionSortKeys>;
-  filters?: Maybe<Array<ProductFilter>>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  filters?: InputMaybe<Array<ProductFilter>>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  reverse?: InputMaybe<Scalars['Boolean']>;
+  sortKey?: InputMaybe<ProductCollectionSortKeys>;
 };
 
 /** An auto-generated type for paginating through multiple Collections. */
@@ -1627,19 +1623,18 @@ export type CollectionEdge = {
 
 /** The set of valid sort keys for the Collection query. */
 export enum CollectionSortKeys {
-  /** Sort by the `title` value. */
-  Title = 'TITLE',
-  /** Sort by the `updated_at` value. */
-  UpdatedAt = 'UPDATED_AT',
   /** Sort by the `id` value. */
   Id = 'ID',
   /**
    * Sort by relevance to the search terms when the `query` parameter is specified on the connection.
    * Don't use this sort key when no search query is specified.
    */
-  Relevance = 'RELEVANCE'
+  Relevance = 'RELEVANCE',
+  /** Sort by the `title` value. */
+  Title = 'TITLE',
+  /** Sort by the `updated_at` value. */
+  UpdatedAt = 'UPDATED_AT'
 }
-
 
 /** A comment on an article. */
 export type Comment = Node & {
@@ -1657,7 +1652,7 @@ export type Comment = Node & {
 
 /** A comment on an article. */
 export type CommentContentArgs = {
-  truncateAt?: Maybe<Scalars['Int']>;
+  truncateAt?: InputMaybe<Scalars['Int']>;
 };
 
 /** The author of a comment. */
@@ -1711,490 +1706,490 @@ export type Country = {
  * and the territories associated with the United States of America are represented by the country code `US`.
  */
 export enum CountryCode {
-  /** Afghanistan. */
-  Af = 'AF',
-  /** Åland Islands. */
-  Ax = 'AX',
-  /** Albania. */
-  Al = 'AL',
-  /** Algeria. */
-  Dz = 'DZ',
-  /** Andorra. */
-  Ad = 'AD',
-  /** Angola. */
-  Ao = 'AO',
-  /** Anguilla. */
-  Ai = 'AI',
-  /** Antigua & Barbuda. */
-  Ag = 'AG',
-  /** Argentina. */
-  Ar = 'AR',
-  /** Armenia. */
-  Am = 'AM',
-  /** Aruba. */
-  Aw = 'AW',
   /** Ascension Island. */
   Ac = 'AC',
-  /** Australia. */
-  Au = 'AU',
+  /** Andorra. */
+  Ad = 'AD',
+  /** United Arab Emirates. */
+  Ae = 'AE',
+  /** Afghanistan. */
+  Af = 'AF',
+  /** Antigua & Barbuda. */
+  Ag = 'AG',
+  /** Anguilla. */
+  Ai = 'AI',
+  /** Albania. */
+  Al = 'AL',
+  /** Armenia. */
+  Am = 'AM',
+  /** Netherlands Antilles. */
+  An = 'AN',
+  /** Angola. */
+  Ao = 'AO',
+  /** Argentina. */
+  Ar = 'AR',
   /** Austria. */
   At = 'AT',
+  /** Australia. */
+  Au = 'AU',
+  /** Aruba. */
+  Aw = 'AW',
+  /** Åland Islands. */
+  Ax = 'AX',
   /** Azerbaijan. */
   Az = 'AZ',
-  /** Bahamas. */
-  Bs = 'BS',
-  /** Bahrain. */
-  Bh = 'BH',
-  /** Bangladesh. */
-  Bd = 'BD',
-  /** Barbados. */
-  Bb = 'BB',
-  /** Belarus. */
-  By = 'BY',
-  /** Belgium. */
-  Be = 'BE',
-  /** Belize. */
-  Bz = 'BZ',
-  /** Benin. */
-  Bj = 'BJ',
-  /** Bermuda. */
-  Bm = 'BM',
-  /** Bhutan. */
-  Bt = 'BT',
-  /** Bolivia. */
-  Bo = 'BO',
   /** Bosnia & Herzegovina. */
   Ba = 'BA',
-  /** Botswana. */
-  Bw = 'BW',
-  /** Bouvet Island. */
-  Bv = 'BV',
-  /** Brazil. */
-  Br = 'BR',
-  /** British Indian Ocean Territory. */
-  Io = 'IO',
-  /** Brunei. */
-  Bn = 'BN',
-  /** Bulgaria. */
-  Bg = 'BG',
+  /** Barbados. */
+  Bb = 'BB',
+  /** Bangladesh. */
+  Bd = 'BD',
+  /** Belgium. */
+  Be = 'BE',
   /** Burkina Faso. */
   Bf = 'BF',
+  /** Bulgaria. */
+  Bg = 'BG',
+  /** Bahrain. */
+  Bh = 'BH',
   /** Burundi. */
   Bi = 'BI',
-  /** Cambodia. */
-  Kh = 'KH',
-  /** Canada. */
-  Ca = 'CA',
-  /** Cape Verde. */
-  Cv = 'CV',
+  /** Benin. */
+  Bj = 'BJ',
+  /** St. Barthélemy. */
+  Bl = 'BL',
+  /** Bermuda. */
+  Bm = 'BM',
+  /** Brunei. */
+  Bn = 'BN',
+  /** Bolivia. */
+  Bo = 'BO',
   /** Caribbean Netherlands. */
   Bq = 'BQ',
-  /** Cayman Islands. */
-  Ky = 'KY',
-  /** Central African Republic. */
-  Cf = 'CF',
-  /** Chad. */
-  Td = 'TD',
-  /** Chile. */
-  Cl = 'CL',
-  /** China. */
-  Cn = 'CN',
-  /** Christmas Island. */
-  Cx = 'CX',
+  /** Brazil. */
+  Br = 'BR',
+  /** Bahamas. */
+  Bs = 'BS',
+  /** Bhutan. */
+  Bt = 'BT',
+  /** Bouvet Island. */
+  Bv = 'BV',
+  /** Botswana. */
+  Bw = 'BW',
+  /** Belarus. */
+  By = 'BY',
+  /** Belize. */
+  Bz = 'BZ',
+  /** Canada. */
+  Ca = 'CA',
   /** Cocos (Keeling) Islands. */
   Cc = 'CC',
-  /** Colombia. */
-  Co = 'CO',
-  /** Comoros. */
-  Km = 'KM',
-  /** Congo - Brazzaville. */
-  Cg = 'CG',
   /** Congo - Kinshasa. */
   Cd = 'CD',
+  /** Central African Republic. */
+  Cf = 'CF',
+  /** Congo - Brazzaville. */
+  Cg = 'CG',
+  /** Switzerland. */
+  Ch = 'CH',
+  /** Côte d’Ivoire. */
+  Ci = 'CI',
   /** Cook Islands. */
   Ck = 'CK',
+  /** Chile. */
+  Cl = 'CL',
+  /** Cameroon. */
+  Cm = 'CM',
+  /** China. */
+  Cn = 'CN',
+  /** Colombia. */
+  Co = 'CO',
   /** Costa Rica. */
   Cr = 'CR',
-  /** Croatia. */
-  Hr = 'HR',
   /** Cuba. */
   Cu = 'CU',
+  /** Cape Verde. */
+  Cv = 'CV',
   /** Curaçao. */
   Cw = 'CW',
+  /** Christmas Island. */
+  Cx = 'CX',
   /** Cyprus. */
   Cy = 'CY',
   /** Czechia. */
   Cz = 'CZ',
-  /** Côte d’Ivoire. */
-  Ci = 'CI',
-  /** Denmark. */
-  Dk = 'DK',
+  /** Germany. */
+  De = 'DE',
   /** Djibouti. */
   Dj = 'DJ',
+  /** Denmark. */
+  Dk = 'DK',
   /** Dominica. */
   Dm = 'DM',
   /** Dominican Republic. */
   Do = 'DO',
+  /** Algeria. */
+  Dz = 'DZ',
   /** Ecuador. */
   Ec = 'EC',
-  /** Egypt. */
-  Eg = 'EG',
-  /** El Salvador. */
-  Sv = 'SV',
-  /** Equatorial Guinea. */
-  Gq = 'GQ',
-  /** Eritrea. */
-  Er = 'ER',
   /** Estonia. */
   Ee = 'EE',
-  /** Eswatini. */
-  Sz = 'SZ',
+  /** Egypt. */
+  Eg = 'EG',
+  /** Western Sahara. */
+  Eh = 'EH',
+  /** Eritrea. */
+  Er = 'ER',
+  /** Spain. */
+  Es = 'ES',
   /** Ethiopia. */
   Et = 'ET',
+  /** Finland. */
+  Fi = 'FI',
+  /** Fiji. */
+  Fj = 'FJ',
   /** Falkland Islands. */
   Fk = 'FK',
   /** Faroe Islands. */
   Fo = 'FO',
-  /** Fiji. */
-  Fj = 'FJ',
-  /** Finland. */
-  Fi = 'FI',
   /** France. */
   Fr = 'FR',
-  /** French Guiana. */
-  Gf = 'GF',
-  /** French Polynesia. */
-  Pf = 'PF',
-  /** French Southern Territories. */
-  Tf = 'TF',
   /** Gabon. */
   Ga = 'GA',
-  /** Gambia. */
-  Gm = 'GM',
+  /** United Kingdom. */
+  Gb = 'GB',
+  /** Grenada. */
+  Gd = 'GD',
   /** Georgia. */
   Ge = 'GE',
-  /** Germany. */
-  De = 'DE',
+  /** French Guiana. */
+  Gf = 'GF',
+  /** Guernsey. */
+  Gg = 'GG',
   /** Ghana. */
   Gh = 'GH',
   /** Gibraltar. */
   Gi = 'GI',
-  /** Greece. */
-  Gr = 'GR',
   /** Greenland. */
   Gl = 'GL',
-  /** Grenada. */
-  Gd = 'GD',
-  /** Guadeloupe. */
-  Gp = 'GP',
-  /** Guatemala. */
-  Gt = 'GT',
-  /** Guernsey. */
-  Gg = 'GG',
+  /** Gambia. */
+  Gm = 'GM',
   /** Guinea. */
   Gn = 'GN',
+  /** Guadeloupe. */
+  Gp = 'GP',
+  /** Equatorial Guinea. */
+  Gq = 'GQ',
+  /** Greece. */
+  Gr = 'GR',
+  /** South Georgia & South Sandwich Islands. */
+  Gs = 'GS',
+  /** Guatemala. */
+  Gt = 'GT',
   /** Guinea-Bissau. */
   Gw = 'GW',
   /** Guyana. */
   Gy = 'GY',
-  /** Haiti. */
-  Ht = 'HT',
-  /** Heard & McDonald Islands. */
-  Hm = 'HM',
-  /** Vatican City. */
-  Va = 'VA',
-  /** Honduras. */
-  Hn = 'HN',
   /** Hong Kong SAR. */
   Hk = 'HK',
+  /** Heard & McDonald Islands. */
+  Hm = 'HM',
+  /** Honduras. */
+  Hn = 'HN',
+  /** Croatia. */
+  Hr = 'HR',
+  /** Haiti. */
+  Ht = 'HT',
   /** Hungary. */
   Hu = 'HU',
-  /** Iceland. */
-  Is = 'IS',
-  /** India. */
-  In = 'IN',
   /** Indonesia. */
   Id = 'ID',
-  /** Iran. */
-  Ir = 'IR',
-  /** Iraq. */
-  Iq = 'IQ',
   /** Ireland. */
   Ie = 'IE',
-  /** Isle of Man. */
-  Im = 'IM',
   /** Israel. */
   Il = 'IL',
+  /** Isle of Man. */
+  Im = 'IM',
+  /** India. */
+  In = 'IN',
+  /** British Indian Ocean Territory. */
+  Io = 'IO',
+  /** Iraq. */
+  Iq = 'IQ',
+  /** Iran. */
+  Ir = 'IR',
+  /** Iceland. */
+  Is = 'IS',
   /** Italy. */
   It = 'IT',
-  /** Jamaica. */
-  Jm = 'JM',
-  /** Japan. */
-  Jp = 'JP',
   /** Jersey. */
   Je = 'JE',
+  /** Jamaica. */
+  Jm = 'JM',
   /** Jordan. */
   Jo = 'JO',
-  /** Kazakhstan. */
-  Kz = 'KZ',
+  /** Japan. */
+  Jp = 'JP',
   /** Kenya. */
   Ke = 'KE',
-  /** Kiribati. */
-  Ki = 'KI',
-  /** North Korea. */
-  Kp = 'KP',
-  /** Kosovo. */
-  Xk = 'XK',
-  /** Kuwait. */
-  Kw = 'KW',
   /** Kyrgyzstan. */
   Kg = 'KG',
+  /** Cambodia. */
+  Kh = 'KH',
+  /** Kiribati. */
+  Ki = 'KI',
+  /** Comoros. */
+  Km = 'KM',
+  /** St. Kitts & Nevis. */
+  Kn = 'KN',
+  /** North Korea. */
+  Kp = 'KP',
+  /** South Korea. */
+  Kr = 'KR',
+  /** Kuwait. */
+  Kw = 'KW',
+  /** Cayman Islands. */
+  Ky = 'KY',
+  /** Kazakhstan. */
+  Kz = 'KZ',
   /** Laos. */
   La = 'LA',
-  /** Latvia. */
-  Lv = 'LV',
   /** Lebanon. */
   Lb = 'LB',
-  /** Lesotho. */
-  Ls = 'LS',
-  /** Liberia. */
-  Lr = 'LR',
-  /** Libya. */
-  Ly = 'LY',
+  /** St. Lucia. */
+  Lc = 'LC',
   /** Liechtenstein. */
   Li = 'LI',
+  /** Sri Lanka. */
+  Lk = 'LK',
+  /** Liberia. */
+  Lr = 'LR',
+  /** Lesotho. */
+  Ls = 'LS',
   /** Lithuania. */
   Lt = 'LT',
   /** Luxembourg. */
   Lu = 'LU',
-  /** Macao SAR. */
-  Mo = 'MO',
+  /** Latvia. */
+  Lv = 'LV',
+  /** Libya. */
+  Ly = 'LY',
+  /** Morocco. */
+  Ma = 'MA',
+  /** Monaco. */
+  Mc = 'MC',
+  /** Moldova. */
+  Md = 'MD',
+  /** Montenegro. */
+  Me = 'ME',
+  /** St. Martin. */
+  Mf = 'MF',
   /** Madagascar. */
   Mg = 'MG',
-  /** Malawi. */
-  Mw = 'MW',
-  /** Malaysia. */
-  My = 'MY',
-  /** Maldives. */
-  Mv = 'MV',
+  /** North Macedonia. */
+  Mk = 'MK',
   /** Mali. */
   Ml = 'ML',
-  /** Malta. */
-  Mt = 'MT',
+  /** Myanmar (Burma). */
+  Mm = 'MM',
+  /** Mongolia. */
+  Mn = 'MN',
+  /** Macao SAR. */
+  Mo = 'MO',
   /** Martinique. */
   Mq = 'MQ',
   /** Mauritania. */
   Mr = 'MR',
-  /** Mauritius. */
-  Mu = 'MU',
-  /** Mayotte. */
-  Yt = 'YT',
-  /** Mexico. */
-  Mx = 'MX',
-  /** Moldova. */
-  Md = 'MD',
-  /** Monaco. */
-  Mc = 'MC',
-  /** Mongolia. */
-  Mn = 'MN',
-  /** Montenegro. */
-  Me = 'ME',
   /** Montserrat. */
   Ms = 'MS',
-  /** Morocco. */
-  Ma = 'MA',
+  /** Malta. */
+  Mt = 'MT',
+  /** Mauritius. */
+  Mu = 'MU',
+  /** Maldives. */
+  Mv = 'MV',
+  /** Malawi. */
+  Mw = 'MW',
+  /** Mexico. */
+  Mx = 'MX',
+  /** Malaysia. */
+  My = 'MY',
   /** Mozambique. */
   Mz = 'MZ',
-  /** Myanmar (Burma). */
-  Mm = 'MM',
   /** Namibia. */
   Na = 'NA',
-  /** Nauru. */
-  Nr = 'NR',
-  /** Nepal. */
-  Np = 'NP',
-  /** Netherlands. */
-  Nl = 'NL',
-  /** Netherlands Antilles. */
-  An = 'AN',
   /** New Caledonia. */
   Nc = 'NC',
-  /** New Zealand. */
-  Nz = 'NZ',
-  /** Nicaragua. */
-  Ni = 'NI',
   /** Niger. */
   Ne = 'NE',
-  /** Nigeria. */
-  Ng = 'NG',
-  /** Niue. */
-  Nu = 'NU',
   /** Norfolk Island. */
   Nf = 'NF',
-  /** North Macedonia. */
-  Mk = 'MK',
+  /** Nigeria. */
+  Ng = 'NG',
+  /** Nicaragua. */
+  Ni = 'NI',
+  /** Netherlands. */
+  Nl = 'NL',
   /** Norway. */
   No = 'NO',
+  /** Nepal. */
+  Np = 'NP',
+  /** Nauru. */
+  Nr = 'NR',
+  /** Niue. */
+  Nu = 'NU',
+  /** New Zealand. */
+  Nz = 'NZ',
   /** Oman. */
   Om = 'OM',
-  /** Pakistan. */
-  Pk = 'PK',
-  /** Palestinian Territories. */
-  Ps = 'PS',
   /** Panama. */
   Pa = 'PA',
-  /** Papua New Guinea. */
-  Pg = 'PG',
-  /** Paraguay. */
-  Py = 'PY',
   /** Peru. */
   Pe = 'PE',
+  /** French Polynesia. */
+  Pf = 'PF',
+  /** Papua New Guinea. */
+  Pg = 'PG',
   /** Philippines. */
   Ph = 'PH',
-  /** Pitcairn Islands. */
-  Pn = 'PN',
+  /** Pakistan. */
+  Pk = 'PK',
   /** Poland. */
   Pl = 'PL',
+  /** St. Pierre & Miquelon. */
+  Pm = 'PM',
+  /** Pitcairn Islands. */
+  Pn = 'PN',
+  /** Palestinian Territories. */
+  Ps = 'PS',
   /** Portugal. */
   Pt = 'PT',
+  /** Paraguay. */
+  Py = 'PY',
   /** Qatar. */
   Qa = 'QA',
-  /** Cameroon. */
-  Cm = 'CM',
   /** Réunion. */
   Re = 'RE',
   /** Romania. */
   Ro = 'RO',
+  /** Serbia. */
+  Rs = 'RS',
   /** Russia. */
   Ru = 'RU',
   /** Rwanda. */
   Rw = 'RW',
-  /** St. Barthélemy. */
-  Bl = 'BL',
-  /** St. Helena. */
-  Sh = 'SH',
-  /** St. Kitts & Nevis. */
-  Kn = 'KN',
-  /** St. Lucia. */
-  Lc = 'LC',
-  /** St. Martin. */
-  Mf = 'MF',
-  /** St. Pierre & Miquelon. */
-  Pm = 'PM',
-  /** Samoa. */
-  Ws = 'WS',
-  /** San Marino. */
-  Sm = 'SM',
-  /** São Tomé & Príncipe. */
-  St = 'ST',
   /** Saudi Arabia. */
   Sa = 'SA',
-  /** Senegal. */
-  Sn = 'SN',
-  /** Serbia. */
-  Rs = 'RS',
-  /** Seychelles. */
-  Sc = 'SC',
-  /** Sierra Leone. */
-  Sl = 'SL',
-  /** Singapore. */
-  Sg = 'SG',
-  /** Sint Maarten. */
-  Sx = 'SX',
-  /** Slovakia. */
-  Sk = 'SK',
-  /** Slovenia. */
-  Si = 'SI',
   /** Solomon Islands. */
   Sb = 'SB',
-  /** Somalia. */
-  So = 'SO',
-  /** South Africa. */
-  Za = 'ZA',
-  /** South Georgia & South Sandwich Islands. */
-  Gs = 'GS',
-  /** South Korea. */
-  Kr = 'KR',
-  /** South Sudan. */
-  Ss = 'SS',
-  /** Spain. */
-  Es = 'ES',
-  /** Sri Lanka. */
-  Lk = 'LK',
-  /** St. Vincent & Grenadines. */
-  Vc = 'VC',
+  /** Seychelles. */
+  Sc = 'SC',
   /** Sudan. */
   Sd = 'SD',
-  /** Suriname. */
-  Sr = 'SR',
-  /** Svalbard & Jan Mayen. */
-  Sj = 'SJ',
   /** Sweden. */
   Se = 'SE',
-  /** Switzerland. */
-  Ch = 'CH',
+  /** Singapore. */
+  Sg = 'SG',
+  /** St. Helena. */
+  Sh = 'SH',
+  /** Slovenia. */
+  Si = 'SI',
+  /** Svalbard & Jan Mayen. */
+  Sj = 'SJ',
+  /** Slovakia. */
+  Sk = 'SK',
+  /** Sierra Leone. */
+  Sl = 'SL',
+  /** San Marino. */
+  Sm = 'SM',
+  /** Senegal. */
+  Sn = 'SN',
+  /** Somalia. */
+  So = 'SO',
+  /** Suriname. */
+  Sr = 'SR',
+  /** South Sudan. */
+  Ss = 'SS',
+  /** São Tomé & Príncipe. */
+  St = 'ST',
+  /** El Salvador. */
+  Sv = 'SV',
+  /** Sint Maarten. */
+  Sx = 'SX',
   /** Syria. */
   Sy = 'SY',
-  /** Taiwan. */
-  Tw = 'TW',
-  /** Tajikistan. */
-  Tj = 'TJ',
-  /** Tanzania. */
-  Tz = 'TZ',
-  /** Thailand. */
-  Th = 'TH',
-  /** Timor-Leste. */
-  Tl = 'TL',
-  /** Togo. */
-  Tg = 'TG',
-  /** Tokelau. */
-  Tk = 'TK',
-  /** Tonga. */
-  To = 'TO',
-  /** Trinidad & Tobago. */
-  Tt = 'TT',
+  /** Eswatini. */
+  Sz = 'SZ',
   /** Tristan da Cunha. */
   Ta = 'TA',
-  /** Tunisia. */
-  Tn = 'TN',
-  /** Turkey. */
-  Tr = 'TR',
-  /** Turkmenistan. */
-  Tm = 'TM',
   /** Turks & Caicos Islands. */
   Tc = 'TC',
+  /** Chad. */
+  Td = 'TD',
+  /** French Southern Territories. */
+  Tf = 'TF',
+  /** Togo. */
+  Tg = 'TG',
+  /** Thailand. */
+  Th = 'TH',
+  /** Tajikistan. */
+  Tj = 'TJ',
+  /** Tokelau. */
+  Tk = 'TK',
+  /** Timor-Leste. */
+  Tl = 'TL',
+  /** Turkmenistan. */
+  Tm = 'TM',
+  /** Tunisia. */
+  Tn = 'TN',
+  /** Tonga. */
+  To = 'TO',
+  /** Turkey. */
+  Tr = 'TR',
+  /** Trinidad & Tobago. */
+  Tt = 'TT',
   /** Tuvalu. */
   Tv = 'TV',
-  /** Uganda. */
-  Ug = 'UG',
+  /** Taiwan. */
+  Tw = 'TW',
+  /** Tanzania. */
+  Tz = 'TZ',
   /** Ukraine. */
   Ua = 'UA',
-  /** United Arab Emirates. */
-  Ae = 'AE',
-  /** United Kingdom. */
-  Gb = 'GB',
-  /** United States. */
-  Us = 'US',
+  /** Uganda. */
+  Ug = 'UG',
   /** U.S. Outlying Islands. */
   Um = 'UM',
+  /** United States. */
+  Us = 'US',
   /** Uruguay. */
   Uy = 'UY',
   /** Uzbekistan. */
   Uz = 'UZ',
-  /** Vanuatu. */
-  Vu = 'VU',
+  /** Vatican City. */
+  Va = 'VA',
+  /** St. Vincent & Grenadines. */
+  Vc = 'VC',
   /** Venezuela. */
   Ve = 'VE',
-  /** Vietnam. */
-  Vn = 'VN',
   /** British Virgin Islands. */
   Vg = 'VG',
+  /** Vietnam. */
+  Vn = 'VN',
+  /** Vanuatu. */
+  Vu = 'VU',
   /** Wallis & Futuna. */
   Wf = 'WF',
-  /** Western Sahara. */
-  Eh = 'EH',
+  /** Samoa. */
+  Ws = 'WS',
+  /** Kosovo. */
+  Xk = 'XK',
   /** Yemen. */
   Ye = 'YE',
+  /** Mayotte. */
+  Yt = 'YT',
+  /** South Africa. */
+  Za = 'ZA',
   /** Zambia. */
   Zm = 'ZM',
   /** Zimbabwe. */
@@ -2229,30 +2224,30 @@ export type CreditCard = {
  * a Shopify vaulted credit card payment.
  */
 export type CreditCardPaymentInputV2 = {
-  /** The amount and currency of the payment. */
-  paymentAmount: MoneyInput;
-  /** A unique client generated key used to avoid duplicate charges. When a duplicate payment is found, the original is returned instead of creating a new one. For more information, refer to [Idempotent requests](https://shopify.dev/api/usage/idempotent-requests). */
-  idempotencyKey: Scalars['String'];
   /** The billing address for the payment. */
   billingAddress: MailingAddressInput;
+  /** A unique client generated key used to avoid duplicate charges. When a duplicate payment is found, the original is returned instead of creating a new one. For more information, refer to [Idempotent requests](https://shopify.dev/api/usage/idempotent-requests). */
+  idempotencyKey: Scalars['String'];
+  /** The amount and currency of the payment. */
+  paymentAmount: MoneyInput;
+  /** Executes the payment in test mode if possible. Defaults to `false`. */
+  test?: InputMaybe<Scalars['Boolean']>;
   /** The ID returned by Shopify's Card Vault. */
   vaultId: Scalars['String'];
-  /** Executes the payment in test mode if possible. Defaults to `false`. */
-  test?: Maybe<Scalars['Boolean']>;
 };
 
 /** The part of the image that should remain after cropping. */
 export enum CropRegion {
-  /** Keep the center of the image. */
-  Center = 'CENTER',
-  /** Keep the top of the image. */
-  Top = 'TOP',
   /** Keep the bottom of the image. */
   Bottom = 'BOTTOM',
+  /** Keep the center of the image. */
+  Center = 'CENTER',
   /** Keep the left of the image. */
   Left = 'LEFT',
   /** Keep the right of the image. */
-  Right = 'RIGHT'
+  Right = 'RIGHT',
+  /** Keep the top of the image. */
+  Top = 'TOP'
 }
 
 /** A currency. */
@@ -2271,328 +2266,337 @@ export type Currency = {
  * and non-standard codes.
  */
 export enum CurrencyCode {
-  /** United States Dollars (USD). */
-  Usd = 'USD',
-  /** Euro (EUR). */
-  Eur = 'EUR',
-  /** United Kingdom Pounds (GBP). */
-  Gbp = 'GBP',
-  /** Canadian Dollars (CAD). */
-  Cad = 'CAD',
+  /** United Arab Emirates Dirham (AED). */
+  Aed = 'AED',
   /** Afghan Afghani (AFN). */
   Afn = 'AFN',
   /** Albanian Lek (ALL). */
   All = 'ALL',
-  /** Algerian Dinar (DZD). */
-  Dzd = 'DZD',
+  /** Armenian Dram (AMD). */
+  Amd = 'AMD',
+  /** Netherlands Antillean Guilder. */
+  Ang = 'ANG',
   /** Angolan Kwanza (AOA). */
   Aoa = 'AOA',
   /** Argentine Pesos (ARS). */
   Ars = 'ARS',
-  /** Armenian Dram (AMD). */
-  Amd = 'AMD',
-  /** Aruban Florin (AWG). */
-  Awg = 'AWG',
   /** Australian Dollars (AUD). */
   Aud = 'AUD',
-  /** Barbadian Dollar (BBD). */
-  Bbd = 'BBD',
+  /** Aruban Florin (AWG). */
+  Awg = 'AWG',
   /** Azerbaijani Manat (AZN). */
   Azn = 'AZN',
+  /** Bosnia and Herzegovina Convertible Mark (BAM). */
+  Bam = 'BAM',
+  /** Barbadian Dollar (BBD). */
+  Bbd = 'BBD',
   /** Bangladesh Taka (BDT). */
   Bdt = 'BDT',
-  /** Bahamian Dollar (BSD). */
-  Bsd = 'BSD',
+  /** Bulgarian Lev (BGN). */
+  Bgn = 'BGN',
   /** Bahraini Dinar (BHD). */
   Bhd = 'BHD',
   /** Burundian Franc (BIF). */
   Bif = 'BIF',
-  /** Belize Dollar (BZD). */
-  Bzd = 'BZD',
   /** Bermudian Dollar (BMD). */
   Bmd = 'BMD',
-  /** Bhutanese Ngultrum (BTN). */
-  Btn = 'BTN',
-  /** Bosnia and Herzegovina Convertible Mark (BAM). */
-  Bam = 'BAM',
-  /** Brazilian Real (BRL). */
-  Brl = 'BRL',
-  /** Bolivian Boliviano (BOB). */
-  Bob = 'BOB',
-  /** Botswana Pula (BWP). */
-  Bwp = 'BWP',
   /** Brunei Dollar (BND). */
   Bnd = 'BND',
-  /** Bulgarian Lev (BGN). */
-  Bgn = 'BGN',
-  /** Burmese Kyat (MMK). */
-  Mmk = 'MMK',
-  /** Cambodian Riel. */
-  Khr = 'KHR',
-  /** Cape Verdean escudo (CVE). */
-  Cve = 'CVE',
-  /** Cayman Dollars (KYD). */
-  Kyd = 'KYD',
-  /** Central African CFA Franc (XAF). */
-  Xaf = 'XAF',
+  /** Bolivian Boliviano (BOB). */
+  Bob = 'BOB',
+  /** Brazilian Real (BRL). */
+  Brl = 'BRL',
+  /** Bahamian Dollar (BSD). */
+  Bsd = 'BSD',
+  /** Bhutanese Ngultrum (BTN). */
+  Btn = 'BTN',
+  /** Botswana Pula (BWP). */
+  Bwp = 'BWP',
+  /** Belarusian Ruble (BYN). */
+  Byn = 'BYN',
+  /**
+   * Belarusian Ruble (BYR).
+   * @deprecated `BYR` is deprecated. Use `BYN` available from version `2021-01` onwards instead.
+   */
+  Byr = 'BYR',
+  /** Belize Dollar (BZD). */
+  Bzd = 'BZD',
+  /** Canadian Dollars (CAD). */
+  Cad = 'CAD',
+  /** Congolese franc (CDF). */
+  Cdf = 'CDF',
+  /** Swiss Francs (CHF). */
+  Chf = 'CHF',
   /** Chilean Peso (CLP). */
   Clp = 'CLP',
   /** Chinese Yuan Renminbi (CNY). */
   Cny = 'CNY',
   /** Colombian Peso (COP). */
   Cop = 'COP',
-  /** Comorian Franc (KMF). */
-  Kmf = 'KMF',
-  /** Congolese franc (CDF). */
-  Cdf = 'CDF',
   /** Costa Rican Colones (CRC). */
   Crc = 'CRC',
-  /** Croatian Kuna (HRK). */
-  Hrk = 'HRK',
+  /** Cape Verdean escudo (CVE). */
+  Cve = 'CVE',
   /** Czech Koruny (CZK). */
   Czk = 'CZK',
+  /** Djiboutian Franc (DJF). */
+  Djf = 'DJF',
   /** Danish Kroner (DKK). */
   Dkk = 'DKK',
   /** Dominican Peso (DOP). */
   Dop = 'DOP',
-  /** East Caribbean Dollar (XCD). */
-  Xcd = 'XCD',
+  /** Algerian Dinar (DZD). */
+  Dzd = 'DZD',
   /** Egyptian Pound (EGP). */
   Egp = 'EGP',
+  /** Eritrean Nakfa (ERN). */
+  Ern = 'ERN',
   /** Ethiopian Birr (ETB). */
   Etb = 'ETB',
-  /** CFP Franc (XPF). */
-  Xpf = 'XPF',
+  /** Euro (EUR). */
+  Eur = 'EUR',
   /** Fijian Dollars (FJD). */
   Fjd = 'FJD',
-  /** Gambian Dalasi (GMD). */
-  Gmd = 'GMD',
+  /** Falkland Islands Pounds (FKP). */
+  Fkp = 'FKP',
+  /** United Kingdom Pounds (GBP). */
+  Gbp = 'GBP',
+  /** Georgian Lari (GEL). */
+  Gel = 'GEL',
   /** Ghanaian Cedi (GHS). */
   Ghs = 'GHS',
+  /** Gibraltar Pounds (GIP). */
+  Gip = 'GIP',
+  /** Gambian Dalasi (GMD). */
+  Gmd = 'GMD',
+  /** Guinean Franc (GNF). */
+  Gnf = 'GNF',
   /** Guatemalan Quetzal (GTQ). */
   Gtq = 'GTQ',
   /** Guyanese Dollar (GYD). */
   Gyd = 'GYD',
-  /** Georgian Lari (GEL). */
-  Gel = 'GEL',
-  /** Haitian Gourde (HTG). */
-  Htg = 'HTG',
-  /** Honduran Lempira (HNL). */
-  Hnl = 'HNL',
   /** Hong Kong Dollars (HKD). */
   Hkd = 'HKD',
+  /** Honduran Lempira (HNL). */
+  Hnl = 'HNL',
+  /** Croatian Kuna (HRK). */
+  Hrk = 'HRK',
+  /** Haitian Gourde (HTG). */
+  Htg = 'HTG',
   /** Hungarian Forint (HUF). */
   Huf = 'HUF',
-  /** Icelandic Kronur (ISK). */
-  Isk = 'ISK',
-  /** Indian Rupees (INR). */
-  Inr = 'INR',
   /** Indonesian Rupiah (IDR). */
   Idr = 'IDR',
   /** Israeli New Shekel (NIS). */
   Ils = 'ILS',
+  /** Indian Rupees (INR). */
+  Inr = 'INR',
   /** Iraqi Dinar (IQD). */
   Iqd = 'IQD',
-  /** Jamaican Dollars (JMD). */
-  Jmd = 'JMD',
-  /** Japanese Yen (JPY). */
-  Jpy = 'JPY',
+  /** Iranian Rial (IRR). */
+  Irr = 'IRR',
+  /** Icelandic Kronur (ISK). */
+  Isk = 'ISK',
   /** Jersey Pound. */
   Jep = 'JEP',
+  /** Jamaican Dollars (JMD). */
+  Jmd = 'JMD',
   /** Jordanian Dinar (JOD). */
   Jod = 'JOD',
-  /** Kazakhstani Tenge (KZT). */
-  Kzt = 'KZT',
+  /** Japanese Yen (JPY). */
+  Jpy = 'JPY',
   /** Kenyan Shilling (KES). */
   Kes = 'KES',
-  /** Kuwaiti Dinar (KWD). */
-  Kwd = 'KWD',
   /** Kyrgyzstani Som (KGS). */
   Kgs = 'KGS',
+  /** Cambodian Riel. */
+  Khr = 'KHR',
+  /** Kiribati Dollar (KID). */
+  Kid = 'KID',
+  /** Comorian Franc (KMF). */
+  Kmf = 'KMF',
+  /** South Korean Won (KRW). */
+  Krw = 'KRW',
+  /** Kuwaiti Dinar (KWD). */
+  Kwd = 'KWD',
+  /** Cayman Dollars (KYD). */
+  Kyd = 'KYD',
+  /** Kazakhstani Tenge (KZT). */
+  Kzt = 'KZT',
   /** Laotian Kip (LAK). */
   Lak = 'LAK',
-  /** Latvian Lati (LVL). */
-  Lvl = 'LVL',
   /** Lebanese Pounds (LBP). */
   Lbp = 'LBP',
-  /** Lesotho Loti (LSL). */
-  Lsl = 'LSL',
+  /** Sri Lankan Rupees (LKR). */
+  Lkr = 'LKR',
   /** Liberian Dollar (LRD). */
   Lrd = 'LRD',
+  /** Lesotho Loti (LSL). */
+  Lsl = 'LSL',
   /** Lithuanian Litai (LTL). */
   Ltl = 'LTL',
+  /** Latvian Lati (LVL). */
+  Lvl = 'LVL',
+  /** Libyan Dinar (LYD). */
+  Lyd = 'LYD',
+  /** Moroccan Dirham. */
+  Mad = 'MAD',
+  /** Moldovan Leu (MDL). */
+  Mdl = 'MDL',
   /** Malagasy Ariary (MGA). */
   Mga = 'MGA',
   /** Macedonia Denar (MKD). */
   Mkd = 'MKD',
+  /** Burmese Kyat (MMK). */
+  Mmk = 'MMK',
+  /** Mongolian Tugrik. */
+  Mnt = 'MNT',
   /** Macanese Pataca (MOP). */
   Mop = 'MOP',
-  /** Malawian Kwacha (MWK). */
-  Mwk = 'MWK',
+  /** Mauritanian Ouguiya (MRU). */
+  Mru = 'MRU',
+  /** Mauritian Rupee (MUR). */
+  Mur = 'MUR',
   /** Maldivian Rufiyaa (MVR). */
   Mvr = 'MVR',
+  /** Malawian Kwacha (MWK). */
+  Mwk = 'MWK',
   /** Mexican Pesos (MXN). */
   Mxn = 'MXN',
   /** Malaysian Ringgits (MYR). */
   Myr = 'MYR',
-  /** Mauritian Rupee (MUR). */
-  Mur = 'MUR',
-  /** Moldovan Leu (MDL). */
-  Mdl = 'MDL',
-  /** Moroccan Dirham. */
-  Mad = 'MAD',
-  /** Mongolian Tugrik. */
-  Mnt = 'MNT',
   /** Mozambican Metical. */
   Mzn = 'MZN',
   /** Namibian Dollar. */
   Nad = 'NAD',
-  /** Nepalese Rupee (NPR). */
-  Npr = 'NPR',
-  /** Netherlands Antillean Guilder. */
-  Ang = 'ANG',
-  /** New Zealand Dollars (NZD). */
-  Nzd = 'NZD',
-  /** Nicaraguan Córdoba (NIO). */
-  Nio = 'NIO',
   /** Nigerian Naira (NGN). */
   Ngn = 'NGN',
+  /** Nicaraguan Córdoba (NIO). */
+  Nio = 'NIO',
   /** Norwegian Kroner (NOK). */
   Nok = 'NOK',
+  /** Nepalese Rupee (NPR). */
+  Npr = 'NPR',
+  /** New Zealand Dollars (NZD). */
+  Nzd = 'NZD',
   /** Omani Rial (OMR). */
   Omr = 'OMR',
   /** Panamian Balboa (PAB). */
   Pab = 'PAB',
-  /** Pakistani Rupee (PKR). */
-  Pkr = 'PKR',
-  /** Papua New Guinean Kina (PGK). */
-  Pgk = 'PGK',
-  /** Paraguayan Guarani (PYG). */
-  Pyg = 'PYG',
   /** Peruvian Nuevo Sol (PEN). */
   Pen = 'PEN',
+  /** Papua New Guinean Kina (PGK). */
+  Pgk = 'PGK',
   /** Philippine Peso (PHP). */
   Php = 'PHP',
+  /** Pakistani Rupee (PKR). */
+  Pkr = 'PKR',
   /** Polish Zlotych (PLN). */
   Pln = 'PLN',
+  /** Paraguayan Guarani (PYG). */
+  Pyg = 'PYG',
   /** Qatari Rial (QAR). */
   Qar = 'QAR',
   /** Romanian Lei (RON). */
   Ron = 'RON',
+  /** Serbian dinar (RSD). */
+  Rsd = 'RSD',
   /** Russian Rubles (RUB). */
   Rub = 'RUB',
   /** Rwandan Franc (RWF). */
   Rwf = 'RWF',
-  /** Samoan Tala (WST). */
-  Wst = 'WST',
   /** Saudi Riyal (SAR). */
   Sar = 'SAR',
-  /** Serbian dinar (RSD). */
-  Rsd = 'RSD',
-  /** Seychellois Rupee (SCR). */
-  Scr = 'SCR',
-  /** Singapore Dollars (SGD). */
-  Sgd = 'SGD',
-  /** Sudanese Pound (SDG). */
-  Sdg = 'SDG',
-  /** Syrian Pound (SYP). */
-  Syp = 'SYP',
-  /** South African Rand (ZAR). */
-  Zar = 'ZAR',
-  /** South Korean Won (KRW). */
-  Krw = 'KRW',
-  /** South Sudanese Pound (SSP). */
-  Ssp = 'SSP',
   /** Solomon Islands Dollar (SBD). */
   Sbd = 'SBD',
-  /** Sri Lankan Rupees (LKR). */
-  Lkr = 'LKR',
-  /** Surinamese Dollar (SRD). */
-  Srd = 'SRD',
-  /** Swazi Lilangeni (SZL). */
-  Szl = 'SZL',
+  /** Seychellois Rupee (SCR). */
+  Scr = 'SCR',
+  /** Sudanese Pound (SDG). */
+  Sdg = 'SDG',
   /** Swedish Kronor (SEK). */
   Sek = 'SEK',
-  /** Swiss Francs (CHF). */
-  Chf = 'CHF',
-  /** Taiwan Dollars (TWD). */
-  Twd = 'TWD',
+  /** Singapore Dollars (SGD). */
+  Sgd = 'SGD',
+  /** Saint Helena Pounds (SHP). */
+  Shp = 'SHP',
+  /** Sierra Leonean Leone (SLL). */
+  Sll = 'SLL',
+  /** Somali Shilling (SOS). */
+  Sos = 'SOS',
+  /** Surinamese Dollar (SRD). */
+  Srd = 'SRD',
+  /** South Sudanese Pound (SSP). */
+  Ssp = 'SSP',
+  /**
+   * Sao Tome And Principe Dobra (STD).
+   * @deprecated `STD` is deprecated. Use `STN` available from version `2022-07` onwards instead.
+   */
+  Std = 'STD',
+  /** Sao Tome And Principe Dobra (STN). */
+  Stn = 'STN',
+  /** Syrian Pound (SYP). */
+  Syp = 'SYP',
+  /** Swazi Lilangeni (SZL). */
+  Szl = 'SZL',
   /** Thai baht (THB). */
   Thb = 'THB',
-  /** Tanzanian Shilling (TZS). */
-  Tzs = 'TZS',
-  /** Trinidad and Tobago Dollars (TTD). */
-  Ttd = 'TTD',
-  /** Tunisian Dinar (TND). */
-  Tnd = 'TND',
-  /** Turkish Lira (TRY). */
-  Try = 'TRY',
+  /** Tajikistani Somoni (TJS). */
+  Tjs = 'TJS',
   /** Turkmenistani Manat (TMT). */
   Tmt = 'TMT',
-  /** Ugandan Shilling (UGX). */
-  Ugx = 'UGX',
+  /** Tunisian Dinar (TND). */
+  Tnd = 'TND',
+  /** Tongan Pa'anga (TOP). */
+  Top = 'TOP',
+  /** Turkish Lira (TRY). */
+  Try = 'TRY',
+  /** Trinidad and Tobago Dollars (TTD). */
+  Ttd = 'TTD',
+  /** Taiwan Dollars (TWD). */
+  Twd = 'TWD',
+  /** Tanzanian Shilling (TZS). */
+  Tzs = 'TZS',
   /** Ukrainian Hryvnia (UAH). */
   Uah = 'UAH',
-  /** United Arab Emirates Dirham (AED). */
-  Aed = 'AED',
+  /** Ugandan Shilling (UGX). */
+  Ugx = 'UGX',
+  /** United States Dollars (USD). */
+  Usd = 'USD',
   /** Uruguayan Pesos (UYU). */
   Uyu = 'UYU',
   /** Uzbekistan som (UZS). */
   Uzs = 'UZS',
-  /** Vanuatu Vatu (VUV). */
-  Vuv = 'VUV',
-  /** Vietnamese đồng (VND). */
-  Vnd = 'VND',
-  /** West African CFA franc (XOF). */
-  Xof = 'XOF',
-  /** Yemeni Rial (YER). */
-  Yer = 'YER',
-  /** Zambian Kwacha (ZMW). */
-  Zmw = 'ZMW',
-  /** Belarusian Ruble (BYN). */
-  Byn = 'BYN',
-  /** Belarusian Ruble (BYR). */
-  Byr = 'BYR',
-  /** Djiboutian Franc (DJF). */
-  Djf = 'DJF',
-  /** Eritrean Nakfa (ERN). */
-  Ern = 'ERN',
-  /** Falkland Islands Pounds (FKP). */
-  Fkp = 'FKP',
-  /** Gibraltar Pounds (GIP). */
-  Gip = 'GIP',
-  /** Guinean Franc (GNF). */
-  Gnf = 'GNF',
-  /** Iranian Rial (IRR). */
-  Irr = 'IRR',
-  /** Kiribati Dollar (KID). */
-  Kid = 'KID',
-  /** Libyan Dinar (LYD). */
-  Lyd = 'LYD',
-  /** Mauritanian Ouguiya (MRU). */
-  Mru = 'MRU',
-  /** Sierra Leonean Leone (SLL). */
-  Sll = 'SLL',
-  /** Saint Helena Pounds (SHP). */
-  Shp = 'SHP',
-  /** Somali Shilling (SOS). */
-  Sos = 'SOS',
-  /** Sao Tome And Principe Dobra (STD). */
-  Std = 'STD',
-  /** Sao Tome And Principe Dobra (STN). */
-  Stn = 'STN',
-  /** Tajikistani Somoni (TJS). */
-  Tjs = 'TJS',
-  /** Tongan Pa'anga (TOP). */
-  Top = 'TOP',
   /** Venezuelan Bolivares (VED). */
   Ved = 'VED',
-  /** Venezuelan Bolivares (VEF). */
+  /**
+   * Venezuelan Bolivares (VEF).
+   * @deprecated `VEF` is deprecated. Use `VES` available from version `2020-10` onwards instead.
+   */
   Vef = 'VEF',
   /** Venezuelan Bolivares (VES). */
   Ves = 'VES',
+  /** Vietnamese đồng (VND). */
+  Vnd = 'VND',
+  /** Vanuatu Vatu (VUV). */
+  Vuv = 'VUV',
+  /** Samoan Tala (WST). */
+  Wst = 'WST',
+  /** Central African CFA Franc (XAF). */
+  Xaf = 'XAF',
+  /** East Caribbean Dollar (XCD). */
+  Xcd = 'XCD',
+  /** West African CFA franc (XOF). */
+  Xof = 'XOF',
+  /** CFP Franc (XPF). */
+  Xpf = 'XPF',
   /** Unrecognized currency. */
-  Xxx = 'XXX'
+  Xxx = 'XXX',
+  /** Yemeni Rial (YER). */
+  Yer = 'YER',
+  /** South African Rand (ZAR). */
+  Zar = 'ZAR',
+  /** Zambian Kwacha (ZMW). */
+  Zmw = 'ZMW'
 }
 
 /** A customer represents a customer account with the shop. Customer accounts store contact information for the customer, saving logged-in customers the trouble of having to provide it at every checkout. */
@@ -2640,18 +2644,18 @@ export type Customer = HasMetafields & {
 
 /** A customer represents a customer account with the shop. Customer accounts store contact information for the customer, saving logged-in customers the trouble of having to provide it at every checkout. */
 export type CustomerAddressesArgs = {
-  first?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['String']>;
-  reverse?: Maybe<Scalars['Boolean']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  reverse?: InputMaybe<Scalars['Boolean']>;
 };
 
 
 /** A customer represents a customer account with the shop. Customer accounts store contact information for the customer, saving logged-in customers the trouble of having to provide it at every checkout. */
 export type CustomerMetafieldArgs = {
-  namespace: Scalars['String'];
   key: Scalars['String'];
+  namespace: Scalars['String'];
 };
 
 
@@ -2663,13 +2667,13 @@ export type CustomerMetafieldsArgs = {
 
 /** A customer represents a customer account with the shop. Customer accounts store contact information for the customer, saving logged-in customers the trouble of having to provide it at every checkout. */
 export type CustomerOrdersArgs = {
-  first?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['String']>;
-  reverse?: Maybe<Scalars['Boolean']>;
-  sortKey?: Maybe<OrderSortKeys>;
-  query?: Maybe<Scalars['String']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  query?: InputMaybe<Scalars['String']>;
+  reverse?: InputMaybe<Scalars['Boolean']>;
+  sortKey?: InputMaybe<OrderSortKeys>;
 };
 
 /** A CustomerAccessToken represents the unique token required to make modifications to the customer object. */
@@ -2811,22 +2815,22 @@ export type CustomerAddressUpdatePayload = {
 
 /** The fields required to create a new customer. */
 export type CustomerCreateInput = {
-  /** The customer’s first name. */
-  firstName?: Maybe<Scalars['String']>;
-  /** The customer’s last name. */
-  lastName?: Maybe<Scalars['String']>;
+  /** Indicates whether the customer has consented to be sent marketing material via email. */
+  acceptsMarketing?: InputMaybe<Scalars['Boolean']>;
   /** The customer’s email. */
   email: Scalars['String'];
+  /** The customer’s first name. */
+  firstName?: InputMaybe<Scalars['String']>;
+  /** The customer’s last name. */
+  lastName?: InputMaybe<Scalars['String']>;
+  /** The login password used by the customer. */
+  password: Scalars['String'];
   /**
    * A unique phone number for the customer.
    *
    * Formatted using E.164 standard. For example, _+16135551111_.
    */
-  phone?: Maybe<Scalars['String']>;
-  /** The login password used by the customer. */
-  password: Scalars['String'];
-  /** Indicates whether the customer has consented to be sent marketing material via email. */
-  acceptsMarketing?: Maybe<Scalars['Boolean']>;
+  phone?: InputMaybe<Scalars['String']>;
 };
 
 /** Return type for `customerCreate` mutation. */
@@ -2859,36 +2863,36 @@ export type CustomerDefaultAddressUpdatePayload = {
 
 /** Possible error codes that can be returned by `CustomerUserError`. */
 export enum CustomerErrorCode {
+  /** Customer already enabled. */
+  AlreadyEnabled = 'ALREADY_ENABLED',
+  /** Input email contains an invalid domain name. */
+  BadDomain = 'BAD_DOMAIN',
   /** The input value is blank. */
   Blank = 'BLANK',
+  /** Input contains HTML tags. */
+  ContainsHtmlTags = 'CONTAINS_HTML_TAGS',
+  /** Input contains URL. */
+  ContainsUrl = 'CONTAINS_URL',
+  /** Customer is disabled. */
+  CustomerDisabled = 'CUSTOMER_DISABLED',
   /** The input value is invalid. */
   Invalid = 'INVALID',
+  /** Multipass token is not valid. */
+  InvalidMultipassRequest = 'INVALID_MULTIPASS_REQUEST',
+  /** Address does not exist. */
+  NotFound = 'NOT_FOUND',
+  /** Input password starts or ends with whitespace. */
+  PasswordStartsOrEndsWithWhitespace = 'PASSWORD_STARTS_OR_ENDS_WITH_WHITESPACE',
   /** The input value is already taken. */
   Taken = 'TAKEN',
+  /** Invalid activation token. */
+  TokenInvalid = 'TOKEN_INVALID',
   /** The input value is too long. */
   TooLong = 'TOO_LONG',
   /** The input value is too short. */
   TooShort = 'TOO_SHORT',
   /** Unidentified customer. */
-  UnidentifiedCustomer = 'UNIDENTIFIED_CUSTOMER',
-  /** Customer is disabled. */
-  CustomerDisabled = 'CUSTOMER_DISABLED',
-  /** Input password starts or ends with whitespace. */
-  PasswordStartsOrEndsWithWhitespace = 'PASSWORD_STARTS_OR_ENDS_WITH_WHITESPACE',
-  /** Input contains HTML tags. */
-  ContainsHtmlTags = 'CONTAINS_HTML_TAGS',
-  /** Input contains URL. */
-  ContainsUrl = 'CONTAINS_URL',
-  /** Invalid activation token. */
-  TokenInvalid = 'TOKEN_INVALID',
-  /** Customer already enabled. */
-  AlreadyEnabled = 'ALREADY_ENABLED',
-  /** Address does not exist. */
-  NotFound = 'NOT_FOUND',
-  /** Input email contains an invalid domain name. */
-  BadDomain = 'BAD_DOMAIN',
-  /** Multipass token is not valid. */
-  InvalidMultipassRequest = 'INVALID_MULTIPASS_REQUEST'
+  UnidentifiedCustomer = 'UNIDENTIFIED_CUSTOMER'
 }
 
 /** Return type for `customerRecover` mutation. */
@@ -2921,10 +2925,10 @@ export type CustomerResetByUrlPayload = {
 
 /** Specifies the fields required to reset a customer’s password. */
 export type CustomerResetInput = {
-  /** The reset token required to reset the customer’s password. */
-  resetToken: Scalars['String'];
   /** New password that will be set as part of the reset password process. */
   password: Scalars['String'];
+  /** The reset token required to reset the customer’s password. */
+  resetToken: Scalars['String'];
 };
 
 /** Return type for `customerReset` mutation. */
@@ -2945,22 +2949,22 @@ export type CustomerResetPayload = {
 
 /** Specifies the fields required to update the Customer information. */
 export type CustomerUpdateInput = {
-  /** The customer’s first name. */
-  firstName?: Maybe<Scalars['String']>;
-  /** The customer’s last name. */
-  lastName?: Maybe<Scalars['String']>;
+  /** Indicates whether the customer has consented to be sent marketing material via email. */
+  acceptsMarketing?: InputMaybe<Scalars['Boolean']>;
   /** The customer’s email. */
-  email?: Maybe<Scalars['String']>;
+  email?: InputMaybe<Scalars['String']>;
+  /** The customer’s first name. */
+  firstName?: InputMaybe<Scalars['String']>;
+  /** The customer’s last name. */
+  lastName?: InputMaybe<Scalars['String']>;
+  /** The login password used by the customer. */
+  password?: InputMaybe<Scalars['String']>;
   /**
    * A unique phone number for the customer.
    *
    * Formatted using E.164 standard. For example, _+16135551111_. To remove the phone number, specify `null`.
    */
-  phone?: Maybe<Scalars['String']>;
-  /** The login password used by the customer. */
-  password?: Maybe<Scalars['String']>;
-  /** Indicates whether the customer has consented to be sent marketing material via email. */
-  acceptsMarketing?: Maybe<Scalars['Boolean']>;
+  phone?: InputMaybe<Scalars['String']>;
 };
 
 /** Return type for `customerUpdate` mutation. */
@@ -2993,39 +2997,37 @@ export type CustomerUserError = DisplayableError & {
   message: Scalars['String'];
 };
 
-
-
 /** A delivery address of the buyer that is interacting with the cart. */
 export type DeliveryAddress = MailingAddress;
 
 /** The input fields for delivery address preferences. */
 export type DeliveryAddressInput = {
   /** A delivery address preference of a buyer that is interacting with the cart. */
-  deliveryAddress?: Maybe<MailingAddressInput>;
+  deliveryAddress?: InputMaybe<MailingAddressInput>;
 };
 
 /** List of different delivery method types. */
 export enum DeliveryMethodType {
-  /** Shipping. */
-  Shipping = 'SHIPPING',
+  /** Local Delivery. */
+  Local = 'LOCAL',
+  /** None. */
+  None = 'NONE',
+  /** Shipping to a Pickup Point. */
+  PickupPoint = 'PICKUP_POINT',
   /** Local Pickup. */
   PickUp = 'PICK_UP',
   /** Retail. */
   Retail = 'RETAIL',
-  /** Local Delivery. */
-  Local = 'LOCAL',
-  /** Shipping to a Pickup Point. */
-  PickupPoint = 'PICKUP_POINT',
-  /** None. */
-  None = 'NONE'
+  /** Shipping. */
+  Shipping = 'SHIPPING'
 }
 
 /** Digital wallet, such as Apple Pay, which can be used for accelerated checkouts. */
 export enum DigitalWallet {
-  /** Apple Pay. */
-  ApplePay = 'APPLE_PAY',
   /** Android Pay. */
   AndroidPay = 'ANDROID_PAY',
+  /** Apple Pay. */
+  ApplePay = 'APPLE_PAY',
   /** Google Pay. */
   GooglePay = 'GOOGLE_PAY',
   /** Shopify Pay. */
@@ -3062,7 +3064,10 @@ export enum DiscountApplicationAllocationMethod {
   Across = 'ACROSS',
   /** The value is applied onto every entitled line. */
   Each = 'EACH',
-  /** The value is specifically applied onto a particular line. */
+  /**
+   * The value is specifically applied onto a particular line.
+   * @deprecated Use ACROSS instead.
+   */
   One = 'ONE'
 }
 
@@ -3192,12 +3197,12 @@ export type Filter = {
  * (https://shopify.dev/custom-storefronts/products-collections/filter-products).
  */
 export enum FilterType {
+  /** A boolean value. */
+  Boolean = 'BOOLEAN',
   /** A list of selectable values. */
   List = 'LIST',
   /** A range of prices. */
-  PriceRange = 'PRICE_RANGE',
-  /** A boolean value. */
-  Boolean = 'BOOLEAN'
+  PriceRange = 'PRICE_RANGE'
 }
 
 /** A selectable value within a filter. */
@@ -3234,17 +3239,17 @@ export type Fulfillment = {
 
 /** Represents a single fulfillment in an order. */
 export type FulfillmentFulfillmentLineItemsArgs = {
-  first?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['String']>;
-  reverse?: Maybe<Scalars['Boolean']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  reverse?: InputMaybe<Scalars['Boolean']>;
 };
 
 
 /** Represents a single fulfillment in an order. */
 export type FulfillmentTrackingInfoArgs = {
-  first?: Maybe<Scalars['Int']>;
+  first?: InputMaybe<Scalars['Int']>;
 };
 
 /** Represents a single line item in a fulfillment. There is at most one fulfillment line item for each order line item. */
@@ -3310,7 +3315,6 @@ export type GeoCoordinateInput = {
   longitude: Scalars['Float'];
 };
 
-
 /** Represents information about the metafields associated to the specified resource. */
 export type HasMetafields = {
   /** Returns a metafield found by namespace and key. */
@@ -3322,8 +3326,8 @@ export type HasMetafields = {
 
 /** Represents information about the metafields associated to the specified resource. */
 export type HasMetafieldsMetafieldArgs = {
-  namespace: Scalars['String'];
   key: Scalars['String'];
+  namespace: Scalars['String'];
 };
 
 
@@ -3334,10 +3338,10 @@ export type HasMetafieldsMetafieldsArgs = {
 
 /** Identifies a metafield on an owner resource by namespace and key. */
 export type HasMetafieldsIdentifier = {
-  /** A container for a set of metafields. */
-  namespace: Scalars['String'];
   /** The identifier for the metafield. */
   key: Scalars['String'];
+  /** A container for a set of metafields. */
+  namespace: Scalars['String'];
 };
 
 /** Represents an image resource. */
@@ -3386,17 +3390,17 @@ export type Image = {
 
 /** Represents an image resource. */
 export type ImageTransformedSrcArgs = {
-  maxWidth?: Maybe<Scalars['Int']>;
-  maxHeight?: Maybe<Scalars['Int']>;
-  crop?: Maybe<CropRegion>;
-  scale?: Maybe<Scalars['Int']>;
-  preferredContentType?: Maybe<ImageContentType>;
+  crop?: InputMaybe<CropRegion>;
+  maxHeight?: InputMaybe<Scalars['Int']>;
+  maxWidth?: InputMaybe<Scalars['Int']>;
+  preferredContentType?: InputMaybe<ImageContentType>;
+  scale?: InputMaybe<Scalars['Int']>;
 };
 
 
 /** Represents an image resource. */
 export type ImageUrlArgs = {
-  transform?: Maybe<ImageTransformInput>;
+  transform?: InputMaybe<ImageTransformInput>;
 };
 
 /** An auto-generated type for paginating through multiple Images. */
@@ -3412,10 +3416,10 @@ export type ImageConnection = {
 
 /** List of supported image content types. */
 export enum ImageContentType {
-  /** A PNG image. */
-  Png = 'PNG',
   /** A JPG image. */
   Jpg = 'JPG',
+  /** A PNG image. */
+  Png = 'PNG',
   /** A WEBP image. */
   Webp = 'WEBP'
 }
@@ -3442,20 +3446,19 @@ export type ImageTransformInput = {
    * a smaller `maxHeight` indicates a `TOP` or `BOTTOM` crop. For example, `{ maxWidth: 5, maxHeight: 10, crop: LEFT }` will result
    * in an image with a width of 5 and height of 10, where the right side of the image is removed.
    */
-  crop?: Maybe<CropRegion>;
-  /** Image width in pixels between 1 and 5760. */
-  maxWidth?: Maybe<Scalars['Int']>;
+  crop?: InputMaybe<CropRegion>;
   /** Image height in pixels between 1 and 5760. */
-  maxHeight?: Maybe<Scalars['Int']>;
-  /** Image size multiplier for high-resolution retina displays. Must be within 1..3. */
-  scale?: Maybe<Scalars['Int']>;
+  maxHeight?: InputMaybe<Scalars['Int']>;
+  /** Image width in pixels between 1 and 5760. */
+  maxWidth?: InputMaybe<Scalars['Int']>;
   /**
    * Convert the source image into the preferred content type.
    * Supported conversions: `.svg` to `.png`, any file type to `.jpg`, and any file type to `.webp`.
    */
-  preferredContentType?: Maybe<ImageContentType>;
+  preferredContentType?: InputMaybe<ImageContentType>;
+  /** Image size multiplier for high-resolution retina displays. Must be within 1..3. */
+  scale?: InputMaybe<Scalars['Int']>;
 };
-
 
 /** A language. */
 export type Language = {
@@ -3502,6 +3505,8 @@ export enum LanguageCode {
   Ce = 'CE',
   /** Czech. */
   Cs = 'CS',
+  /** Church Slavic. */
+  Cu = 'CU',
   /** Welsh. */
   Cy = 'CY',
   /** Danish. */
@@ -3652,6 +3657,8 @@ export enum LanguageCode {
   Pl = 'PL',
   /** Pashto. */
   Ps = 'PS',
+  /** Portuguese. */
+  Pt = 'PT',
   /** Portuguese (Brazil). */
   PtBr = 'PT_BR',
   /** Portuguese (Portugal). */
@@ -3722,6 +3729,8 @@ export enum LanguageCode {
   Uz = 'UZ',
   /** Vietnamese. */
   Vi = 'VI',
+  /** Volapük. */
+  Vo = 'VO',
   /** Wolof. */
   Wo = 'WO',
   /** Xhosa. */
@@ -3730,20 +3739,14 @@ export enum LanguageCode {
   Yi = 'YI',
   /** Yoruba. */
   Yo = 'YO',
+  /** Chinese. */
+  Zh = 'ZH',
   /** Chinese (Simplified). */
   ZhCn = 'ZH_CN',
   /** Chinese (Traditional). */
   ZhTw = 'ZH_TW',
   /** Zulu. */
-  Zu = 'ZU',
-  /** Chinese. */
-  Zh = 'ZH',
-  /** Portuguese. */
-  Pt = 'PT',
-  /** Church Slavic. */
-  Cu = 'CU',
-  /** Volapük. */
-  Vo = 'VO'
+  Zu = 'ZU'
 }
 
 /** Information about the localized experiences configured for the shop. */
@@ -3821,14 +3824,14 @@ export type LocationEdge = {
 
 /** The set of valid sort keys for the Location query. */
 export enum LocationSortKeys {
-  /** Sort by the `id` value. */
-  Id = 'ID',
-  /** Sort by the `name` value. */
-  Name = 'NAME',
   /** Sort by the `city` value. */
   City = 'CITY',
   /** Sort by the `distance` value. */
-  Distance = 'DISTANCE'
+  Distance = 'DISTANCE',
+  /** Sort by the `id` value. */
+  Id = 'ID',
+  /** Sort by the `name` value. */
+  Name = 'NAME'
 }
 
 /** Represents a mailing address for customers and shipping. */
@@ -3894,8 +3897,8 @@ export type MailingAddress = Node & {
 
 /** Represents a mailing address for customers and shipping. */
 export type MailingAddressFormattedArgs = {
-  withName?: Maybe<Scalars['Boolean']>;
-  withCompany?: Maybe<Scalars['Boolean']>;
+  withCompany?: InputMaybe<Scalars['Boolean']>;
+  withName?: InputMaybe<Scalars['Boolean']>;
 };
 
 /** An auto-generated type for paginating through multiple MailingAddresses. */
@@ -3921,29 +3924,29 @@ export type MailingAddressEdge = {
 /** Specifies the fields accepted to create or update a mailing address. */
 export type MailingAddressInput = {
   /** The first line of the address. Typically the street address or PO Box number. */
-  address1?: Maybe<Scalars['String']>;
+  address1?: InputMaybe<Scalars['String']>;
   /** The second line of the address. Typically the number of the apartment, suite, or unit. */
-  address2?: Maybe<Scalars['String']>;
+  address2?: InputMaybe<Scalars['String']>;
   /** The name of the city, district, village, or town. */
-  city?: Maybe<Scalars['String']>;
+  city?: InputMaybe<Scalars['String']>;
   /** The name of the customer's company or organization. */
-  company?: Maybe<Scalars['String']>;
+  company?: InputMaybe<Scalars['String']>;
   /** The name of the country. */
-  country?: Maybe<Scalars['String']>;
+  country?: InputMaybe<Scalars['String']>;
   /** The first name of the customer. */
-  firstName?: Maybe<Scalars['String']>;
+  firstName?: InputMaybe<Scalars['String']>;
   /** The last name of the customer. */
-  lastName?: Maybe<Scalars['String']>;
+  lastName?: InputMaybe<Scalars['String']>;
   /**
    * A unique phone number for the customer.
    *
    * Formatted using E.164 standard. For example, _+16135551111_.
    */
-  phone?: Maybe<Scalars['String']>;
+  phone?: InputMaybe<Scalars['String']>;
   /** The region of the address, such as the province, state, or district. */
-  province?: Maybe<Scalars['String']>;
+  province?: InputMaybe<Scalars['String']>;
   /** The zip or postal code of the address. */
-  zip?: Maybe<Scalars['String']>;
+  zip?: InputMaybe<Scalars['String']>;
 };
 
 /** Manual discount applications capture the intentions of a discount that was manually created. */
@@ -4007,10 +4010,10 @@ export type MediaEdge = {
 
 /** Host for a Media Resource. */
 export enum MediaHost {
-  /** Host for YouTube embedded videos. */
-  Youtube = 'YOUTUBE',
   /** Host for Vimeo embedded videos. */
-  Vimeo = 'VIMEO'
+  Vimeo = 'VIMEO',
+  /** Host for YouTube embedded videos. */
+  Youtube = 'YOUTUBE'
 }
 
 /** Represents a Shopify hosted image. */
@@ -4064,28 +4067,28 @@ export type MenuItem = Node & {
 
 /** A menu item type. */
 export enum MenuItemType {
-  /** A frontpage link. */
-  Frontpage = 'FRONTPAGE',
+  /** An article link. */
+  Article = 'ARTICLE',
+  /** A blog link. */
+  Blog = 'BLOG',
+  /** A catalog link. */
+  Catalog = 'CATALOG',
   /** A collection link. */
   Collection = 'COLLECTION',
   /** A collection link. */
   Collections = 'COLLECTIONS',
-  /** A product link. */
-  Product = 'PRODUCT',
-  /** A catalog link. */
-  Catalog = 'CATALOG',
+  /** A frontpage link. */
+  Frontpage = 'FRONTPAGE',
+  /** An http link. */
+  Http = 'HTTP',
   /** A page link. */
   Page = 'PAGE',
-  /** A blog link. */
-  Blog = 'BLOG',
-  /** An article link. */
-  Article = 'ARTICLE',
+  /** A product link. */
+  Product = 'PRODUCT',
   /** A search link. */
   Search = 'SEARCH',
   /** A shop policy link. */
-  ShopPolicy = 'SHOP_POLICY',
-  /** An http link. */
-  Http = 'HTTP'
+  ShopPolicy = 'SHOP_POLICY'
 }
 
 /** The merchandise to be purchased at checkout. */
@@ -4130,10 +4133,10 @@ export type Metafield = Node & {
  * comprised of keys, values, and value types.
  */
 export type MetafieldReferencesArgs = {
-  first?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['String']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
 };
 
 /**
@@ -4146,10 +4149,10 @@ export type MetafieldReferencesArgs = {
  * - `boolean` as of 2022-04.
  */
 export type MetafieldFilter = {
-  /** The namespace of the metafield to filter on. */
-  namespace: Scalars['String'];
   /** The key of the metafield to filter on. */
   key: Scalars['String'];
+  /** The namespace of the metafield to filter on. */
+  namespace: Scalars['String'];
   /** The value of the metafield. */
   value: Scalars['String'];
 };
@@ -4247,10 +4250,10 @@ export type MetaobjectField = {
 
 /** Provides the value of a Metaobject field. */
 export type MetaobjectFieldReferencesArgs = {
-  first?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['String']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
 };
 
 /** The input fields used to retrieve a metaobject by handle. */
@@ -4435,28 +4438,28 @@ export type MutationCartAttributesUpdateArgs = {
 
 /** The schema’s entry-point for mutations. This acts as the public, top-level API from which all mutation queries must start. */
 export type MutationCartBuyerIdentityUpdateArgs = {
-  cartId: Scalars['ID'];
   buyerIdentity: CartBuyerIdentityInput;
+  cartId: Scalars['ID'];
 };
 
 
 /** The schema’s entry-point for mutations. This acts as the public, top-level API from which all mutation queries must start. */
 export type MutationCartCreateArgs = {
-  input?: Maybe<CartInput>;
+  input?: InputMaybe<CartInput>;
 };
 
 
 /** The schema’s entry-point for mutations. This acts as the public, top-level API from which all mutation queries must start. */
 export type MutationCartDiscountCodesUpdateArgs = {
   cartId: Scalars['ID'];
-  discountCodes?: Maybe<Array<Scalars['String']>>;
+  discountCodes?: InputMaybe<Array<Scalars['String']>>;
 };
 
 
 /** The schema’s entry-point for mutations. This acts as the public, top-level API from which all mutation queries must start. */
 export type MutationCartLinesAddArgs = {
-  lines: Array<CartLineInput>;
   cartId: Scalars['ID'];
+  lines: Array<CartLineInput>;
 };
 
 
@@ -4477,7 +4480,7 @@ export type MutationCartLinesUpdateArgs = {
 /** The schema’s entry-point for mutations. This acts as the public, top-level API from which all mutation queries must start. */
 export type MutationCartNoteUpdateArgs = {
   cartId: Scalars['ID'];
-  note?: Maybe<Scalars['String']>;
+  note?: InputMaybe<Scalars['String']>;
 };
 
 
@@ -4518,7 +4521,7 @@ export type MutationCheckoutCompleteWithTokenizedPaymentV3Args = {
 /** The schema’s entry-point for mutations. This acts as the public, top-level API from which all mutation queries must start. */
 export type MutationCheckoutCreateArgs = {
   input: CheckoutCreateInput;
-  queueToken?: Maybe<Scalars['String']>;
+  queueToken?: InputMaybe<Scalars['String']>;
 };
 
 
@@ -4537,8 +4540,8 @@ export type MutationCheckoutCustomerDisassociateV2Args = {
 
 /** The schema’s entry-point for mutations. This acts as the public, top-level API from which all mutation queries must start. */
 export type MutationCheckoutDiscountCodeApplyV2Args = {
-  discountCode: Scalars['String'];
   checkoutId: Scalars['ID'];
+  discountCode: Scalars['String'];
 };
 
 
@@ -4564,15 +4567,15 @@ export type MutationCheckoutGiftCardRemoveV2Args = {
 
 /** The schema’s entry-point for mutations. This acts as the public, top-level API from which all mutation queries must start. */
 export type MutationCheckoutGiftCardsAppendArgs = {
-  giftCardCodes: Array<Scalars['String']>;
   checkoutId: Scalars['ID'];
+  giftCardCodes: Array<Scalars['String']>;
 };
 
 
 /** The schema’s entry-point for mutations. This acts as the public, top-level API from which all mutation queries must start. */
 export type MutationCheckoutLineItemsAddArgs = {
-  lineItems: Array<CheckoutLineItemInput>;
   checkoutId: Scalars['ID'];
+  lineItems: Array<CheckoutLineItemInput>;
 };
 
 
@@ -4585,8 +4588,8 @@ export type MutationCheckoutLineItemsRemoveArgs = {
 
 /** The schema’s entry-point for mutations. This acts as the public, top-level API from which all mutation queries must start. */
 export type MutationCheckoutLineItemsReplaceArgs = {
-  lineItems: Array<CheckoutLineItemInput>;
   checkoutId: Scalars['ID'];
+  lineItems: Array<CheckoutLineItemInput>;
 };
 
 
@@ -4599,8 +4602,8 @@ export type MutationCheckoutLineItemsUpdateArgs = {
 
 /** The schema’s entry-point for mutations. This acts as the public, top-level API from which all mutation queries must start. */
 export type MutationCheckoutShippingAddressUpdateV2Args = {
-  shippingAddress: MailingAddressInput;
   checkoutId: Scalars['ID'];
+  shippingAddress: MailingAddressInput;
 };
 
 
@@ -4651,23 +4654,23 @@ export type MutationCustomerActivateByUrlArgs = {
 
 /** The schema’s entry-point for mutations. This acts as the public, top-level API from which all mutation queries must start. */
 export type MutationCustomerAddressCreateArgs = {
-  customerAccessToken: Scalars['String'];
   address: MailingAddressInput;
+  customerAccessToken: Scalars['String'];
 };
 
 
 /** The schema’s entry-point for mutations. This acts as the public, top-level API from which all mutation queries must start. */
 export type MutationCustomerAddressDeleteArgs = {
-  id: Scalars['ID'];
   customerAccessToken: Scalars['String'];
+  id: Scalars['ID'];
 };
 
 
 /** The schema’s entry-point for mutations. This acts as the public, top-level API from which all mutation queries must start. */
 export type MutationCustomerAddressUpdateArgs = {
+  address: MailingAddressInput;
   customerAccessToken: Scalars['String'];
   id: Scalars['ID'];
-  address: MailingAddressInput;
 };
 
 
@@ -4679,8 +4682,8 @@ export type MutationCustomerCreateArgs = {
 
 /** The schema’s entry-point for mutations. This acts as the public, top-level API from which all mutation queries must start. */
 export type MutationCustomerDefaultAddressUpdateArgs = {
-  customerAccessToken: Scalars['String'];
   addressId: Scalars['ID'];
+  customerAccessToken: Scalars['String'];
 };
 
 
@@ -4699,15 +4702,15 @@ export type MutationCustomerResetArgs = {
 
 /** The schema’s entry-point for mutations. This acts as the public, top-level API from which all mutation queries must start. */
 export type MutationCustomerResetByUrlArgs = {
-  resetUrl: Scalars['URL'];
   password: Scalars['String'];
+  resetUrl: Scalars['URL'];
 };
 
 
 /** The schema’s entry-point for mutations. This acts as the public, top-level API from which all mutation queries must start. */
 export type MutationCustomerUpdateArgs = {
-  customerAccessToken: Scalars['String'];
   customer: CustomerUpdateInput;
+  customerAccessToken: Scalars['String'];
 };
 
 /**
@@ -4835,28 +4838,28 @@ export type Order = HasMetafields & Node & {
 
 /** An order is a customer’s completed request to purchase one or more products from a shop. An order is created when a customer completes the checkout process, during which time they provides an email address, billing address and payment information. */
 export type OrderDiscountApplicationsArgs = {
-  first?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['String']>;
-  reverse?: Maybe<Scalars['Boolean']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  reverse?: InputMaybe<Scalars['Boolean']>;
 };
 
 
 /** An order is a customer’s completed request to purchase one or more products from a shop. An order is created when a customer completes the checkout process, during which time they provides an email address, billing address and payment information. */
 export type OrderLineItemsArgs = {
-  first?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['String']>;
-  reverse?: Maybe<Scalars['Boolean']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  reverse?: InputMaybe<Scalars['Boolean']>;
 };
 
 
 /** An order is a customer’s completed request to purchase one or more products from a shop. An order is created when a customer completes the checkout process, during which time they provides an email address, billing address and payment information. */
 export type OrderMetafieldArgs = {
-  namespace: Scalars['String'];
   key: Scalars['String'];
+  namespace: Scalars['String'];
 };
 
 
@@ -4868,7 +4871,7 @@ export type OrderMetafieldsArgs = {
 
 /** An order is a customer’s completed request to purchase one or more products from a shop. An order is created when a customer completes the checkout process, during which time they provides an email address, billing address and payment information. */
 export type OrderSuccessfulFulfillmentsArgs = {
-  first?: Maybe<Scalars['Int']>;
+  first?: InputMaybe<Scalars['Int']>;
 };
 
 /** Represents the reason for the order's cancellation. */
@@ -4909,42 +4912,42 @@ export type OrderEdge = {
 
 /** Represents the order's current financial status. */
 export enum OrderFinancialStatus {
-  /** Displayed as **Pending**. */
-  Pending = 'PENDING',
   /** Displayed as **Authorized**. */
   Authorized = 'AUTHORIZED',
+  /** Displayed as **Paid**. */
+  Paid = 'PAID',
   /** Displayed as **Partially paid**. */
   PartiallyPaid = 'PARTIALLY_PAID',
   /** Displayed as **Partially refunded**. */
   PartiallyRefunded = 'PARTIALLY_REFUNDED',
-  /** Displayed as **Voided**. */
-  Voided = 'VOIDED',
-  /** Displayed as **Paid**. */
-  Paid = 'PAID',
+  /** Displayed as **Pending**. */
+  Pending = 'PENDING',
   /** Displayed as **Refunded**. */
-  Refunded = 'REFUNDED'
+  Refunded = 'REFUNDED',
+  /** Displayed as **Voided**. */
+  Voided = 'VOIDED'
 }
 
 /** Represents the order's aggregated fulfillment status for display purposes. */
 export enum OrderFulfillmentStatus {
-  /** Displayed as **Unfulfilled**. None of the items in the order have been fulfilled. */
-  Unfulfilled = 'UNFULFILLED',
-  /** Displayed as **Partially fulfilled**. Some of the items in the order have been fulfilled. */
-  PartiallyFulfilled = 'PARTIALLY_FULFILLED',
   /** Displayed as **Fulfilled**. All of the items in the order have been fulfilled. */
   Fulfilled = 'FULFILLED',
-  /** Displayed as **Restocked**. All of the items in the order have been restocked. Replaced by "UNFULFILLED" status. */
-  Restocked = 'RESTOCKED',
-  /** Displayed as **Pending fulfillment**. A request for fulfillment of some items awaits a response from the fulfillment service. Replaced by "IN_PROGRESS" status. */
-  PendingFulfillment = 'PENDING_FULFILLMENT',
-  /** Displayed as **Open**. None of the items in the order have been fulfilled. Replaced by "UNFULFILLED" status. */
-  Open = 'OPEN',
   /** Displayed as **In progress**. Some of the items in the order have been fulfilled, or a request for fulfillment has been sent to the fulfillment service. */
   InProgress = 'IN_PROGRESS',
   /** Displayed as **On hold**. All of the unfulfilled items in this order are on hold. */
   OnHold = 'ON_HOLD',
+  /** Displayed as **Open**. None of the items in the order have been fulfilled. Replaced by "UNFULFILLED" status. */
+  Open = 'OPEN',
+  /** Displayed as **Partially fulfilled**. Some of the items in the order have been fulfilled. */
+  PartiallyFulfilled = 'PARTIALLY_FULFILLED',
+  /** Displayed as **Pending fulfillment**. A request for fulfillment of some items awaits a response from the fulfillment service. Replaced by "IN_PROGRESS" status. */
+  PendingFulfillment = 'PENDING_FULFILLMENT',
+  /** Displayed as **Restocked**. All of the items in the order have been restocked. Replaced by "UNFULFILLED" status. */
+  Restocked = 'RESTOCKED',
   /** Displayed as **Scheduled**. All of the unfulfilled items in this order are scheduled for fulfillment at later time. */
-  Scheduled = 'SCHEDULED'
+  Scheduled = 'SCHEDULED',
+  /** Displayed as **Unfulfilled**. None of the items in the order have been fulfilled. */
+  Unfulfilled = 'UNFULFILLED'
 }
 
 /** Represents a single line in an order. There is one line item for each distinct product variant. */
@@ -4990,17 +4993,17 @@ export type OrderLineItemEdge = {
 
 /** The set of valid sort keys for the Order query. */
 export enum OrderSortKeys {
-  /** Sort by the `processed_at` value. */
-  ProcessedAt = 'PROCESSED_AT',
-  /** Sort by the `total_price` value. */
-  TotalPrice = 'TOTAL_PRICE',
   /** Sort by the `id` value. */
   Id = 'ID',
+  /** Sort by the `processed_at` value. */
+  ProcessedAt = 'PROCESSED_AT',
   /**
    * Sort by relevance to the search terms when the `query` parameter is specified on the connection.
    * Don't use this sort key when no search query is specified.
    */
-  Relevance = 'RELEVANCE'
+  Relevance = 'RELEVANCE',
+  /** Sort by the `total_price` value. */
+  TotalPrice = 'TOTAL_PRICE'
 }
 
 /** Shopify merchants can create pages to hold static HTML content. Each Page object represents a custom page on the online store. */
@@ -5033,8 +5036,8 @@ export type Page = HasMetafields & Node & OnlineStorePublishable & {
 
 /** Shopify merchants can create pages to hold static HTML content. Each Page object represents a custom page on the online store. */
 export type PageMetafieldArgs = {
-  namespace: Scalars['String'];
   key: Scalars['String'];
+  namespace: Scalars['String'];
 };
 
 
@@ -5082,17 +5085,17 @@ export type PageInfo = {
 
 /** The set of valid sort keys for the Page query. */
 export enum PageSortKeys {
-  /** Sort by the `title` value. */
-  Title = 'TITLE',
-  /** Sort by the `updated_at` value. */
-  UpdatedAt = 'UPDATED_AT',
   /** Sort by the `id` value. */
   Id = 'ID',
   /**
    * Sort by relevance to the search terms when the `query` parameter is specified on the connection.
    * Don't use this sort key when no search query is specified.
    */
-  Relevance = 'RELEVANCE'
+  Relevance = 'RELEVANCE',
+  /** Sort by the `title` value. */
+  Title = 'TITLE',
+  /** Sort by the `updated_at` value. */
+  UpdatedAt = 'UPDATED_AT'
 }
 
 /** A payment applied to a checkout. */
@@ -5154,22 +5157,22 @@ export type PaymentSettings = {
 export enum PaymentTokenType {
   /** Apple Pay token type. */
   ApplePay = 'APPLE_PAY',
-  /** Vault payment token type. */
-  Vault = 'VAULT',
-  /** Shopify Pay token type. */
-  ShopifyPay = 'SHOPIFY_PAY',
   /** Google Pay token type. */
   GooglePay = 'GOOGLE_PAY',
+  /** Shopify Pay token type. */
+  ShopifyPay = 'SHOPIFY_PAY',
   /** Stripe token type. */
-  StripeVaultToken = 'STRIPE_VAULT_TOKEN'
+  StripeVaultToken = 'STRIPE_VAULT_TOKEN',
+  /** Vault payment token type. */
+  Vault = 'VAULT'
 }
 
 /** A filter used to view a subset of products in a collection matching a specific price range. */
 export type PriceRangeFilter = {
-  /** The minimum price in the range. Defaults to zero. */
-  min?: Maybe<Scalars['Float']>;
   /** The maximum price in the range. Empty indicates no max price. */
-  max?: Maybe<Scalars['Float']>;
+  max?: InputMaybe<Scalars['Float']>;
+  /** The minimum price in the range. Defaults to zero. */
+  min?: InputMaybe<Scalars['Float']>;
 };
 
 /** The value of the percentage pricing object. */
@@ -5273,11 +5276,11 @@ export type Product = HasMetafields & Node & OnlineStorePublishable & {
  * For example, a digital download (such as a movie, music or ebook file) also qualifies as a product, as do services (such as equipment rental, work for hire, customization of another product or an extended warranty).
  */
 export type ProductCollectionsArgs = {
-  first?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['String']>;
-  reverse?: Maybe<Scalars['Boolean']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  reverse?: InputMaybe<Scalars['Boolean']>;
 };
 
 
@@ -5286,7 +5289,7 @@ export type ProductCollectionsArgs = {
  * For example, a digital download (such as a movie, music or ebook file) also qualifies as a product, as do services (such as equipment rental, work for hire, customization of another product or an extended warranty).
  */
 export type ProductDescriptionArgs = {
-  truncateAt?: Maybe<Scalars['Int']>;
+  truncateAt?: InputMaybe<Scalars['Int']>;
 };
 
 
@@ -5295,12 +5298,12 @@ export type ProductDescriptionArgs = {
  * For example, a digital download (such as a movie, music or ebook file) also qualifies as a product, as do services (such as equipment rental, work for hire, customization of another product or an extended warranty).
  */
 export type ProductImagesArgs = {
-  first?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['String']>;
-  reverse?: Maybe<Scalars['Boolean']>;
-  sortKey?: Maybe<ProductImageSortKeys>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  reverse?: InputMaybe<Scalars['Boolean']>;
+  sortKey?: InputMaybe<ProductImageSortKeys>;
 };
 
 
@@ -5309,12 +5312,12 @@ export type ProductImagesArgs = {
  * For example, a digital download (such as a movie, music or ebook file) also qualifies as a product, as do services (such as equipment rental, work for hire, customization of another product or an extended warranty).
  */
 export type ProductMediaArgs = {
-  first?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['String']>;
-  reverse?: Maybe<Scalars['Boolean']>;
-  sortKey?: Maybe<ProductMediaSortKeys>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  reverse?: InputMaybe<Scalars['Boolean']>;
+  sortKey?: InputMaybe<ProductMediaSortKeys>;
 };
 
 
@@ -5323,8 +5326,8 @@ export type ProductMediaArgs = {
  * For example, a digital download (such as a movie, music or ebook file) also qualifies as a product, as do services (such as equipment rental, work for hire, customization of another product or an extended warranty).
  */
 export type ProductMetafieldArgs = {
-  namespace: Scalars['String'];
   key: Scalars['String'];
+  namespace: Scalars['String'];
 };
 
 
@@ -5342,7 +5345,7 @@ export type ProductMetafieldsArgs = {
  * For example, a digital download (such as a movie, music or ebook file) also qualifies as a product, as do services (such as equipment rental, work for hire, customization of another product or an extended warranty).
  */
 export type ProductOptionsArgs = {
-  first?: Maybe<Scalars['Int']>;
+  first?: InputMaybe<Scalars['Int']>;
 };
 
 
@@ -5351,11 +5354,11 @@ export type ProductOptionsArgs = {
  * For example, a digital download (such as a movie, music or ebook file) also qualifies as a product, as do services (such as equipment rental, work for hire, customization of another product or an extended warranty).
  */
 export type ProductSellingPlanGroupsArgs = {
-  first?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['String']>;
-  reverse?: Maybe<Scalars['Boolean']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  reverse?: InputMaybe<Scalars['Boolean']>;
 };
 
 
@@ -5373,35 +5376,35 @@ export type ProductVariantBySelectedOptionsArgs = {
  * For example, a digital download (such as a movie, music or ebook file) also qualifies as a product, as do services (such as equipment rental, work for hire, customization of another product or an extended warranty).
  */
 export type ProductVariantsArgs = {
-  first?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['String']>;
-  reverse?: Maybe<Scalars['Boolean']>;
-  sortKey?: Maybe<ProductVariantSortKeys>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  reverse?: InputMaybe<Scalars['Boolean']>;
+  sortKey?: InputMaybe<ProductVariantSortKeys>;
 };
 
 /** The set of valid sort keys for the ProductCollection query. */
 export enum ProductCollectionSortKeys {
-  /** Sort by the `title` value. */
-  Title = 'TITLE',
-  /** Sort by the `price` value. */
-  Price = 'PRICE',
   /** Sort by the `best-selling` value. */
   BestSelling = 'BEST_SELLING',
+  /** Sort by the `collection-default` value. */
+  CollectionDefault = 'COLLECTION_DEFAULT',
   /** Sort by the `created` value. */
   Created = 'CREATED',
   /** Sort by the `id` value. */
   Id = 'ID',
   /** Sort by the `manual` value. */
   Manual = 'MANUAL',
-  /** Sort by the `collection-default` value. */
-  CollectionDefault = 'COLLECTION_DEFAULT',
+  /** Sort by the `price` value. */
+  Price = 'PRICE',
   /**
    * Sort by relevance to the search terms when the `query` parameter is specified on the connection.
    * Don't use this sort key when no search query is specified.
    */
-  Relevance = 'RELEVANCE'
+  Relevance = 'RELEVANCE',
+  /** Sort by the `title` value. */
+  Title = 'TITLE'
 }
 
 /** An auto-generated type for paginating through multiple Products. */
@@ -5429,31 +5432,31 @@ export type ProductEdge = {
 /** A filter used to view a subset of products in a collection. */
 export type ProductFilter = {
   /** Filter on if the product is available for sale. */
-  available?: Maybe<Scalars['Boolean']>;
-  /** A variant option to filter on. */
-  variantOption?: Maybe<VariantOptionFilter>;
-  /** The product type to filter on. */
-  productType?: Maybe<Scalars['String']>;
-  /** The product vendor to filter on. */
-  productVendor?: Maybe<Scalars['String']>;
+  available?: InputMaybe<Scalars['Boolean']>;
   /** A range of prices to filter with-in. */
-  price?: Maybe<PriceRangeFilter>;
+  price?: InputMaybe<PriceRangeFilter>;
   /** A product metafield to filter on. */
-  productMetafield?: Maybe<MetafieldFilter>;
-  /** A variant metafield to filter on. */
-  variantMetafield?: Maybe<MetafieldFilter>;
+  productMetafield?: InputMaybe<MetafieldFilter>;
+  /** The product type to filter on. */
+  productType?: InputMaybe<Scalars['String']>;
+  /** The product vendor to filter on. */
+  productVendor?: InputMaybe<Scalars['String']>;
   /** A product tag to filter on. */
-  tag?: Maybe<Scalars['String']>;
+  tag?: InputMaybe<Scalars['String']>;
+  /** A variant metafield to filter on. */
+  variantMetafield?: InputMaybe<MetafieldFilter>;
+  /** A variant option to filter on. */
+  variantOption?: InputMaybe<VariantOptionFilter>;
 };
 
 /** The set of valid sort keys for the ProductImage query. */
 export enum ProductImageSortKeys {
   /** Sort by the `created_at` value. */
   CreatedAt = 'CREATED_AT',
-  /** Sort by the `position` value. */
-  Position = 'POSITION',
   /** Sort by the `id` value. */
   Id = 'ID',
+  /** Sort by the `position` value. */
+  Position = 'POSITION',
   /**
    * Sort by relevance to the search terms when the `query` parameter is specified on the connection.
    * Don't use this sort key when no search query is specified.
@@ -5463,10 +5466,10 @@ export enum ProductImageSortKeys {
 
 /** The set of valid sort keys for the ProductMedia query. */
 export enum ProductMediaSortKeys {
-  /** Sort by the `position` value. */
-  Position = 'POSITION',
   /** Sort by the `id` value. */
   Id = 'ID',
+  /** Sort by the `position` value. */
+  Position = 'POSITION',
   /**
    * Sort by relevance to the search terms when the `query` parameter is specified on the connection.
    * Don't use this sort key when no search query is specified.
@@ -5500,27 +5503,27 @@ export type ProductPriceRange = {
 
 /** The set of valid sort keys for the Product query. */
 export enum ProductSortKeys {
-  /** Sort by the `title` value. */
-  Title = 'TITLE',
-  /** Sort by the `product_type` value. */
-  ProductType = 'PRODUCT_TYPE',
-  /** Sort by the `vendor` value. */
-  Vendor = 'VENDOR',
-  /** Sort by the `updated_at` value. */
-  UpdatedAt = 'UPDATED_AT',
-  /** Sort by the `created_at` value. */
-  CreatedAt = 'CREATED_AT',
   /** Sort by the `best_selling` value. */
   BestSelling = 'BEST_SELLING',
-  /** Sort by the `price` value. */
-  Price = 'PRICE',
+  /** Sort by the `created_at` value. */
+  CreatedAt = 'CREATED_AT',
   /** Sort by the `id` value. */
   Id = 'ID',
+  /** Sort by the `price` value. */
+  Price = 'PRICE',
+  /** Sort by the `product_type` value. */
+  ProductType = 'PRODUCT_TYPE',
   /**
    * Sort by relevance to the search terms when the `query` parameter is specified on the connection.
    * Don't use this sort key when no search query is specified.
    */
-  Relevance = 'RELEVANCE'
+  Relevance = 'RELEVANCE',
+  /** Sort by the `title` value. */
+  Title = 'TITLE',
+  /** Sort by the `updated_at` value. */
+  UpdatedAt = 'UPDATED_AT',
+  /** Sort by the `vendor` value. */
+  Vendor = 'VENDOR'
 }
 
 /** A product variant represents a different version of a product, such as differing sizes or differing colors. */
@@ -5583,8 +5586,8 @@ export type ProductVariant = HasMetafields & Node & {
 
 /** A product variant represents a different version of a product, such as differing sizes or differing colors. */
 export type ProductVariantMetafieldArgs = {
-  namespace: Scalars['String'];
   key: Scalars['String'];
+  namespace: Scalars['String'];
 };
 
 
@@ -5596,22 +5599,22 @@ export type ProductVariantMetafieldsArgs = {
 
 /** A product variant represents a different version of a product, such as differing sizes or differing colors. */
 export type ProductVariantSellingPlanAllocationsArgs = {
-  first?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['String']>;
-  reverse?: Maybe<Scalars['Boolean']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  reverse?: InputMaybe<Scalars['Boolean']>;
 };
 
 
 /** A product variant represents a different version of a product, such as differing sizes or differing colors. */
 export type ProductVariantStoreAvailabilityArgs = {
-  first?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['String']>;
-  reverse?: Maybe<Scalars['Boolean']>;
-  near?: Maybe<GeoCoordinateInput>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  near?: InputMaybe<GeoCoordinateInput>;
+  reverse?: InputMaybe<Scalars['Boolean']>;
 };
 
 /** An auto-generated type for paginating through multiple ProductVariants. */
@@ -5636,19 +5639,19 @@ export type ProductVariantEdge = {
 
 /** The set of valid sort keys for the ProductVariant query. */
 export enum ProductVariantSortKeys {
-  /** Sort by the `title` value. */
-  Title = 'TITLE',
-  /** Sort by the `sku` value. */
-  Sku = 'SKU',
-  /** Sort by the `position` value. */
-  Position = 'POSITION',
   /** Sort by the `id` value. */
   Id = 'ID',
+  /** Sort by the `position` value. */
+  Position = 'POSITION',
   /**
    * Sort by relevance to the search terms when the `query` parameter is specified on the connection.
    * Don't use this sort key when no search query is specified.
    */
-  Relevance = 'RELEVANCE'
+  Relevance = 'RELEVANCE',
+  /** Sort by the `sku` value. */
+  Sku = 'SKU',
+  /** Sort by the `title` value. */
+  Title = 'TITLE'
 }
 
 /** The schema’s entry-point for queries. This acts as the public, top-level API from which all queries must start. */
@@ -5741,20 +5744,20 @@ export type QueryRoot = {
 
 /** The schema’s entry-point for queries. This acts as the public, top-level API from which all queries must start. */
 export type QueryRootArticlesArgs = {
-  first?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['String']>;
-  reverse?: Maybe<Scalars['Boolean']>;
-  sortKey?: Maybe<ArticleSortKeys>;
-  query?: Maybe<Scalars['String']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  query?: InputMaybe<Scalars['String']>;
+  reverse?: InputMaybe<Scalars['Boolean']>;
+  sortKey?: InputMaybe<ArticleSortKeys>;
 };
 
 
 /** The schema’s entry-point for queries. This acts as the public, top-level API from which all queries must start. */
 export type QueryRootBlogArgs = {
-  id?: Maybe<Scalars['ID']>;
-  handle?: Maybe<Scalars['String']>;
+  handle?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
 };
 
 
@@ -5766,13 +5769,13 @@ export type QueryRootBlogByHandleArgs = {
 
 /** The schema’s entry-point for queries. This acts as the public, top-level API from which all queries must start. */
 export type QueryRootBlogsArgs = {
-  first?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['String']>;
-  reverse?: Maybe<Scalars['Boolean']>;
-  sortKey?: Maybe<BlogSortKeys>;
-  query?: Maybe<Scalars['String']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  query?: InputMaybe<Scalars['String']>;
+  reverse?: InputMaybe<Scalars['Boolean']>;
+  sortKey?: InputMaybe<BlogSortKeys>;
 };
 
 
@@ -5784,8 +5787,8 @@ export type QueryRootCartArgs = {
 
 /** The schema’s entry-point for queries. This acts as the public, top-level API from which all queries must start. */
 export type QueryRootCollectionArgs = {
-  id?: Maybe<Scalars['ID']>;
-  handle?: Maybe<Scalars['String']>;
+  handle?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
 };
 
 
@@ -5797,13 +5800,13 @@ export type QueryRootCollectionByHandleArgs = {
 
 /** The schema’s entry-point for queries. This acts as the public, top-level API from which all queries must start. */
 export type QueryRootCollectionsArgs = {
-  first?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['String']>;
-  reverse?: Maybe<Scalars['Boolean']>;
-  sortKey?: Maybe<CollectionSortKeys>;
-  query?: Maybe<Scalars['String']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  query?: InputMaybe<Scalars['String']>;
+  reverse?: InputMaybe<Scalars['Boolean']>;
+  sortKey?: InputMaybe<CollectionSortKeys>;
 };
 
 
@@ -5815,13 +5818,13 @@ export type QueryRootCustomerArgs = {
 
 /** The schema’s entry-point for queries. This acts as the public, top-level API from which all queries must start. */
 export type QueryRootLocationsArgs = {
-  first?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['String']>;
-  reverse?: Maybe<Scalars['Boolean']>;
-  sortKey?: Maybe<LocationSortKeys>;
-  near?: Maybe<GeoCoordinateInput>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  near?: InputMaybe<GeoCoordinateInput>;
+  reverse?: InputMaybe<Scalars['Boolean']>;
+  sortKey?: InputMaybe<LocationSortKeys>;
 };
 
 
@@ -5833,20 +5836,20 @@ export type QueryRootMenuArgs = {
 
 /** The schema’s entry-point for queries. This acts as the public, top-level API from which all queries must start. */
 export type QueryRootMetaobjectArgs = {
-  id?: Maybe<Scalars['ID']>;
-  handle?: Maybe<MetaobjectHandleInput>;
+  handle?: InputMaybe<MetaobjectHandleInput>;
+  id?: InputMaybe<Scalars['ID']>;
 };
 
 
 /** The schema’s entry-point for queries. This acts as the public, top-level API from which all queries must start. */
 export type QueryRootMetaobjectsArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  reverse?: InputMaybe<Scalars['Boolean']>;
+  sortKey?: InputMaybe<Scalars['String']>;
   type: Scalars['String'];
-  sortKey?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['String']>;
-  reverse?: Maybe<Scalars['Boolean']>;
 };
 
 
@@ -5864,8 +5867,8 @@ export type QueryRootNodesArgs = {
 
 /** The schema’s entry-point for queries. This acts as the public, top-level API from which all queries must start. */
 export type QueryRootPageArgs = {
-  id?: Maybe<Scalars['ID']>;
-  handle?: Maybe<Scalars['String']>;
+  handle?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
 };
 
 
@@ -5877,20 +5880,20 @@ export type QueryRootPageByHandleArgs = {
 
 /** The schema’s entry-point for queries. This acts as the public, top-level API from which all queries must start. */
 export type QueryRootPagesArgs = {
-  first?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['String']>;
-  reverse?: Maybe<Scalars['Boolean']>;
-  sortKey?: Maybe<PageSortKeys>;
-  query?: Maybe<Scalars['String']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  query?: InputMaybe<Scalars['String']>;
+  reverse?: InputMaybe<Scalars['Boolean']>;
+  sortKey?: InputMaybe<PageSortKeys>;
 };
 
 
 /** The schema’s entry-point for queries. This acts as the public, top-level API from which all queries must start. */
 export type QueryRootProductArgs = {
-  id?: Maybe<Scalars['ID']>;
-  handle?: Maybe<Scalars['String']>;
+  handle?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
 };
 
 
@@ -5920,24 +5923,24 @@ export type QueryRootProductTypesArgs = {
 
 /** The schema’s entry-point for queries. This acts as the public, top-level API from which all queries must start. */
 export type QueryRootProductsArgs = {
-  first?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['String']>;
-  reverse?: Maybe<Scalars['Boolean']>;
-  sortKey?: Maybe<ProductSortKeys>;
-  query?: Maybe<Scalars['String']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  query?: InputMaybe<Scalars['String']>;
+  reverse?: InputMaybe<Scalars['Boolean']>;
+  sortKey?: InputMaybe<ProductSortKeys>;
 };
 
 
 /** The schema’s entry-point for queries. This acts as the public, top-level API from which all queries must start. */
 export type QueryRootUrlRedirectsArgs = {
-  first?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['String']>;
-  reverse?: Maybe<Scalars['Boolean']>;
-  query?: Maybe<Scalars['String']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  query?: InputMaybe<Scalars['String']>;
+  reverse?: InputMaybe<Scalars['Boolean']>;
 };
 
 /** SEO information. */
@@ -6129,11 +6132,11 @@ export type SellingPlanGroup = {
 
 /** Represents a selling method. For example, 'Subscribe and save' is a selling method where customers pay for goods or services per delivery. A selling plan group contains individual selling plans. */
 export type SellingPlanGroupSellingPlansArgs = {
-  first?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['String']>;
-  reverse?: Maybe<Scalars['Boolean']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  reverse?: InputMaybe<Scalars['Boolean']>;
 };
 
 /** An auto-generated type for paginating through multiple SellingPlanGroups. */
@@ -6251,8 +6254,8 @@ export type Shop = HasMetafields & Node & {
 
 /** Shop represents a collection of the general settings and information about the shop. */
 export type ShopMetafieldArgs = {
-  namespace: Scalars['String'];
   key: Scalars['String'];
+  namespace: Scalars['String'];
 };
 
 
@@ -6352,18 +6355,18 @@ export type StringEdge = {
  * a tokenized payment.
  */
 export type TokenizedPaymentInputV3 = {
-  /** The amount and currency of the payment. */
-  paymentAmount: MoneyInput;
-  /** A unique client generated key used to avoid duplicate charges. When a duplicate payment is found, the original is returned instead of creating a new one. For more information, refer to [Idempotent requests](https://shopify.dev/api/usage/idempotent-requests). */
-  idempotencyKey: Scalars['String'];
   /** The billing address for the payment. */
   billingAddress: MailingAddressInput;
+  /** A unique client generated key used to avoid duplicate charges. When a duplicate payment is found, the original is returned instead of creating a new one. For more information, refer to [Idempotent requests](https://shopify.dev/api/usage/idempotent-requests). */
+  idempotencyKey: Scalars['String'];
+  /** Public Hash Key used for AndroidPay payments only. */
+  identifier?: InputMaybe<Scalars['String']>;
+  /** The amount and currency of the payment. */
+  paymentAmount: MoneyInput;
   /** A simple string or JSON containing the required payment data for the tokenized payment. */
   paymentData: Scalars['String'];
   /** Whether to execute the payment in test mode, if possible. Test mode is not supported in production stores. Defaults to `false`. */
-  test?: Maybe<Scalars['Boolean']>;
-  /** Public Hash Key used for AndroidPay payments only. */
-  identifier?: Maybe<Scalars['String']>;
+  test?: InputMaybe<Scalars['Boolean']>;
   /** The type of payment token. */
   type: PaymentTokenType;
 };
@@ -6393,33 +6396,32 @@ export type Transaction = {
 
 /** The different kinds of order transactions. */
 export enum TransactionKind {
-  /** An authorization and capture performed together in a single step. */
-  Sale = 'SALE',
-  /** A transfer of the money that was reserved during the authorization stage. */
-  Capture = 'CAPTURE',
   /**
    * An amount reserved against the cardholder's funding source.
    * Money does not change hands until the authorization is captured.
    */
   Authorization = 'AUTHORIZATION',
+  /** A transfer of the money that was reserved during the authorization stage. */
+  Capture = 'CAPTURE',
+  /** Money returned to the customer when they have paid too much. */
+  Change = 'CHANGE',
   /** An authorization for a payment taken with an EMV credit card reader. */
   EmvAuthorization = 'EMV_AUTHORIZATION',
-  /** Money returned to the customer when they have paid too much. */
-  Change = 'CHANGE'
+  /** An authorization and capture performed together in a single step. */
+  Sale = 'SALE'
 }
 
 /** Transaction statuses describe the status of a transaction. */
 export enum TransactionStatus {
+  /** There was an error while processing the transaction. */
+  Error = 'ERROR',
+  /** The transaction failed. */
+  Failure = 'FAILURE',
   /** The transaction is pending. */
   Pending = 'PENDING',
   /** The transaction succeeded. */
-  Success = 'SUCCESS',
-  /** The transaction failed. */
-  Failure = 'FAILURE',
-  /** There was an error while processing the transaction. */
-  Error = 'ERROR'
+  Success = 'SUCCESS'
 }
-
 
 /** The measurement used to calculate a unit price for a product variant (e.g. $9.99 / 100ml). */
 export type UnitPriceMeasurement = {
@@ -6438,40 +6440,40 @@ export type UnitPriceMeasurement = {
 
 /** The accepted types of unit of measurement. */
 export enum UnitPriceMeasurementMeasuredType {
+  /** Unit of measurements representing areas. */
+  Area = 'AREA',
+  /** Unit of measurements representing lengths. */
+  Length = 'LENGTH',
   /** Unit of measurements representing volumes. */
   Volume = 'VOLUME',
   /** Unit of measurements representing weights. */
-  Weight = 'WEIGHT',
-  /** Unit of measurements representing lengths. */
-  Length = 'LENGTH',
-  /** Unit of measurements representing areas. */
-  Area = 'AREA'
+  Weight = 'WEIGHT'
 }
 
 /** The valid units of measurement for a unit price measurement. */
 export enum UnitPriceMeasurementMeasuredUnit {
-  /** 1000 milliliters equals 1 liter. */
-  Ml = 'ML',
   /** 100 centiliters equals 1 liter. */
   Cl = 'CL',
-  /** Metric system unit of volume. */
-  L = 'L',
-  /** 1 cubic meter equals 1000 liters. */
-  M3 = 'M3',
-  /** 1000 milligrams equals 1 gram. */
-  Mg = 'MG',
+  /** 100 centimeters equals 1 meter. */
+  Cm = 'CM',
   /** Metric system unit of weight. */
   G = 'G',
   /** 1 kilogram equals 1000 grams. */
   Kg = 'KG',
-  /** 1000 millimeters equals 1 meter. */
-  Mm = 'MM',
-  /** 100 centimeters equals 1 meter. */
-  Cm = 'CM',
+  /** Metric system unit of volume. */
+  L = 'L',
   /** Metric system unit of length. */
   M = 'M',
   /** Metric system unit of area. */
-  M2 = 'M2'
+  M2 = 'M2',
+  /** 1 cubic meter equals 1000 liters. */
+  M3 = 'M3',
+  /** 1000 milligrams equals 1 gram. */
+  Mg = 'MG',
+  /** 1000 milliliters equals 1 liter. */
+  Ml = 'ML',
+  /** 1000 millimeters equals 1 meter. */
+  Mm = 'MM'
 }
 
 /** Systems of weights and measures. */
@@ -6481,7 +6483,6 @@ export enum UnitSystem {
   /** Metric system of weights and measures. */
   MetricSystem = 'METRIC_SYSTEM'
 }
-
 
 /** A redirect on the online store. */
 export type UrlRedirect = Node & {
@@ -6563,14 +6564,14 @@ export type VideoSource = {
 
 /** Units of measurement for weight. */
 export enum WeightUnit {
-  /** 1 kilogram equals 1000 grams. */
-  Kilograms = 'KILOGRAMS',
   /** Metric system unit of mass. */
   Grams = 'GRAMS',
-  /** 1 pound equals 16 ounces. */
-  Pounds = 'POUNDS',
+  /** 1 kilogram equals 1000 grams. */
+  Kilograms = 'KILOGRAMS',
   /** Imperial system unit of mass. */
-  Ounces = 'OUNCES'
+  Ounces = 'OUNCES',
+  /** 1 pound equals 16 ounces. */
+  Pounds = 'POUNDS'
 }
 
 export type GetCartQueryVariables = Exact<{
@@ -6578,21 +6579,21 @@ export type GetCartQueryVariables = Exact<{
 }>;
 
 
-export type GetCartQuery = { __typename?: 'QueryRoot', node?: Maybe<{ __typename?: 'AppliedGiftCard' } | { __typename?: 'Article' } | { __typename?: 'Blog' } | { __typename?: 'Cart' } | { __typename?: 'CartLine' } | { __typename: 'Checkout', webUrl: string, subtotalPriceV2: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode }, totalTaxV2: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode }, totalPriceV2: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode }, lineItems: { __typename?: 'CheckoutLineItemConnection', edges: Array<{ __typename?: 'CheckoutLineItemEdge', node: { __typename?: 'CheckoutLineItem', id: string, title: string, quantity: number, variant?: Maybe<{ __typename?: 'ProductVariant', id: string, title: string, product: { __typename?: 'Product', handle: string }, priceV2: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode }, image?: Maybe<{ __typename?: 'Image', altText?: Maybe<string>, transformedSrc: string }> }> } }> } } | { __typename?: 'CheckoutLineItem' } | { __typename?: 'Collection' } | { __typename?: 'Comment' } | { __typename?: 'ExternalVideo' } | { __typename?: 'GenericFile' } | { __typename?: 'Location' } | { __typename?: 'MailingAddress' } | { __typename?: 'MediaImage' } | { __typename?: 'Menu' } | { __typename?: 'MenuItem' } | { __typename?: 'Metafield' } | { __typename?: 'Metaobject' } | { __typename?: 'Model3d' } | { __typename?: 'Order' } | { __typename?: 'Page' } | { __typename?: 'Payment' } | { __typename?: 'Product' } | { __typename?: 'ProductOption' } | { __typename?: 'ProductVariant' } | { __typename?: 'Shop' } | { __typename?: 'ShopPolicy' } | { __typename?: 'UrlRedirect' } | { __typename?: 'Video' }> };
+export type GetCartQuery = { __typename?: 'QueryRoot', node?: { __typename?: 'AppliedGiftCard' } | { __typename?: 'Article' } | { __typename?: 'Blog' } | { __typename?: 'Cart' } | { __typename?: 'CartLine' } | { __typename: 'Checkout', webUrl: string, subtotalPriceV2: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode }, totalTaxV2: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode }, totalPriceV2: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode }, lineItems: { __typename?: 'CheckoutLineItemConnection', edges: Array<{ __typename?: 'CheckoutLineItemEdge', node: { __typename?: 'CheckoutLineItem', id: string, title: string, quantity: number, variant?: { __typename?: 'ProductVariant', id: string, title: string, product: { __typename?: 'Product', handle: string }, priceV2: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode }, image?: { __typename?: 'Image', altText?: string | null, transformedSrc: string } | null } | null } }> } } | { __typename?: 'CheckoutLineItem' } | { __typename?: 'Collection' } | { __typename?: 'Comment' } | { __typename?: 'ExternalVideo' } | { __typename?: 'GenericFile' } | { __typename?: 'Location' } | { __typename?: 'MailingAddress' } | { __typename?: 'MediaImage' } | { __typename?: 'Menu' } | { __typename?: 'MenuItem' } | { __typename?: 'Metafield' } | { __typename?: 'Metaobject' } | { __typename?: 'Model3d' } | { __typename?: 'Order' } | { __typename?: 'Page' } | { __typename?: 'Payment' } | { __typename?: 'Product' } | { __typename?: 'ProductOption' } | { __typename?: 'ProductVariant' } | { __typename?: 'Shop' } | { __typename?: 'ShopPolicy' } | { __typename?: 'UrlRedirect' } | { __typename?: 'Video' } | null };
 
 export type GetCartItemCountQueryVariables = Exact<{
   checkoutId: Scalars['ID'];
 }>;
 
 
-export type GetCartItemCountQuery = { __typename?: 'QueryRoot', node?: Maybe<{ __typename?: 'AppliedGiftCard' } | { __typename?: 'Article' } | { __typename?: 'Blog' } | { __typename?: 'Cart' } | { __typename?: 'CartLine' } | { __typename: 'Checkout', lineItems: { __typename?: 'CheckoutLineItemConnection', edges: Array<{ __typename?: 'CheckoutLineItemEdge', node: { __typename?: 'CheckoutLineItem', quantity: number } }> } } | { __typename?: 'CheckoutLineItem' } | { __typename?: 'Collection' } | { __typename?: 'Comment' } | { __typename?: 'ExternalVideo' } | { __typename?: 'GenericFile' } | { __typename?: 'Location' } | { __typename?: 'MailingAddress' } | { __typename?: 'MediaImage' } | { __typename?: 'Menu' } | { __typename?: 'MenuItem' } | { __typename?: 'Metafield' } | { __typename?: 'Metaobject' } | { __typename?: 'Model3d' } | { __typename?: 'Order' } | { __typename?: 'Page' } | { __typename?: 'Payment' } | { __typename?: 'Product' } | { __typename?: 'ProductOption' } | { __typename?: 'ProductVariant' } | { __typename?: 'Shop' } | { __typename?: 'ShopPolicy' } | { __typename?: 'UrlRedirect' } | { __typename?: 'Video' }> };
+export type GetCartItemCountQuery = { __typename?: 'QueryRoot', node?: { __typename?: 'AppliedGiftCard' } | { __typename?: 'Article' } | { __typename?: 'Blog' } | { __typename?: 'Cart' } | { __typename?: 'CartLine' } | { __typename: 'Checkout', lineItems: { __typename?: 'CheckoutLineItemConnection', edges: Array<{ __typename?: 'CheckoutLineItemEdge', node: { __typename?: 'CheckoutLineItem', quantity: number } }> } } | { __typename?: 'CheckoutLineItem' } | { __typename?: 'Collection' } | { __typename?: 'Comment' } | { __typename?: 'ExternalVideo' } | { __typename?: 'GenericFile' } | { __typename?: 'Location' } | { __typename?: 'MailingAddress' } | { __typename?: 'MediaImage' } | { __typename?: 'Menu' } | { __typename?: 'MenuItem' } | { __typename?: 'Metafield' } | { __typename?: 'Metaobject' } | { __typename?: 'Model3d' } | { __typename?: 'Order' } | { __typename?: 'Page' } | { __typename?: 'Payment' } | { __typename?: 'Product' } | { __typename?: 'ProductOption' } | { __typename?: 'ProductVariant' } | { __typename?: 'Shop' } | { __typename?: 'ShopPolicy' } | { __typename?: 'UrlRedirect' } | { __typename?: 'Video' } | null };
 
 export type CreateCartMutationVariables = Exact<{
   input: CheckoutCreateInput;
 }>;
 
 
-export type CreateCartMutation = { __typename?: 'Mutation', checkoutCreate?: Maybe<{ __typename?: 'CheckoutCreatePayload', checkout?: Maybe<{ __typename?: 'Checkout', id: string }> }> };
+export type CreateCartMutation = { __typename?: 'Mutation', checkoutCreate?: { __typename?: 'CheckoutCreatePayload', checkout?: { __typename?: 'Checkout', id: string } | null } | null };
 
 export type AddCartItemMutationVariables = Exact<{
   checkoutId: Scalars['ID'];
@@ -6600,7 +6601,7 @@ export type AddCartItemMutationVariables = Exact<{
 }>;
 
 
-export type AddCartItemMutation = { __typename?: 'Mutation', checkoutLineItemsAdd?: Maybe<{ __typename?: 'CheckoutLineItemsAddPayload', checkout?: Maybe<{ __typename?: 'Checkout', id: string }> }> };
+export type AddCartItemMutation = { __typename?: 'Mutation', checkoutLineItemsAdd?: { __typename?: 'CheckoutLineItemsAddPayload', checkout?: { __typename?: 'Checkout', id: string } | null } | null };
 
 export type UpdateCartItemMutationVariables = Exact<{
   checkoutId: Scalars['ID'];
@@ -6608,7 +6609,7 @@ export type UpdateCartItemMutationVariables = Exact<{
 }>;
 
 
-export type UpdateCartItemMutation = { __typename?: 'Mutation', checkoutLineItemsUpdate?: Maybe<{ __typename?: 'CheckoutLineItemsUpdatePayload', checkout?: Maybe<{ __typename?: 'Checkout', id: string }> }> };
+export type UpdateCartItemMutation = { __typename?: 'Mutation', checkoutLineItemsUpdate?: { __typename?: 'CheckoutLineItemsUpdatePayload', checkout?: { __typename?: 'Checkout', id: string } | null } | null };
 
 export type RemoveCartItemMutationVariables = Exact<{
   checkoutId: Scalars['ID'];
@@ -6616,21 +6617,21 @@ export type RemoveCartItemMutationVariables = Exact<{
 }>;
 
 
-export type RemoveCartItemMutation = { __typename?: 'Mutation', checkoutLineItemsRemove?: Maybe<{ __typename?: 'CheckoutLineItemsRemovePayload', checkout?: Maybe<{ __typename?: 'Checkout', id: string }> }> };
+export type RemoveCartItemMutation = { __typename?: 'Mutation', checkoutLineItemsRemove?: { __typename?: 'CheckoutLineItemsRemovePayload', checkout?: { __typename?: 'Checkout', id: string } | null } | null };
 
-export type PaginatedProductListFragment = { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', cursor: string, node: { __typename?: 'Product', id: string, handle: string, title: string, totalInventory?: Maybe<number>, description: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: Maybe<string>, altText?: Maybe<string>, transformedSrc: string } }> } } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean } };
+export type PaginatedProductListFragment = { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', cursor: string, node: { __typename?: 'Product', id: string, handle: string, title: string, totalInventory?: number | null, description: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: string | null, altText?: string | null, transformedSrc: string } }> } } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean } };
 
 export type GetProductListQueryVariables = Exact<{
-  after?: Maybe<Scalars['String']>;
+  after?: InputMaybe<Scalars['String']>;
 }>;
 
 
-export type GetProductListQuery = { __typename?: 'QueryRoot', products: { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', cursor: string, node: { __typename?: 'Product', id: string, handle: string, title: string, totalInventory?: Maybe<number>, description: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: Maybe<string>, altText?: Maybe<string>, transformedSrc: string } }> } } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean } } };
+export type GetProductListQuery = { __typename?: 'QueryRoot', products: { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', cursor: string, node: { __typename?: 'Product', id: string, handle: string, title: string, totalInventory?: number | null, description: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: string | null, altText?: string | null, transformedSrc: string } }> } } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean } } };
 
 export type GetAllProductsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllProductsQuery = { __typename?: 'QueryRoot', products: { __typename?: 'ProductConnection', nodes: Array<{ __typename?: 'Product', id: string, handle: string, title: string, totalInventory?: Maybe<number>, tags: Array<string>, productType: string, description: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: Maybe<string>, altText?: Maybe<string>, transformedSrc: string } }> } }> } };
+export type GetAllProductsQuery = { __typename?: 'QueryRoot', products: { __typename?: 'ProductConnection', nodes: Array<{ __typename?: 'Product', id: string, handle: string, title: string, totalInventory?: number | null, tags: Array<string>, productType: string, description: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: string | null, altText?: string | null, transformedSrc: string } }> } }> } };
 
 export type GetAllTagsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -6642,7 +6643,7 @@ export type GetAllProductByTagQueryVariables = Exact<{
 }>;
 
 
-export type GetAllProductByTagQuery = { __typename?: 'QueryRoot', products: { __typename?: 'ProductConnection', nodes: Array<{ __typename?: 'Product', id: string, handle: string, title: string, totalInventory?: Maybe<number>, tags: Array<string>, productType: string, description: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: Maybe<string>, altText?: Maybe<string>, transformedSrc: string } }> } }> } };
+export type GetAllProductByTagQuery = { __typename?: 'QueryRoot', products: { __typename?: 'ProductConnection', nodes: Array<{ __typename?: 'Product', id: string, handle: string, title: string, totalInventory?: number | null, tags: Array<string>, productType: string, description: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: string | null, altText?: string | null, transformedSrc: string } }> } }> } };
 
 export type GetAllTypesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -6654,29 +6655,29 @@ export type GetAllProductByTypeQueryVariables = Exact<{
 }>;
 
 
-export type GetAllProductByTypeQuery = { __typename?: 'QueryRoot', products: { __typename?: 'ProductConnection', nodes: Array<{ __typename?: 'Product', id: string, handle: string, title: string, totalInventory?: Maybe<number>, tags: Array<string>, productType: string, description: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: Maybe<string>, altText?: Maybe<string>, transformedSrc: string } }> } }> } };
+export type GetAllProductByTypeQuery = { __typename?: 'QueryRoot', products: { __typename?: 'ProductConnection', nodes: Array<{ __typename?: 'Product', id: string, handle: string, title: string, totalInventory?: number | null, tags: Array<string>, productType: string, description: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: string | null, altText?: string | null, transformedSrc: string } }> } }> } };
 
 export type GetProductSingleQueryVariables = Exact<{
   handle: Scalars['String'];
 }>;
 
 
-export type GetProductSingleQuery = { __typename?: 'QueryRoot', productByHandle?: Maybe<{ __typename?: 'Product', title: string, description: string, totalInventory?: Maybe<number>, seo: { __typename?: 'SEO', title?: Maybe<string>, description?: Maybe<string> }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: Maybe<string>, altText?: Maybe<string>, transformedSrc: string } }> }, variants: { __typename?: 'ProductVariantConnection', edges: Array<{ __typename?: 'ProductVariantEdge', node: { __typename?: 'ProductVariant', id: string, title: string, priceV2: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode }, image?: Maybe<{ __typename?: 'Image', id?: Maybe<string> }> } }> } }> };
+export type GetProductSingleQuery = { __typename?: 'QueryRoot', productByHandle?: { __typename?: 'Product', title: string, description: string, totalInventory?: number | null, seo: { __typename?: 'SEO', title?: string | null, description?: string | null }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: string | null, altText?: string | null, transformedSrc: string } }> }, variants: { __typename?: 'ProductVariantConnection', edges: Array<{ __typename?: 'ProductVariantEdge', node: { __typename?: 'ProductVariant', id: string, title: string, priceV2: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode }, image?: { __typename?: 'Image', id?: string | null } | null } }> } } | null };
 
 export type GetCollectionListQueryVariables = Exact<{
-  after?: Maybe<Scalars['String']>;
+  after?: InputMaybe<Scalars['String']>;
 }>;
 
 
-export type GetCollectionListQuery = { __typename?: 'QueryRoot', collections: { __typename?: 'CollectionConnection', edges: Array<{ __typename?: 'CollectionEdge', cursor: string, node: { __typename?: 'Collection', id: string, handle: string, title: string, description: string, image?: Maybe<{ __typename?: 'Image', id?: Maybe<string>, transformedSrc: string, altText?: Maybe<string> }>, products: { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', node: { __typename?: 'Product', id: string } }> } } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean } } };
+export type GetCollectionListQuery = { __typename?: 'QueryRoot', collections: { __typename?: 'CollectionConnection', edges: Array<{ __typename?: 'CollectionEdge', cursor: string, node: { __typename?: 'Collection', id: string, handle: string, title: string, description: string, image?: { __typename?: 'Image', id?: string | null, transformedSrc: string, altText?: string | null } | null, products: { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', node: { __typename?: 'Product', id: string } }> } } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean } } };
 
 export type GetCollectionSingleQueryVariables = Exact<{
   handle: Scalars['String'];
-  productsAfter?: Maybe<Scalars['String']>;
+  productsAfter?: InputMaybe<Scalars['String']>;
 }>;
 
 
-export type GetCollectionSingleQuery = { __typename?: 'QueryRoot', collectionByHandle?: Maybe<{ __typename?: 'Collection', id: string, handle: string, title: string, description: string, products: { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', cursor: string, node: { __typename?: 'Product', id: string, handle: string, title: string, totalInventory?: Maybe<number>, description: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: Maybe<string>, altText?: Maybe<string>, transformedSrc: string } }> } } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean } } }> };
+export type GetCollectionSingleQuery = { __typename?: 'QueryRoot', collectionByHandle?: { __typename?: 'Collection', id: string, handle: string, title: string, description: string, products: { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', cursor: string, node: { __typename?: 'Product', id: string, handle: string, title: string, totalInventory?: number | null, description: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: string | null, altText?: string | null, transformedSrc: string } }> } } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean } } } | null };
 
 export const PaginatedProductListFragmentDoc = gql`
     fragment PaginatedProductList on ProductConnection {
@@ -7039,57 +7040,57 @@ export const GetCollectionSingleDocument = gql`
 }
     ${PaginatedProductListFragmentDoc}`;
 
-export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string) => Promise<T>;
+export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 
 
-const defaultWrapper: SdkFunctionWrapper = (action, _operationName) => action();
+const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationType) => action();
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
     getCart(variables: GetCartQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetCartQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GetCartQuery>(GetCartDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getCart');
+      return withWrapper((wrappedRequestHeaders) => client.request<GetCartQuery>(GetCartDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getCart', 'query');
     },
     getCartItemCount(variables: GetCartItemCountQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetCartItemCountQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GetCartItemCountQuery>(GetCartItemCountDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getCartItemCount');
+      return withWrapper((wrappedRequestHeaders) => client.request<GetCartItemCountQuery>(GetCartItemCountDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getCartItemCount', 'query');
     },
     createCart(variables: CreateCartMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CreateCartMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<CreateCartMutation>(CreateCartDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'createCart');
+      return withWrapper((wrappedRequestHeaders) => client.request<CreateCartMutation>(CreateCartDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'createCart', 'mutation');
     },
     addCartItem(variables: AddCartItemMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<AddCartItemMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<AddCartItemMutation>(AddCartItemDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'addCartItem');
+      return withWrapper((wrappedRequestHeaders) => client.request<AddCartItemMutation>(AddCartItemDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'addCartItem', 'mutation');
     },
     updateCartItem(variables: UpdateCartItemMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<UpdateCartItemMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<UpdateCartItemMutation>(UpdateCartItemDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'updateCartItem');
+      return withWrapper((wrappedRequestHeaders) => client.request<UpdateCartItemMutation>(UpdateCartItemDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'updateCartItem', 'mutation');
     },
     removeCartItem(variables: RemoveCartItemMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<RemoveCartItemMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<RemoveCartItemMutation>(RemoveCartItemDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'removeCartItem');
+      return withWrapper((wrappedRequestHeaders) => client.request<RemoveCartItemMutation>(RemoveCartItemDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'removeCartItem', 'mutation');
     },
     getProductList(variables?: GetProductListQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetProductListQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GetProductListQuery>(GetProductListDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getProductList');
+      return withWrapper((wrappedRequestHeaders) => client.request<GetProductListQuery>(GetProductListDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getProductList', 'query');
     },
     getAllProducts(variables?: GetAllProductsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetAllProductsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GetAllProductsQuery>(GetAllProductsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getAllProducts');
+      return withWrapper((wrappedRequestHeaders) => client.request<GetAllProductsQuery>(GetAllProductsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getAllProducts', 'query');
     },
     getAllTags(variables?: GetAllTagsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetAllTagsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GetAllTagsQuery>(GetAllTagsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getAllTags');
+      return withWrapper((wrappedRequestHeaders) => client.request<GetAllTagsQuery>(GetAllTagsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getAllTags', 'query');
     },
     getAllProductByTag(variables: GetAllProductByTagQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetAllProductByTagQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GetAllProductByTagQuery>(GetAllProductByTagDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getAllProductByTag');
+      return withWrapper((wrappedRequestHeaders) => client.request<GetAllProductByTagQuery>(GetAllProductByTagDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getAllProductByTag', 'query');
     },
     getAllTypes(variables?: GetAllTypesQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetAllTypesQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GetAllTypesQuery>(GetAllTypesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getAllTypes');
+      return withWrapper((wrappedRequestHeaders) => client.request<GetAllTypesQuery>(GetAllTypesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getAllTypes', 'query');
     },
     getAllProductByType(variables: GetAllProductByTypeQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetAllProductByTypeQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GetAllProductByTypeQuery>(GetAllProductByTypeDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getAllProductByType');
+      return withWrapper((wrappedRequestHeaders) => client.request<GetAllProductByTypeQuery>(GetAllProductByTypeDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getAllProductByType', 'query');
     },
     getProductSingle(variables: GetProductSingleQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetProductSingleQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GetProductSingleQuery>(GetProductSingleDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getProductSingle');
+      return withWrapper((wrappedRequestHeaders) => client.request<GetProductSingleQuery>(GetProductSingleDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getProductSingle', 'query');
     },
     getCollectionList(variables?: GetCollectionListQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetCollectionListQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GetCollectionListQuery>(GetCollectionListDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getCollectionList');
+      return withWrapper((wrappedRequestHeaders) => client.request<GetCollectionListQuery>(GetCollectionListDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getCollectionList', 'query');
     },
     getCollectionSingle(variables: GetCollectionSingleQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetCollectionSingleQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GetCollectionSingleQuery>(GetCollectionSingleDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getCollectionSingle');
+      return withWrapper((wrappedRequestHeaders) => client.request<GetCollectionSingleQuery>(GetCollectionSingleDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getCollectionSingle', 'query');
     }
   };
 }

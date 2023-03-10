@@ -1,9 +1,10 @@
 import { CART_ITEM_COUNT_QUERY } from '@app/constants/query.constant';
-import { Badge, IconButton } from '@material-ui/core';
-import { ShoppingBasket } from '@material-ui/icons';
+import { Badge, IconButton } from '@mui/material';
+
 import { useQuery } from 'react-query';
 import NextLink from 'next/link';
 import { CartService } from '@app/services/cart.service';
+import { ShoppingBasket } from '@mui/icons-material';
 
 export const CartIcon = () => {
   const itemCount = useQuery(CART_ITEM_COUNT_QUERY, () => CartService.getItemCount());

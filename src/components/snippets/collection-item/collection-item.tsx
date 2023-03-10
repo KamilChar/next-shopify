@@ -1,6 +1,6 @@
 import React from 'react';
 import NextLink from 'next/link';
-import { Card, CardContent, CardMedia, Typography, CardActionArea } from '@material-ui/core';
+import { Card, CardContent, CardMedia, Typography, CardActionArea } from '@mui/material';
 
 import { CollectionService } from '@app/services/collection.service';
 

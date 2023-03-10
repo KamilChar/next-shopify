@@ -8,7 +8,7 @@ import { PRODUCT_LIST_QUERY_V1 } from '@app/constants/query.constant';
 import { ProductService } from '@app/services/product.service';
 import { useMemo } from 'react';
 import { GetServerSideProps } from 'next';
-import { Box, CircularProgress } from '@material-ui/core';
+import { Box, CircularProgress } from '@mui/material';
 
 interface Props {
   initialData: InfiniteData<ProductService.List>;

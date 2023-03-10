@@ -1,5 +1,4 @@
-import { CardActionArea, Box, CardMedia, Typography, Grid } from '@material-ui/core';
-import { styled } from '@material-ui/styles';
+import { styled, CardActionArea, Box, CardMedia, Typography } from '@mui/material';
 import NextLink from 'next/link';
 
 const StyledActionArea = styled(CardActionArea)({

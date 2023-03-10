@@ -1,7 +1,7 @@
 import { NextSeo } from 'next-seo';
 import NextLink from 'next/link';
 import { useQuery } from 'react-query';
-import { Alert, Button } from '@material-ui/core';
+import { Alert, Button } from '@mui/material';
 import { Cart } from '@app/components/sections/cart';
 import { DefaultLayout } from '@app/components/layouts/default-layout';
 import { CartService } from '@app/services/cart.service';

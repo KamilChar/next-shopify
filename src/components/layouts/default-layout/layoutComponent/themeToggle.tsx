@@ -1,5 +1,5 @@
 import { ThemeMode } from '@app/utilities/hooks/ColorModeContainer';
-import { FormControlLabel, FormGroup, Switch } from '@material-ui/core';
+import { FormControlLabel, FormGroup, Switch } from '@mui/material';
 
 interface Props {
   themeName: ThemeMode;

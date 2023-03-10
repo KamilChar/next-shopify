@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Pagination } from '@material-ui/core';
+import { Grid, Pagination } from '@mui/material';
 import { ProductService } from '@app/services/product.service';
 import { useMemo, useState } from 'react';
 

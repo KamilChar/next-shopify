@@ -5,7 +5,7 @@ import truncate from 'lodash/truncate';
 import { useQueryClient, useMutation } from 'react-query';
 import { Swiper } from 'swiper';
 import { Swiper as SwiperSlider, SwiperSlide } from 'swiper/react';
-import { LoadingButton } from '@material-ui/lab';
+
 import {
   Card,
   CardContent,
@@ -17,12 +17,14 @@ import {
   Typography,
   TextField,
   Alert,
-} from '@material-ui/core';
+  Button,
+} from '@mui/material';
 
 import { CART_ITEM_COUNT_QUERY } from '@app/constants/query.constant';
 import { IntlUtility } from '@app/utilities/intl.utility';
 import { CartService } from '@app/services/cart.service';
 import { ProductService } from '@app/services/product.service';
+import { LoadingButton } from '@mui/lab';
 
 interface Props {
   product: ProductService.Single;
@@ -56,7 +58,7 @@ export const ProductSingle: React.FC<Props> = ({ product }) => {
             </SwiperSlider>
           </Grid>
           <Grid item xs={12} sm={7}>
-            <div css={{ padding: '20px' }}>
+            <div style={{ padding: '20px' }}>
               <Typography sx={{ marginBottom: '20px' }} gutterBottom variant="h5" component="h1">
                 {product.title}
               </Typography>

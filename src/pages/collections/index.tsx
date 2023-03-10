@@ -7,7 +7,7 @@ import { COLLECTION_LIST_QUERY } from '@app/constants/query.constant';
 import { CollectionService } from '@app/services/collection.service';
 import { CollectionList } from '@app/components/sections/collection-list';
 import { useMemo } from 'react';
-import { Box, CircularProgress } from '@material-ui/core';
+import { Box, CircularProgress } from '@mui/material';
 
 interface Props {
   initialData: InfiniteData<CollectionService.CollectionList>;

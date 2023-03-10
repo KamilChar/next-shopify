@@ -1,5 +1,5 @@
 import { Countries } from '@app/components/snippets/map/countries';
-import { Box, Button, Card, Typography } from '@material-ui/core';
+import { Box, Button, Card, Typography } from '@mui/material';
 import { Chance } from 'chance';
 import { useEffect, useState } from 'react';
 import { ComposableMap, Geographies, Geography } from 'react-simple-maps';

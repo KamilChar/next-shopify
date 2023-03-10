@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid } from '@material-ui/core';
+import { Grid } from '@mui/material';
 import { UseInfiniteQueryResult } from 'react-query';
 import { PageLoader } from '@app/components/snippets/page-loader';
 import { CollectionService } from '@app/services/collection.service';

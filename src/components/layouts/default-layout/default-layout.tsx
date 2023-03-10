@@ -1,9 +1,9 @@
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { theme } from '@app/utilities/styles/layout/layoutStyles';
 import { MobileLayout } from '@app/components/layouts/default-layout/mobileLayout';
 import { DesktopLayout } from '@app/components/layouts/default-layout/desktopLayout';
 import { UseBaseQueryResult } from 'react-query';
-import { Alert, Button, Container } from '@material-ui/core';
+import { Alert, Button, Container } from '@mui/material';
 
 interface Props {
   query?: UseBaseQueryResult;

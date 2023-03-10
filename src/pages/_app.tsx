@@ -1,13 +1,13 @@
 import { DefaultSeo } from 'next-seo';
 import type { AppProps } from 'next/app';
 import NextNprogress from 'nextjs-progressbar';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import CssBaseline from '@mui/material/CssBaseline';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { EnvUtility } from '@app/utilities/env.utility';
 import { AnalyticUtility } from '@app/utilities/analytic.utility';
-import { ThemeProvider } from '@material-ui/core/styles';
-import React from 'react';
+import { ThemeProvider } from '@mui/material/styles';
+import React, { PropsWithChildren } from 'react';
 import { ColorModeProvider, useColorMode } from '@app/utilities/hooks/ColorModeContainer';
 
 const queryClient = new QueryClient({
@@ -20,7 +20,7 @@ const queryClient = new QueryClient({
   },
 });
 
-const AppProviders: React.FC = ({ children }) => {
+const AppProviders: React.FC<PropsWithChildren<{}>> = ({ children }) => {
   const { theme } = useColorMode();
   return (
     <ThemeProvider theme={theme}>
@@ -39,7 +39,7 @@ const AppProviders: React.FC = ({ children }) => {
   );
 };
 
-function MyApp({ Component, pageProps }: AppProps) {
+export default function MyApp({ Component, pageProps }: AppProps) {
   AnalyticUtility.useTracker();
 
   return (
@@ -52,5 +52,3 @@ function MyApp({ Component, pageProps }: AppProps) {
     </QueryClientProvider>
   );
 }
-
-export default MyApp;

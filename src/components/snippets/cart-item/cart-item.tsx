@@ -4,13 +4,13 @@ import { useImmer } from 'use-immer';
 import { useDebounce } from 'react-use';
 import { useQueryClient, useMutation } from 'react-query';
 
-import { Delete } from '@material-ui/icons';
-import { TableCell, TableRow, IconButton, TextField } from '@material-ui/core';
+import { TableCell, TableRow, IconButton, TextField } from '@mui/material';
 import { TextLink } from '@app/components/snippets/text-link';
 
 import { CART_ITEM_COUNT_QUERY, CART_QUERY } from '@app/constants/query.constant';
 import { CartService } from '@app/services/cart.service';
 import { IntlUtility } from '@app/utilities/intl.utility';
+import { Delete } from '@mui/icons-material';
 
 interface Props {
   item: CartService.CartItem;
@@ -66,7 +66,7 @@ export const CartItem: React.FC<Props> = ({ item }) => {
           <Image src={item.variant.image.src} alt={item.variant.image.alt} width={30} height={40} />
         </TextLink>
       </TableCell>
-      <TableCell component="th" scope="row">
+      <TableCell scope="row">
         <TextLink href={item.variant.url} sx={{ whiteSpace: 'nowrap' }}>
           {item.title} ({item.variant.title})
         </TextLink>

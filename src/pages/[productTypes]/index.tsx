@@ -6,7 +6,7 @@ import { DefaultLayout } from '@app/components/layouts/default-layout/default-la
 import { PRODUCT_LIST_BY_TAG_QUERY } from '@app/constants/query.constant';
 import { ProductService } from '@app/services/product.service';
 import { useMemo } from 'react';
-import { Box, CircularProgress } from '@material-ui/core';
+import { Box, CircularProgress } from '@mui/material';
 import { useRouter } from 'next/router';
 
 const ProductPageByType = () => {

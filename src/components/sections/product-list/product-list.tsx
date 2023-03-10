@@ -8,10 +8,10 @@ import {
   Stack,
   TextField as _TextField,
   Pagination,
-} from '@material-ui/core';
+  styled,
+} from '@mui/material';
 import { ProductItem } from '@app/components/snippets/product-item';
 import { ProductService } from '@app/services/product.service';
-import { styled } from '@material-ui/system';
 
 interface Props {
   products: ProductService.AllListItem[];
@@ -26,7 +26,7 @@ const TextField = styled(_TextField)`
 `;
 
 const sortTypes = ['Name Asc', 'Name Desc', 'Price Asc', 'Price Desc'] as const;
-type SortType = typeof sortTypes[number];
+type SortType = (typeof sortTypes)[number];
 
 export const ProductList: React.FC<Props> = ({ products }) => {
   const [sortBy, setSortBy] = useState<SortType>(sortTypes[0]);

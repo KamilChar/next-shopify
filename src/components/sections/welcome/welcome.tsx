@@ -1,4 +1,4 @@
-import { Divider } from '@material-ui/core';
+import { Divider } from '@mui/material';
 
 import { BannerPiecesLeft } from '@app/components/banner/bannerPiecesLeft';
 import { BannerProductTypes } from '@app/components/banner/bannerProductTypes';

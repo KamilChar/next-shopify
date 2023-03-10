@@ -1,11 +1,12 @@
 import React from 'react';
-import { Button, Fade, Link, Menu, MenuItem } from '@material-ui/core';
-import { MenuOpen } from '@material-ui/icons';
+import { Button, Fade, Link, Menu, MenuItem } from '@mui/material';
+
 import { useState, MouseEvent, useEffect, ReactNode } from 'react';
 import NextLink from 'next/link';
 import NProgress from 'nprogress';
 
 import { UseBaseQueryResult } from 'react-query';
+import { MenuOpen } from '@mui/icons-material';
 
 interface Props {
   query?: UseBaseQueryResult;

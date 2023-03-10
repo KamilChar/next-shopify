@@ -2,7 +2,7 @@ import { TAGS_LIST_QUERY } from '@app/constants/query.constant';
 import { ProductService } from '@app/services/product.service';
 import { useInfiniteQuery } from 'react-query';
 import { useMemo } from 'react';
-import { Box, Button, CircularProgress, Grid, Typography } from '@material-ui/core';
+import { Box, Button, CircularProgress, Grid, Typography } from '@mui/material';
 import { DefaultLayout } from '@app/components/layouts/default-layout';
 import { useRouter } from 'next/router';
 

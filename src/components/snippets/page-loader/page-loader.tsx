@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '@material-ui/core';
+import { Button } from '@mui/material';
 import { UseInfiniteQueryResult } from 'react-query';
 
 export type PageLoaderProps = Pick<
@@ -9,7 +9,7 @@ export type PageLoaderProps = Pick<
 
 export const PageLoader: React.FC<PageLoaderProps> = (props) => {
   return (
-    <div css={{ textAlign: 'center' }}>
+    <div style={{ textAlign: 'center' }}>
       {(() => {
         if (props.isFetchingNextPage) {
           return <Button color="warning">Loading...</Button>;

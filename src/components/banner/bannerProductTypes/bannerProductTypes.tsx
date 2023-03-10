@@ -2,9 +2,10 @@ import { PRODUCT_TYPE_LIST_QUERY } from '@app/constants/query.constant';
 import { ProductService } from '@app/services/product.service';
 import { useMemo } from 'react';
 import { useInfiniteQuery } from 'react-query';
-import { styled } from '@material-ui/styles';
+
 import Carousel from 'react-material-ui-carousel';
 import { BannerProductObject } from '@app/components/banner/bannerProductTypes/bannerProductObject';
+import { styled } from '@mui/material';
 
 const StyledDiv = styled('div')({
   display: 'flex',

@@ -1,4 +1,4 @@
-import { Button, Divider } from '@material-ui/core';
+import { Button, Divider } from '@mui/material';
 import NextLink from 'next/link';
 
 export const NavComponent = () => {

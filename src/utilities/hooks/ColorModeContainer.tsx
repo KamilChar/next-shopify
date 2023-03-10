@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { createContainer } from 'unstated-next';
 
-import { createTheme, Theme } from '@material-ui/core/styles';
+import { createTheme, Theme } from '@mui/material/styles';
 
 const darkTheme = createTheme({
   components: {

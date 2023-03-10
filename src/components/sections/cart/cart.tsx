@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, TableContainer, Typography, Table, TableBody, TableRow, TableCell, Button } from '@material-ui/core';
+import { Card, TableContainer, Typography, Table, TableBody, TableRow, TableCell, Button } from '@mui/material';
 
 import { CartList } from '@app/components/snippets/cart-list';
 
@@ -28,17 +28,17 @@ export const Cart: React.FC<Props> = ({ cart }) => {
                 align="right"
                 width="100%"
               >
-                Subtotal is <span css={{ color: '#d32f2f' }}>{IntlUtility.formatPrice(cart.subtotal)}</span>
+                Subtotal is <span style={{ color: '#d32f2f' }}>{IntlUtility.formatPrice(cart.subtotal)}</span>
               </TableCell>
               <TableCell
                 sx={{ whiteSpace: 'nowrap', display: { xs: 'none', sm: 'table-cell' } }}
                 align="right"
                 width="100%"
               >
-                Tax is <span css={{ color: '#d32f2f' }}>{IntlUtility.formatPrice(cart.tax)}</span>
+                Tax is <span style={{ color: '#d32f2f' }}>{IntlUtility.formatPrice(cart.tax)}</span>
               </TableCell>
               <TableCell sx={{ whiteSpace: 'nowrap', fontWeight: 'bold' }} align="right" width="100%">
-                Total is <span css={{ color: '#d32f2f' }}>{IntlUtility.formatPrice(cart.total)}</span>
+                Total is <span style={{ color: '#d32f2f' }}>{IntlUtility.formatPrice(cart.total)}</span>
               </TableCell>
               <TableCell align="right">
                 <Button href={cart.url} target="_blank" variant="contained">
